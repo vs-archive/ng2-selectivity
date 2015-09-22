@@ -22,6 +22,7 @@
     "./components/selectivity/selectivity.ts",
     "./components/index.ts",
     "./components/module.ts",
+    "./components/position.ts",
     "./demo/components/selectivity-section.ts",
     "./demo/components/selectivity/single-demo.ts",
     "./demo/index.ts",
@@ -29,6 +30,6 @@
     "./dist/index.d.ts",
     "./dist/module.d.ts",
     "./tsd.d.ts",
-    "./typings/es6-object.d.ts"
+    "./typings/tsd.d.ts"
   ]
 }

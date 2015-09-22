@@ -246,3 +246,40 @@ pre {
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
+/*******************************************************************************
+Examples
+*******************************************************************************/
+
+.example-input {
+  width: 40%;
+}
+
+.example-code {
+  float: right;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.comment {
+  color: #999;
+  font-style: italic;
+}
+
+.string {
+  color: #080;
+}
+
+.api-example {
+  margin: 10px 0 15px 0;
+  padding: 0;
+}
+
+.example-input {
+  width: 90%;
+}
+
+.example-code {
+  float: none;
+  width: 90%;
+}
