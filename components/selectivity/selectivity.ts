@@ -30,8 +30,14 @@ export class SelectivityOptions {
 })
 @View({
   template: `
-<div *ng-if="options.sel && options.sel.items" class="selectivity-dropdown has-search-input" [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div class="selectivity-search-input-container"><input type="text" class="selectivity-search-input" (keydown)="inputEvent($event)"></div>
+<div *ng-if="options.sel && options.sel.items && hasInput !== null"
+     class="selectivity-dropdown"
+     [ng-class]="{'has-search-input': hasInput === true}"
+     [ng-style]="{top: top, left: left, width: width, display: display}">
+  <div *ng-if="options.sel.multiple === false"
+       class="selectivity-search-input-container">
+    <input type="text" class="selectivity-search-input" (keydown)="inputEvent($event)">
+  </div>
   <div class="selectivity-results-container">
     <div *ng-for="#i of items"
          [ng-class]="{'highlight': isActive(i)}"
@@ -53,6 +59,7 @@ export class SelectivityOptionsContainer {
   private placement:string;
   private items:Array<any> = [];
   private active:string;
+  private hasInput:boolean = null;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
@@ -76,8 +83,11 @@ export class SelectivityOptionsContainer {
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
 
-    // input element before options list should be focused: see structure of own template
-    this.element.nativeElement.children[1].children[0].children[0].focus();
+    let expectedInputs = this.element.nativeElement.getElementsByClassName('selectivity-search-input');
+    this.hasInput = expectedInputs.length > 0;
+    if (this.hasInput) {
+      expectedInputs[0].focus();
+    }
   }
 
   private inputEvent(e:any) {
@@ -200,7 +210,7 @@ export class Selectivity implements OnInit, OnDestroy {
   private allowClear:boolean = false;
   private placeholder:string = '';
   private _items:Array<any> = [];
-  private multiple:boolean = false;
+  public multiple:boolean = false;
   private showSearchInputInDropdown:boolean = true;
   private _popup:Promise<ComponentRef>;
   private offSideClickHandler:any;
