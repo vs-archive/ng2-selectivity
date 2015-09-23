@@ -31,7 +31,7 @@ export class SelectivityOptions {
 @View({
   template: `
 <div *ng-if="options.sel && options.sel.items" class="selectivity-dropdown has-search-input" [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div class="selectivity-search-input-container"><input type="text" class="selectivity-search-input" (keyup)="input($event)"></div>
+  <div class="selectivity-search-input-container"><input type="text" class="selectivity-search-input" (keydown)="inputEvent($event)"></div>
   <div class="selectivity-results-container">
     <div *ng-for="#i of items"
          [ng-class]="{'highlight': isActive(i)}"
@@ -59,6 +59,11 @@ export class SelectivityOptionsContainer {
 
   public position(hostEl:ElementRef) {
     this.items = this.options.sel.items.slice();
+
+    if (this.items.length > 0) {
+      this.active = this.items[0];
+    }
+
     this.display = 'block';
     // todo: adaptive top: in case of options at bottom of the screen
     let parentPosition = positionService.position(hostEl.nativeElement);
@@ -69,33 +74,40 @@ export class SelectivityOptionsContainer {
     this.top = p.top + 'px';
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
+
+    // input element before options list should be focused: see structure of own template
+    this.element.nativeElement.children[1].children[0].children[0].focus();
   }
 
-  private input(e:any) {
+  private inputEvent(e:any) {
     // esc
-    if (e.keyCode === 27) {
+    // todo: tab 9 should be correct
+    if (e.keyCode === 27 || e.keyCode === 9) {
       this.options.sel.hide();
+      e.preventDefault();
       return;
     }
 
     // up
     if (e.keyCode === 38) {
       this.prevActiveMatch();
+      e.preventDefault();
       return;
     }
 
     // down
     if (e.keyCode === 40) {
       this.nextActiveMatch();
+      e.preventDefault();
       return;
     }
 
     // enter
     if (e.keyCode === 13) {
       this.selectActiveMatch();
+      e.preventDefault();
       return;
     }
-
 
     if (e.srcElement) {
       let query = new RegExp(e.srcElement.value, 'ig');
@@ -125,6 +137,9 @@ export class SelectivityOptionsContainer {
       e.preventDefault();
     }
 
+    console.log(this.options);
+    this.options.sel.active = value;
+    this.options.sel.hide();
     /*this.parent.changeModel(value);
      this.parent.typeaheadOnSelect.next({
      item: value
@@ -152,11 +167,12 @@ export class SelectivityOptionsContainer {
 })
 @View({
   template: `
-<div class="selectivity-single-select">
+<div (click)="openPopup()" class="selectivity-single-select">
   <input type="text" class="selectivity-single-select-input">
-  <div (click)="openPopup($event)" class="selectivity-single-result-container">
-    <span class="selectivity-single-selected-item">
-      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>Barcelona
+  <div class="selectivity-single-result-container">
+    <div *ng-if="!active" class="selectivity-placeholder">{{placeholder}}</div>
+    <span *ng-if="active" class="selectivity-single-selected-item">
+      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active}}
     </span>
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
 </div>
@@ -176,13 +192,34 @@ export class SelectivityOptionsContainer {
 export class Selectivity implements OnInit, OnDestroy {
   private allowClear:boolean = false;
   private placeholder:string = '';
-  public items:Array<any> = [];
+  private _items:Array<any> = [];
   private multiple:boolean = false;
   private showSearchInputInDropdown:boolean = true;
-  public popup:Promise<ComponentRef>;
+  private _popup:Promise<ComponentRef>;
   private offSideClickHandler:any;
+  private _active:string = '';
 
   constructor(private element:ElementRef, private loader:DynamicComponentLoader) {
+  }
+
+  public get popup():Promise<ComponentRef> {
+    return this._popup;
+  }
+
+  public get items():Array<any> {
+    return this._items;
+  }
+
+  set items(value:Array<any>) {
+    this._items = value;
+  }
+
+  public get active():string {
+    return this._active;
+  }
+
+  public set active(value:string) {
+    this._active = value;
   }
 
   onInit() {
@@ -205,7 +242,7 @@ export class Selectivity implements OnInit, OnDestroy {
     };
   }
 
-  openPopup() {
+  private openPopup() {
     if (!this.popup) {
       this.show();
     } else {
@@ -223,7 +260,7 @@ export class Selectivity implements OnInit, OnDestroy {
       bind(SelectivityOptions).toValue(options)
     ]);
 
-    this.popup = this.loader
+    this._popup = this.loader
       .loadNextToLocation(SelectivityOptionsContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
       componentRef.instance.position(this.element);
@@ -233,10 +270,10 @@ export class Selectivity implements OnInit, OnDestroy {
   }
 
   public hide() {
-    if (this.popup) {
-      this.popup.then((componentRef:ComponentRef) => {
+    if (this._popup) {
+      this._popup.then((componentRef:ComponentRef) => {
         componentRef.dispose();
-        this.popup = null;
+        this._popup = null;
         return componentRef;
       });
     }
