@@ -1,7 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 
 import {
-  Component, View, onInit, onDestroy,
+  Component, View, OnInit, OnDestroy,
   Directive, ViewEncapsulation,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
@@ -16,7 +16,7 @@ let cssSelectivity = require('./selectivity.css');
 
 export class SelectivityOptions {
   public placement:string;
-  public items:Array<any> = [];
+  public sel:Selectivity;
 
   constructor(options:SelectivityOptions) {
     Object.assign(this, options);
@@ -30,10 +30,13 @@ export class SelectivityOptions {
 })
 @View({
   template: `
-<div *ng-if="options && options.items" class="selectivity-dropdown has-search-input" [ng-style]="{top: top, left: left, display: display}">
-  <div class="selectivity-search-input-container"><input type="text" class="selectivity-search-input"></div>
+<div *ng-if="options.sel && options.sel.items" class="selectivity-dropdown has-search-input" [ng-style]="{top: top, left: left, width: width, display: display}">
+  <div class="selectivity-search-input-container"><input type="text" class="selectivity-search-input" (keyup)="input($event)"></div>
   <div class="selectivity-results-container">
-    <div *ng-for="#i of options.items" [ng-class]="{'highlight': i === 'Cologne'}" class="selectivity-result-item">{{i}}</div>
+    <div *ng-for="#i of items"
+         [ng-class]="{'highlight': isActive(i)}"
+         (mouseenter)="selectActive(i)"
+         class="selectivity-result-item">{{i}}</div>
   </div>
 </div>
   `,
@@ -44,22 +47,97 @@ export class SelectivityOptions {
 export class SelectivityOptionsContainer {
   private top:string;
   private left:string;
+  private width:string;
   private display:string;
   private placement:string;
+  private items:Array<any> = [];
+  private active:string;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
   }
 
   public position(hostEl:ElementRef) {
+    this.items = this.options.sel.items.slice();
     this.display = 'block';
     // todo: adaptive top: in case of options at bottom of the screen
+    let parentPosition = positionService.position(hostEl.nativeElement);
     let p = positionService
       .positionElements(hostEl.nativeElement,
       this.element.nativeElement.children[0],
       this.placement, false);
     this.top = p.top + 'px';
     this.left = p.left + 'px';
+    this.width = parentPosition.width + 'px';
+  }
+
+  private input(e:any) {
+    // esc
+    if (e.keyCode === 27) {
+      this.options.sel.hide();
+      return;
+    }
+
+    // up
+    if (e.keyCode === 38) {
+      this.prevActiveMatch();
+      return;
+    }
+
+    // down
+    if (e.keyCode === 40) {
+      this.nextActiveMatch();
+      return;
+    }
+
+    // enter
+    if (e.keyCode === 13) {
+      this.selectActiveMatch();
+      return;
+    }
+
+
+    if (e.srcElement) {
+      let query = new RegExp(e.srcElement.value, 'ig');
+      this.items = this.options.sel.items.filter(option => {
+        return query.test(option);
+      });
+    }
+  }
+
+  private prevActiveMatch() {
+    let index = this.items.indexOf(this.active);
+    this.active = this.items[index - 1 < 0 ? this.items.length - 1 : index - 1];
+  }
+
+  private nextActiveMatch() {
+    let index = this.items.indexOf(this.active);
+    this.active = this.items[index + 1 > this.items.length - 1 ? 0 : index + 1];
+  }
+
+  private selectActiveMatch() {
+    this.selectMatch(this.active);
+  }
+
+  private selectMatch(value:string, e:Event = null) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    /*this.parent.changeModel(value);
+     this.parent.typeaheadOnSelect.next({
+     item: value
+     });*/
+    return false;
+  }
+
+  private selectActive(value:string) {
+    this.active = value;
+  }
+
+  private isActive(value):boolean {
+    return this.active === value;
   }
 }
 
@@ -76,8 +154,8 @@ export class SelectivityOptionsContainer {
   template: `
 <div class="selectivity-single-select">
   <input type="text" class="selectivity-single-select-input">
-  <div class="selectivity-single-result-container">
-    <span class="selectivity-single-selected-item" data-item-id="Barcelona">
+  <div (click)="openPopup($event)" class="selectivity-single-result-container">
+    <span class="selectivity-single-selected-item">
       <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>Barcelona
     </span>
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
@@ -92,34 +170,53 @@ export class SelectivityOptionsContainer {
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
 </div>-->
   `,
-  styles: [cssSelectivity]
+  styles: [cssSelectivity],
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
-export class Selectivity {
+export class Selectivity implements OnInit, OnDestroy {
   private allowClear:boolean = false;
   private placeholder:string = '';
-  private items:Array<any> = [];
+  public items:Array<any> = [];
   private multiple:boolean = false;
   private showSearchInputInDropdown:boolean = true;
-
-  private popup:Promise<any>;
-  public container:SelectivityOptionsContainer;
+  public popup:Promise<ComponentRef>;
+  private offSideClickHandler:any;
 
   constructor(private element:ElementRef, private loader:DynamicComponentLoader) {
   }
 
   onInit() {
-    setTimeout(() => {
-      this.show();
-    }, 2000);
+    this.offSideClickHandler = this.getOffSideClickHandler(this);
+    document.addEventListener('click', this.offSideClickHandler);
   }
 
   onDestroy() {
+    document.removeEventListener('click', this.offSideClickHandler);
+    this.offSideClickHandler = null;
+  }
+
+  private getOffSideClickHandler(context:any) {
+    return function (e:any) {
+      if (e.srcElement && e.srcElement.className.indexOf('selectivity-') === 0) {
+        return;
+      }
+
+      context.hide();
+    };
+  }
+
+  openPopup() {
+    if (!this.popup) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   show() {
     let options = new SelectivityOptions({
       placement: 'bottom-left',
-      items: this.items
+      sel: this
     });
 
     let binding = Injector.resolve([
@@ -130,17 +227,16 @@ export class Selectivity {
       .loadNextToLocation(SelectivityOptionsContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
       componentRef.instance.position(this.element);
-      this.container = componentRef.instance;
       this.element.nativeElement.focus();
       return componentRef;
     });
   }
 
-  hide() {
-    if (this.container) {
+  public hide() {
+    if (this.popup) {
       this.popup.then((componentRef:ComponentRef) => {
         componentRef.dispose();
-        this.container = null;
+        this.popup = null;
         return componentRef;
       });
     }
