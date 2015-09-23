@@ -36,6 +36,7 @@ export class SelectivityOptions {
     <div *ng-for="#i of items"
          [ng-class]="{'highlight': isActive(i)}"
          (mouseenter)="selectActive(i)"
+         (click)="selectMatch(i, $event)"
          class="selectivity-result-item">{{i}}</div>
   </div>
 </div>
@@ -80,10 +81,23 @@ export class SelectivityOptionsContainer {
   }
 
   private inputEvent(e:any) {
-    // esc
-    // todo: tab 9 should be correct
+    // todo: scroll processing during active option changing is expected
+    // esc and tab
     if (e.keyCode === 27 || e.keyCode === 9) {
       this.options.sel.hide();
+      e.preventDefault();
+      return;
+    }
+    // left
+    if (e.keyCode === 37 && this.items.length > 0) {
+      this.active = this.items[0];
+      e.preventDefault();
+      return;
+    }
+
+    // right
+    if (e.keyCode === 39 && this.items.length > 0) {
+      this.active = this.items[this.items.length - 1];
       e.preventDefault();
       return;
     }
@@ -137,13 +151,8 @@ export class SelectivityOptionsContainer {
       e.preventDefault();
     }
 
-    console.log(this.options);
     this.options.sel.active = value;
     this.options.sel.hide();
-    /*this.parent.changeModel(value);
-     this.parent.typeaheadOnSelect.next({
-     item: value
-     });*/
     return false;
   }
 
@@ -167,7 +176,7 @@ export class SelectivityOptionsContainer {
 })
 @View({
   template: `
-<div (click)="openPopup()" class="selectivity-single-select">
+<div (click)="onClick($event)" class="selectivity-single-select">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
     <div *ng-if="!active" class="selectivity-placeholder">{{placeholder}}</div>
@@ -242,7 +251,13 @@ export class Selectivity implements OnInit, OnDestroy {
     };
   }
 
-  private openPopup() {
+  private onClick(e:any) {
+    if (e.srcElement && e.srcElement.className &&
+      e.srcElement.className.indexOf('fa-remove') >= 0) {
+      this.active = '';
+      return;
+    }
+
     if (!this.popup) {
       this.show();
     } else {
