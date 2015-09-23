@@ -176,7 +176,7 @@ export class SelectivityOptionsContainer {
 })
 @View({
   template: `
-<div (click)="onClick($event)" class="selectivity-single-select">
+<div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
     <div *ng-if="!active" class="selectivity-placeholder">{{placeholder}}</div>
@@ -186,14 +186,12 @@ export class SelectivityOptionsContainer {
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
 </div>
 
-<!--<div class="selectivity-multiple-input-container">
-  <span class="selectivity-multiple-selected-item highlighted" data-item-id="Athens">
-    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>Athens</span>
-  <span class="selectivity-multiple-selected-item" data-item-id="Berlin">
-    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>Berlin</span>
-  <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="selectivity-multiple-input" placeholder="" style="width: 20px;">
+<div *ng-if="multiple" (click)="onClick($event)" class="selectivity-multiple-input-container">
+  <span class="selectivity-multiple-selected-item" data-item-id="Bremen">
+    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>Bremen</span>
+  <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="selectivity-multiple-input" placeholder="">
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
-</div>-->
+</div>
   `,
   styles: [cssSelectivity],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]

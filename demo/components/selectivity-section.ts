@@ -4,6 +4,7 @@ import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2
 
 import {tabs} from 'ng2-bootstrap';
 import {SingleDemo} from './selectivity/single-demo';
+import {MultipleDemo} from './selectivity/multiple-demo';
 
 let name = 'Selectivity';
 let src = 'https://github.com/valor-software/ng2-selectivity/blob/master/components/selectivity/selectivity.ts';
@@ -15,6 +16,11 @@ let tabDesc:Array<any> = [
     heading: 'Single',
     ts: require('!!prismjs?lang=typescript!./selectivity/single-demo.ts'),
     html: require('!!prismjs?lang=markup!./selectivity/single-demo.html')
+  },
+  {
+    heading: 'Multiple',
+    ts: require('!!prismjs?lang=typescript!./selectivity/multiple-demo.ts'),
+    html: require('!!prismjs?lang=markup!./selectivity/multiple-demo.html')
   }
 ];
 
@@ -67,7 +73,7 @@ tabDesc.forEach(desc => {
     </div>
   </section>
   `,
-  directives: [SingleDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [SingleDemo, MultipleDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
 })
 export class SelectivitySection {
   private currentHeading:string = 'Single';
