@@ -1,6 +1,6 @@
 # ng2-selectivity
 
-Native Selectivity Angular2 directive
+Native Selectivity Angular2 component
 
 ## Quick start
 
@@ -10,7 +10,7 @@ Native Selectivity Angular2 directive
 
   Alternatively, you can [download it in a ZIP file](https://github.com/valor-software/ng2-selectivity/archive/master.zip).
 
-2. More information regarding using of ***ng2-selectivity*** is located in
+2. More information regardidocng using of ***ng2-selectivity*** is located in
   [demo](http://valor-software.github.io/ng2-selectivity/) and [demo sources](https://github.com/valor-software/ng2-selectivity/tree/master/demo).
 
 ## API
