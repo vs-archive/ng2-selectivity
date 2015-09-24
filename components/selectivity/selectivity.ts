@@ -238,7 +238,7 @@ export class SelectivityOptionsContainer {
     <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>{{a}}</span>
   <input (keydown)="inputEvent($event)"
          (keyup)="inputEvent($event, true)"
-         placeholder="{{active.lengthplaceholder}}"
+         placeholder="{{active.length <= 0 ? placeholder : ''}}"
          type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="selectivity-multiple-input">
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
 </div>
