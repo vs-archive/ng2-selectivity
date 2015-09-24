@@ -197,6 +197,8 @@ export class SelectivityOptionsContainer {
 
     if (this.options.sel.multiple === false) {
       this.options.sel.active[0] = value;
+      // turn back focus to input from options
+      this.options.sel.element.nativeElement.children[1].children[0].focus();
     }
 
     this.options.sel.hide();
@@ -223,7 +225,7 @@ export class SelectivityOptionsContainer {
 })
 @View({
   template: `
-<div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select">
+<div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select" (keydown)="inputEvent($event)">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
     <div *ng-if="active.length <= 0" class="selectivity-placeholder">{{placeholder}}</div>
@@ -257,7 +259,7 @@ export class Selectivity implements OnInit, OnDestroy {
   private offSideClickHandler:any;
   private optContainer:SelectivityOptionsContainer;
 
-  constructor(private element:ElementRef, private loader:DynamicComponentLoader) {
+  constructor(public element:ElementRef, private loader:DynamicComponentLoader) {
   }
 
   public get popup():Promise<ComponentRef> {
