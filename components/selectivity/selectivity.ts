@@ -113,6 +113,14 @@ export class SelectivityOptionsContainer {
       e.preventDefault();
       return;
     }
+
+    // backspace
+    if (!isUpMode && e.keyCode === 8) {
+      if (!this.inputValue) {
+        this.options.sel.remove(e.srcElement.parentElement.parentElement.innerText);
+      }
+    }
+
     // left
     if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
       this.active = this.items[0];
@@ -320,19 +328,21 @@ export class Selectivity implements OnInit, OnDestroy {
     };
   }
 
+  public remove(text:string) {
+    if (this.multiple === true && this.active) {
+      let index = this.active.indexOf(text);
+      this.active.splice(index, 1);
+    }
+
+    if (this.multiple === false) {
+      this.active = [];
+    }
+  }
+
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-
-      if (this.multiple === true && this.active) {
-        let index = this.active.indexOf(e.srcElement.parentElement.parentElement.innerText);
-        this.active.splice(index, 1);
-      }
-
-      if (this.multiple === false) {
-        this.active = [];
-      }
-
+      this.remove(e.srcElement.parentElement.parentElement.innerText);
       return;
     }
 
