@@ -36,9 +36,14 @@ export class SelectivityOptions {
      [ng-style]="{top: top, left: left, width: width, display: display}">
   <div *ng-if="options.sel.multiple === false"
        class="selectivity-search-input-container">
-    <input type="text" class="selectivity-search-input" (keydown)="inputEvent($event)">
+    <input (keydown)="inputEvent($event)"
+           (keyup)="inputEvent($event, true)"
+           type="text"
+           class="selectivity-search-input">
   </div>
   <div class="selectivity-results-container">
+    <div *ng-if="items.length <= 0"
+         class="selectivity-error">No results for <b>{{inputString}}</b></div>
     <div *ng-for="#i of items"
          [ng-class]="{'highlight': isActive(i)}"
          (mouseenter)="selectActive(i)"
@@ -60,6 +65,7 @@ export class SelectivityOptionsContainer {
   private items:Array<any> = [];
   private active:string;
   private hasInput:boolean = null;
+  private inputString:string;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
@@ -88,52 +94,66 @@ export class SelectivityOptionsContainer {
     if (this.hasInput) {
       expectedInputs[0].focus();
     }
+
+    expectedInputs = this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input');
+    if (expectedInputs.length > 0) {
+      expectedInputs[0].focus();
+    }
   }
 
-  private inputEvent(e:any) {
+  public inputEvent(e:any, isUpMode:boolean = false) {
     // todo: scroll processing during active option changing is expected
     // esc and tab
-    if (e.keyCode === 27 || e.keyCode === 9) {
+    if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
       this.options.sel.hide();
       e.preventDefault();
       return;
     }
     // left
-    if (e.keyCode === 37 && this.items.length > 0) {
+    if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
       this.active = this.items[0];
       e.preventDefault();
       return;
     }
 
     // right
-    if (e.keyCode === 39 && this.items.length > 0) {
+    if (!isUpMode && e.keyCode === 39 && this.items.length > 0) {
       this.active = this.items[this.items.length - 1];
       e.preventDefault();
       return;
     }
 
     // up
-    if (e.keyCode === 38) {
+    if (!isUpMode && e.keyCode === 38) {
       this.prevActiveMatch();
       e.preventDefault();
       return;
     }
 
     // down
-    if (e.keyCode === 40) {
+    if (!isUpMode && e.keyCode === 40) {
       this.nextActiveMatch();
       e.preventDefault();
       return;
     }
 
     // enter
-    if (e.keyCode === 13) {
-      this.selectActiveMatch();
+    if (!isUpMode && e.keyCode === 13) {
+      let success = this.selectActiveMatch();
+      if (success) {
+        let expectedInputs:any = this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input');
+        if (expectedInputs.length > 0) {
+          expectedInputs[0].value = '';
+        }
+      }
+
       e.preventDefault();
       return;
     }
 
     if (e.srcElement) {
+      this.inputString = e.srcElement.value;
+
       let query = new RegExp(e.srcElement.value, 'ig');
       this.items = this.options.sel.items.filter(option => {
         return query.test(option);
@@ -151,19 +171,30 @@ export class SelectivityOptionsContainer {
     this.active = this.items[index + 1 > this.items.length - 1 ? 0 : index + 1];
   }
 
-  private selectActiveMatch() {
-    this.selectMatch(this.active);
+  private selectActiveMatch():boolean {
+    return this.selectMatch(this.active);
   }
 
-  private selectMatch(value:string, e:Event = null) {
+  private selectMatch(value:string, e:Event = null):boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
     }
 
-    this.options.sel.active = value;
+    if (this.options.sel.multiple === true) {
+      if (this.items.length <= 0) {
+        return false;
+      }
+
+      this.options.sel.active.push(value);
+    }
+
+    if (this.options.sel.multiple === false) {
+      this.options.sel.active[0] = value;
+    }
+
     this.options.sel.hide();
-    return false;
+    return true;
   }
 
   private selectActive(value:string) {
@@ -189,17 +220,20 @@ export class SelectivityOptionsContainer {
 <div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
-    <div *ng-if="!active" class="selectivity-placeholder">{{placeholder}}</div>
-    <span *ng-if="active" class="selectivity-single-selected-item">
-      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active}}
+    <div *ng-if="active.length <= 0" class="selectivity-placeholder">{{placeholder}}</div>
+    <span *ng-if="active.length > 0" class="selectivity-single-selected-item">
+      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active[0]}}
     </span>
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
 </div>
 
 <div *ng-if="multiple" (click)="onClick($event)" class="selectivity-multiple-input-container">
-  <span class="selectivity-multiple-selected-item" data-item-id="Bremen">
-    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>Bremen</span>
-  <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="selectivity-multiple-input" placeholder="">
+  <span *ng-for="#a of active" class="selectivity-multiple-selected-item">
+    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>{{a}}</span>
+  <input (keydown)="inputEvent($event)"
+         (keyup)="inputEvent($event, true)"
+         placeholder="{{active.lengthplaceholder}}"
+         type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="selectivity-multiple-input">
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
 </div>
   `,
@@ -210,11 +244,12 @@ export class Selectivity implements OnInit, OnDestroy {
   private allowClear:boolean = false;
   private placeholder:string = '';
   private _items:Array<any> = [];
-  public multiple:boolean = false;
-  private showSearchInputInDropdown:boolean = true;
+  private _multiple:boolean = false;
   private _popup:Promise<ComponentRef>;
+  private _active:Array<string> = [];
+  private showSearchInputInDropdown:boolean = true;
   private offSideClickHandler:any;
-  private _active:string = '';
+  private optContainer:SelectivityOptionsContainer;
 
   constructor(private element:ElementRef, private loader:DynamicComponentLoader) {
   }
@@ -231,12 +266,20 @@ export class Selectivity implements OnInit, OnDestroy {
     this._items = value;
   }
 
-  public get active():string {
+  public get active():Array<string> {
     return this._active;
   }
 
-  public set active(value:string) {
+  public set active(value:Array<string>) {
     this._active = value;
+  }
+
+  public get multiple():boolean {
+    return this._multiple;
+  }
+
+  set multiple(value:boolean) {
+    this._multiple = value;
   }
 
   onInit() {
@@ -247,6 +290,14 @@ export class Selectivity implements OnInit, OnDestroy {
   onDestroy() {
     document.removeEventListener('click', this.offSideClickHandler);
     this.offSideClickHandler = null;
+  }
+
+  private inputEvent(e:any, isUpMode:boolean = false) {
+    if (!this._popup && e.keyCode !== 13 && e.keyCode !== 27) {
+      this.show();
+    }
+
+    this.optContainer.inputEvent(e, isUpMode);
   }
 
   private getOffSideClickHandler(context:any) {
@@ -262,7 +313,8 @@ export class Selectivity implements OnInit, OnDestroy {
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-      this.active = '';
+      // todo: delete
+      this.active = [];
       return;
     }
 
@@ -287,6 +339,7 @@ export class Selectivity implements OnInit, OnDestroy {
       .loadNextToLocation(SelectivityOptionsContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
       componentRef.instance.position(this.element);
+      this.optContainer = componentRef.instance;
       this.element.nativeElement.focus();
       return componentRef;
     });
@@ -297,6 +350,7 @@ export class Selectivity implements OnInit, OnDestroy {
       this._popup.then((componentRef:ComponentRef) => {
         componentRef.dispose();
         this._popup = null;
+        this.optContainer = null;
         return componentRef;
       });
     }
