@@ -146,7 +146,7 @@ export class SelectivityOptionsContainer {
       let success = this.selectActiveMatch();
       // clear user input after option selection from list
       if (success) {
-        if (this.options.sel.multiple === true && this.inputComponent) {
+        if (this.inputComponent) {
           this.inputComponent.value = '';
         }
       }
