@@ -30,9 +30,9 @@ export class SelectivityOptions {
 })
 @View({
   template: `
-<div *ng-if="options.sel && options.sel.items && hasInput !== null"
+<div *ng-if="options.sel && options.sel.items"
      class="selectivity-dropdown"
-     [ng-class]="{'has-search-input': hasInput === true}"
+     [ng-class]="{'has-search-input': options.sel.multiple === false}"
      [ng-style]="{top: top, left: left, width: width, display: display}">
   <div *ng-if="options.sel.multiple === false"
        class="selectivity-search-input-container">
@@ -43,7 +43,7 @@ export class SelectivityOptions {
   </div>
   <div class="selectivity-results-container">
     <div *ng-if="items.length <= 0"
-         class="selectivity-error">No results for <b>{{inputString}}</b></div>
+         class="selectivity-error">No results for <b>{{inputValue}}</b></div>
     <div *ng-for="#i of items"
          [ng-class]="{'highlight': isActive(i)}"
          (mouseenter)="selectActive(i)"
@@ -64,15 +64,18 @@ export class SelectivityOptionsContainer {
   private placement:string;
   private items:Array<any> = [];
   private active:string;
-  private hasInput:boolean = null;
-  private inputString:string;
+  private inputValue:string;
+  private inputComponent:any;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
   }
 
   public position(hostEl:ElementRef) {
-    this.items = this.options.sel.items.slice();
+    this.items = this.options.sel.items.filter(option => {
+      return (this.options.sel.multiple === false ||
+      this.options.sel.multiple === true && this.options.sel.active.indexOf(option) < 0);
+    });
 
     if (this.items.length > 0) {
       this.active = this.items[0];
@@ -89,16 +92,17 @@ export class SelectivityOptionsContainer {
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
 
-    let expectedInputs = this.element.nativeElement.getElementsByClassName('selectivity-search-input');
-    this.hasInput = expectedInputs.length > 0;
-    if (this.hasInput) {
-      expectedInputs[0].focus();
+    let inputs:Array<any> = [
+      this.element.nativeElement.getElementsByClassName('selectivity-search-input'),
+      this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input')
+    ];
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].length > 0) {
+        this.inputComponent = inputs[i][0];
+      }
     }
 
-    expectedInputs = this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input');
-    if (expectedInputs.length > 0) {
-      expectedInputs[0].focus();
-    }
+    this.inputComponent.focus();
   }
 
   public inputEvent(e:any, isUpMode:boolean = false) {
@@ -140,10 +144,10 @@ export class SelectivityOptionsContainer {
     // enter
     if (!isUpMode && e.keyCode === 13) {
       let success = this.selectActiveMatch();
+      // clear user input after option selection from list
       if (success) {
-        let expectedInputs:any = this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input');
-        if (expectedInputs.length > 0) {
-          expectedInputs[0].value = '';
+        if (this.options.sel.multiple === true && this.inputComponent) {
+          this.inputComponent.value = '';
         }
       }
 
@@ -152,11 +156,13 @@ export class SelectivityOptionsContainer {
     }
 
     if (e.srcElement) {
-      this.inputString = e.srcElement.value;
+      this.inputValue = e.srcElement.value;
 
       let query = new RegExp(e.srcElement.value, 'ig');
       this.items = this.options.sel.items.filter(option => {
-        return query.test(option);
+        return query.test(option) &&
+          (this.options.sel.multiple === false ||
+          this.options.sel.multiple === true && this.options.sel.active.indexOf(option) < 0);
       });
     }
   }
@@ -297,7 +303,9 @@ export class Selectivity implements OnInit, OnDestroy {
       this.show();
     }
 
-    this.optContainer.inputEvent(e, isUpMode);
+    if (this.optContainer) {
+      this.optContainer.inputEvent(e, isUpMode);
+    }
   }
 
   private getOffSideClickHandler(context:any) {
@@ -313,8 +321,16 @@ export class Selectivity implements OnInit, OnDestroy {
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-      // todo: delete
-      this.active = [];
+
+      if (this.multiple === true && this.active) {
+        let index = this.active.indexOf(e.srcElement.parentElement.parentElement.innerText);
+        this.active.splice(index, 1);
+      }
+
+      if (this.multiple === false) {
+        this.active = [];
+      }
+
       return;
     }
 
