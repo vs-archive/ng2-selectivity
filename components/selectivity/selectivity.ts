@@ -2,7 +2,7 @@
 
 import {
   Component, View, OnInit, OnDestroy,
-  Directive, ViewEncapsulation,
+  Directive, ViewEncapsulation, Self,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle
@@ -97,10 +97,8 @@ export class SelectivityOptionsContainer {
   }
 
   public position(hostEl:ElementRef) {
-    this.items = this.options.sel.itemObjects.filter(option => {
-      return (this.options.sel.isMultiple === false ||
-      this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0);
-    });
+    this.items = this.options.sel.itemObjects.filter(option => (this.options.sel.isMultiple === false ||
+    this.options.sel.isMultiple === true && !this.options.sel.active.find(o => option.text === o.text)));
 
     if (this.items.length > 0) {
       this.active = this.items[0];
@@ -192,11 +190,9 @@ export class SelectivityOptionsContainer {
       this.inputValue = e.srcElement.value;
 
       let query = new RegExp(e.srcElement.value, 'ig');
-      this.items = this.options.sel.itemObjects.filter((option:SelectivityItem) => {
-        return query.test(option.text) &&
-          (this.options.sel.isMultiple === false ||
-          this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0);
-      });
+      this.items = this.options.sel.itemObjects.filter((option:SelectivityItem) => query.test(option.text) &&
+      (this.options.sel.isMultiple === false ||
+      this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0));
     }
   }
 
@@ -226,11 +222,13 @@ export class SelectivityOptionsContainer {
       }
 
       this.options.sel.active.push(value);
+      this.options.sel.data.next(this.options.sel.active);
       this.options.sel.doEvent('selected', value);
     }
 
     if (this.options.sel.isMultiple === false) {
       this.options.sel.active[0] = value;
+      this.options.sel.data.next(this.options.sel.active[0]);
       this.options.sel.doEvent('selected', value);
       // turn back focus to input from options
       this.options.sel.element.nativeElement.children[1].children[0].focus();
@@ -254,10 +252,11 @@ export class SelectivityOptionsContainer {
   properties: [
     'allowClear',
     'placeholder',
+    'initData:data',
     'items',
     'multiple',
     'showSearchInputInDropdown'],
-  events: ['selected', 'removed']
+  events: ['selected', 'removed', 'data']
 })
 @View({
   template: `
@@ -285,8 +284,12 @@ export class SelectivityOptionsContainer {
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class Selectivity implements OnInit, OnDestroy {
+  public data:EventEmitter = new EventEmitter();
+  private selected:EventEmitter = new EventEmitter();
+  private removed:EventEmitter = new EventEmitter();
   private allowClear:boolean = false;
   private placeholder:string = '';
+  private initData:Array<any> = [];
   private _items:Array<any> = [];
   private _itemObjects:Array<SelectivityItem> = [];
   private multiple:boolean = false;
@@ -295,14 +298,25 @@ export class Selectivity implements OnInit, OnDestroy {
   private showSearchInputInDropdown:boolean = true;
   private offSideClickHandler:any;
   private optContainer:SelectivityOptionsContainer;
-  private selected:EventEmitter = new EventEmitter();
-  private removed:EventEmitter = new EventEmitter();
 
-  constructor(public element:ElementRef, private loader:DynamicComponentLoader) {
+  constructor(public element:ElementRef,
+              private loader:DynamicComponentLoader) {
   }
 
   public get popup():Promise<ComponentRef> {
     return this._popup;
+  }
+
+  private getSelectivityItem(source:any):SelectivityItem {
+    if (typeof source === 'string') {
+      return new SelectivityItem(source, source);
+    }
+
+    if (typeof source === 'object' && source.id && source.text) {
+      return new SelectivityItem(source.id, source.text);
+    }
+
+    return null;
   }
 
   private get items():Array<any> {
@@ -312,13 +326,7 @@ export class Selectivity implements OnInit, OnDestroy {
   private set items(value:Array<any>) {
     this._items = value;
     this._itemObjects = this._items.map((item:any) => {
-      if (typeof item === 'string') {
-        return new SelectivityItem(item, item);
-      }
-
-      if (typeof item === 'object' && item.id && item.text) {
-        return new SelectivityItem(item.id, item.text);
-      }
+      return this.getSelectivityItem(item);
     });
   }
 
@@ -341,6 +349,11 @@ export class Selectivity implements OnInit, OnDestroy {
   onInit() {
     this.offSideClickHandler = this.getOffSideClickHandler(this);
     document.addEventListener('click', this.offSideClickHandler);
+
+    if (this.initData) {
+      this.active = this.initData.map(d => this.getSelectivityItem(d));
+      this.data.next(this.active);
+    }
   }
 
   onDestroy() {
@@ -372,11 +385,13 @@ export class Selectivity implements OnInit, OnDestroy {
     if (this.multiple === true && this.active) {
       let index = this.active.indexOf(item);
       this.active.splice(index, 1);
+      this.data.next(this.active);
       this.doEvent('removed', item);
     }
 
     if (this.multiple === false) {
       this.active = [];
+      this.data.next(this.active);
       this.doEvent('removed', item);
     }
   }
@@ -384,8 +399,18 @@ export class Selectivity implements OnInit, OnDestroy {
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-      this.remove(this.active[this.active.length - 1]);
-      return;
+      let currentOption:SelectivityItem;
+      for (let i = 0; i < this.active.length; i++) {
+        if (this.active[i].text === e.srcElement.parentElement.parentElement.innerText) {
+          currentOption = this.active[i];
+          break;
+        }
+      }
+
+      if (currentOption) {
+        this.remove(currentOption);
+        return;
+      }
     }
 
     if (!this.popup) {

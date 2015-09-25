@@ -18,6 +18,7 @@ let template = require('./single-demo.html');
   directives: [selectivity, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class SingleDemo {
+  private value:any = {};
   private items:Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
     'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
     'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin', 'Düsseldorf',
@@ -34,5 +35,9 @@ export class SingleDemo {
 
   private removed(value:any) {
     console.log('Removed value is: ', value);
+  }
+
+  private refreshValue(value:any) {
+    this.value = value;
   }
 }
