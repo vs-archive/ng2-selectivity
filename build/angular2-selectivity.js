@@ -3,12 +3,12 @@ webpackJsonp([2],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(46);
+	module.exports = __webpack_require__(31);
 
 
 /***/ },
 
-/***/ 46:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../tsd.d.ts"/>
@@ -182,6 +182,14 @@ webpackJsonp([2],{
 	var di_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(83);
 	var cssSelectivity = __webpack_require__(82);
+	var SelectivityItem = (function () {
+	    function SelectivityItem(id, text) {
+	        this.id = id;
+	        this.text = text;
+	    }
+	    return SelectivityItem;
+	})();
+	exports.SelectivityItem = SelectivityItem;
 	var SelectivityOptions = (function () {
 	    function SelectivityOptions(options) {
 	        Object.assign(this, options);
@@ -198,10 +206,8 @@ webpackJsonp([2],{
 	    }
 	    SelectivityOptionsContainer.prototype.position = function (hostEl) {
 	        var _this = this;
-	        this.items = this.options.sel.items.filter(function (option) {
-	            return (_this.options.sel.multiple === false ||
-	                _this.options.sel.multiple === true && _this.options.sel.active.indexOf(option) < 0);
-	        });
+	        this.items = this.options.sel.itemObjects.filter(function (option) { return (_this.options.sel.isMultiple === false ||
+	            _this.options.sel.isMultiple === true && !_this.options.sel.active.find(function (o) { return option.text === o.text; })); });
 	        if (this.items.length > 0) {
 	            this.active = this.items[0];
 	        }
@@ -219,9 +225,10 @@ webpackJsonp([2],{
 	        for (var i = 0; i < inputs.length; i++) {
 	            if (inputs[i].length > 0) {
 	                this.inputComponent = inputs[i][0];
+	                this.inputComponent.focus();
+	                break;
 	            }
 	        }
-	        this.inputComponent.focus();
 	    };
 	    SelectivityOptionsContainer.prototype.inputEvent = function (e, isUpMode) {
 	        var _this = this;
@@ -233,7 +240,7 @@ webpackJsonp([2],{
 	        }
 	        if (!isUpMode && e.keyCode === 8) {
 	            if (!this.inputValue) {
-	                this.options.sel.remove(e.srcElement.parentElement.parentElement.innerText);
+	                this.options.sel.remove(this.options.sel.active[this.options.sel.active.length - 1]);
 	            }
 	        }
 	        if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
@@ -257,23 +264,16 @@ webpackJsonp([2],{
 	            return;
 	        }
 	        if (!isUpMode && e.keyCode === 13) {
-	            var success = this.selectActiveMatch();
-	            if (success) {
-	                if (this.inputComponent) {
-	                    this.inputComponent.value = '';
-	                }
-	            }
+	            this.selectActiveMatch();
 	            e.preventDefault();
 	            return;
 	        }
 	        if (e.srcElement) {
 	            this.inputValue = e.srcElement.value;
 	            var query = new RegExp(e.srcElement.value, 'ig');
-	            this.items = this.options.sel.items.filter(function (option) {
-	                return query.test(option) &&
-	                    (_this.options.sel.multiple === false ||
-	                        _this.options.sel.multiple === true && _this.options.sel.active.indexOf(option) < 0);
-	            });
+	            this.items = this.options.sel.itemObjects.filter(function (option) { return query.test(option.text) &&
+	                (_this.options.sel.isMultiple === false ||
+	                    _this.options.sel.isMultiple === true && _this.options.sel.active.indexOf(option) < 0); });
 	        }
 	    };
 	    SelectivityOptionsContainer.prototype.prevActiveMatch = function () {
@@ -293,31 +293,37 @@ webpackJsonp([2],{
 	            e.stopPropagation();
 	            e.preventDefault();
 	        }
-	        if (this.options.sel.multiple === true) {
+	        if (this.options.sel.isMultiple === true) {
 	            if (this.items.length <= 0) {
-	                return false;
+	                return;
 	            }
 	            this.options.sel.active.push(value);
+	            this.options.sel.data.next(this.options.sel.active);
+	            this.options.sel.doEvent('selected', value);
 	        }
-	        if (this.options.sel.multiple === false) {
+	        if (this.options.sel.isMultiple === false) {
 	            this.options.sel.active[0] = value;
+	            this.options.sel.data.next(this.options.sel.active[0]);
+	            this.options.sel.doEvent('selected', value);
 	            this.options.sel.element.nativeElement.children[1].children[0].focus();
 	        }
+	        if (this.inputComponent) {
+	            this.inputComponent.value = '';
+	        }
 	        this.options.sel.hide();
-	        return true;
 	    };
 	    SelectivityOptionsContainer.prototype.selectActive = function (value) {
 	        this.active = value;
 	    };
 	    SelectivityOptionsContainer.prototype.isActive = function (value) {
-	        return this.active === value;
+	        return this.active.text === value.text;
 	    };
 	    SelectivityOptionsContainer = __decorate([
 	        angular2_1.Component({
 	            selector: 'selectivity-options-container'
 	        }),
 	        angular2_1.View({
-	            template: "\n<div *ng-if=\"options.sel && options.sel.items\"\n     class=\"selectivity-dropdown\"\n     [ng-class]=\"{'has-search-input': options.sel.multiple === false}\"\n     [ng-style]=\"{top: top, left: left, width: width, display: display}\">\n  <div *ng-if=\"options.sel.multiple === false\"\n       class=\"selectivity-search-input-container\">\n    <input (keydown)=\"inputEvent($event)\"\n           (keyup)=\"inputEvent($event, true)\"\n           type=\"text\"\n           class=\"selectivity-search-input\">\n  </div>\n  <div class=\"selectivity-results-container\">\n    <div *ng-if=\"items.length <= 0\"\n         class=\"selectivity-error\">No results for <b>{{inputValue}}</b></div>\n    <div *ng-for=\"#i of items\"\n         [ng-class]=\"{'highlight': isActive(i)}\"\n         (mouseenter)=\"selectActive(i)\"\n         (click)=\"selectMatch(i, $event)\"\n         class=\"selectivity-result-item\">{{i}}</div>\n  </div>\n</div>\n  ",
+	            template: "\n<div *ng-if=\"options.sel && options.sel.items\"\n     class=\"selectivity-dropdown\"\n     [ng-class]=\"{'has-search-input': options.sel.isMultiple === false}\"\n     [ng-style]=\"{top: top, left: left, width: width, display: display}\">\n  <div *ng-if=\"options.sel.isMultiple === false\"\n       class=\"selectivity-search-input-container\">\n    <input (keydown)=\"inputEvent($event)\"\n           (keyup)=\"inputEvent($event, true)\"\n           type=\"text\"\n           class=\"selectivity-search-input\">\n  </div>\n  <div class=\"selectivity-results-container\">\n    <div *ng-if=\"items.length <= 0\"\n         class=\"selectivity-error\">No results for <b>{{inputValue}}</b></div>\n    <div *ng-for=\"#i of items\"\n         [ng-class]=\"{'highlight': isActive(i)}\"\n         (mouseenter)=\"selectActive(i)\"\n         (click)=\"selectMatch(i, $event)\"\n         class=\"selectivity-result-item\">{{i.text}}</div>\n  </div>\n</div>\n\n<!--<div class=\"selectivity-results-container\">\n  <div class=\"selectivity-result-label\">Austria</div>\n  <div class=\"selectivity-result-children\">\n    <div class=\"selectivity-result-item\" data-item-id=\"54\">Vienna</div>\n  </div>\n  <div class=\"selectivity-result-label\">Belgium</div>\n  <div class=\"selectivity-result-children\">\n    <div class=\"selectivity-result-item\" data-item-id=\"2\">Antwerp</div>\n    <div class=\"selectivity-result-item highlight\" data-item-id=\"9\">Brussels</div>\n  </div>\n</div>-->\n\n<!--<div class=\"selectivity-results-container\">\n  <div class=\"selectivity-result-item\" data-item-id=\"+00:00\">Western European Time Zone<i class=\"selectivity-submenu-icon fa fa-chevron-right\"></i></div>\n  <div class=\"selectivity-result-item highlight\" data-item-id=\"+01:00\">Central European Time Zone<i class=\"selectivity-submenu-icon fa fa-chevron-right\"></i></div>\n  <div class=\"selectivity-result-item\" data-item-id=\"+02:00\">Eastern European Time Zone<i class=\"selectivity-submenu-icon fa fa-chevron-right\"></i></div>\n</div>-->\n\n\n  ",
 	            styles: [cssSelectivity],
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.FORM_DIRECTIVES, angular2_1.NgClass, angular2_1.NgStyle],
 	            encapsulation: angular2_1.ViewEncapsulation.None
@@ -331,10 +337,15 @@ webpackJsonp([2],{
 	    function Selectivity(element, loader) {
 	        this.element = element;
 	        this.loader = loader;
+	        this.data = new angular2_1.EventEmitter();
+	        this.selected = new angular2_1.EventEmitter();
+	        this.removed = new angular2_1.EventEmitter();
 	        this.allowClear = false;
 	        this.placeholder = '';
+	        this.initData = [];
 	        this._items = [];
-	        this._multiple = false;
+	        this._itemObjects = [];
+	        this.multiple = false;
 	        this._active = [];
 	        this.showSearchInputInDropdown = true;
 	    }
@@ -345,12 +356,32 @@ webpackJsonp([2],{
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Selectivity.prototype.getSelectivityItem = function (source) {
+	        if (typeof source === 'string') {
+	            return new SelectivityItem(source, source);
+	        }
+	        if (typeof source === 'object' && source.id && source.text) {
+	            return new SelectivityItem(source.id, source.text);
+	        }
+	        return null;
+	    };
 	    Object.defineProperty(Selectivity.prototype, "items", {
 	        get: function () {
 	            return this._items;
 	        },
 	        set: function (value) {
+	            var _this = this;
 	            this._items = value;
+	            this._itemObjects = this._items.map(function (item) {
+	                return _this.getSelectivityItem(item);
+	            });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Selectivity.prototype, "itemObjects", {
+	        get: function () {
+	            return this._itemObjects;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -365,19 +396,21 @@ webpackJsonp([2],{
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Selectivity.prototype, "multiple", {
+	    Object.defineProperty(Selectivity.prototype, "isMultiple", {
 	        get: function () {
-	            return this._multiple;
-	        },
-	        set: function (value) {
-	            this._multiple = value;
+	            return this.multiple;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    Selectivity.prototype.onInit = function () {
+	        var _this = this;
 	        this.offSideClickHandler = this.getOffSideClickHandler(this);
 	        document.addEventListener('click', this.offSideClickHandler);
+	        if (this.initData) {
+	            this.active = this.initData.map(function (d) { return _this.getSelectivityItem(d); });
+	            this.data.next(this.active);
+	        }
 	    };
 	    Selectivity.prototype.onDestroy = function () {
 	        document.removeEventListener('click', this.offSideClickHandler);
@@ -400,26 +433,38 @@ webpackJsonp([2],{
 	            context.hide();
 	        };
 	    };
-	    Selectivity.prototype.remove = function (text) {
+	    Selectivity.prototype.remove = function (item) {
 	        if (this.multiple === true && this.active) {
-	            var index = this.active.indexOf(text);
+	            var index = this.active.indexOf(item);
 	            this.active.splice(index, 1);
+	            this.data.next(this.active);
+	            this.doEvent('removed', item);
 	        }
 	        if (this.multiple === false) {
 	            this.active = [];
+	            this.data.next(this.active);
+	            this.doEvent('removed', item);
 	        }
 	    };
 	    Selectivity.prototype.onClick = function (e) {
 	        if (e.srcElement && e.srcElement.className &&
 	            e.srcElement.className.indexOf('fa-remove') >= 0) {
-	            this.remove(e.srcElement.parentElement.parentElement.innerText);
-	            return;
+	            var currentOption = this.active.find(function (o) { return o.text === e.srcElement.parentElement.parentElement.innerText; });
+	            if (currentOption) {
+	                this.remove(currentOption);
+	                return;
+	            }
 	        }
 	        if (!this.popup) {
 	            this.show();
 	        }
 	        else {
 	            this.hide();
+	        }
+	    };
+	    Selectivity.prototype.doEvent = function (type, value) {
+	        if (this[type] && value) {
+	            this[type].next(value);
 	        }
 	    };
 	    Selectivity.prototype.show = function () {
@@ -457,12 +502,14 @@ webpackJsonp([2],{
 	            properties: [
 	                'allowClear',
 	                'placeholder',
+	                'initData:data',
 	                'items',
 	                'multiple',
-	                'showSearchInputInDropdown']
+	                'showSearchInputInDropdown'],
+	            events: ['selected', 'removed', 'data']
 	        }),
 	        angular2_1.View({
-	            template: "\n<div *ng-if=\"!multiple\" (click)=\"onClick($event)\" class=\"selectivity-single-select\" (keydown)=\"inputEvent($event)\">\n  <input type=\"text\" class=\"selectivity-single-select-input\">\n  <div class=\"selectivity-single-result-container\">\n    <div *ng-if=\"active.length <= 0\" class=\"selectivity-placeholder\">{{placeholder}}</div>\n    <span *ng-if=\"active.length > 0\" class=\"selectivity-single-selected-item\">\n      <a class=\"selectivity-single-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{active[0]}}\n    </span>\n  </div><i class=\"fa fa-sort-desc selectivity-caret\"></i>\n</div>\n\n<div *ng-if=\"multiple\" (click)=\"onClick($event)\" class=\"selectivity-multiple-input-container\">\n  <span *ng-for=\"#a of active\" class=\"selectivity-multiple-selected-item\">\n    <a class=\"selectivity-multiple-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{a}}</span>\n  <input (keydown)=\"inputEvent($event)\"\n         (keyup)=\"inputEvent($event, true)\"\n         placeholder=\"{{active.length <= 0 ? placeholder : ''}}\"\n         type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" class=\"selectivity-multiple-input\">\n  <span class=\"selectivity-multiple-input selectivity-width-detector\"></span><div class=\"selectivity-clearfix\"></div>\n</div>\n  ",
+	            template: "\n<div *ng-if=\"!multiple\" (click)=\"onClick($event)\" class=\"selectivity-single-select\" (keydown)=\"inputEvent($event)\">\n  <input type=\"text\" class=\"selectivity-single-select-input\">\n  <div class=\"selectivity-single-result-container\">\n    <div *ng-if=\"active.length <= 0\" class=\"selectivity-placeholder\">{{placeholder}}</div>\n    <span *ng-if=\"active.length > 0\" class=\"selectivity-single-selected-item\">\n      <a class=\"selectivity-single-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{active[0].text}}\n    </span>\n  </div><i class=\"fa fa-sort-desc selectivity-caret\"></i>\n</div>\n\n<div *ng-if=\"multiple\" (click)=\"onClick($event)\" class=\"selectivity-multiple-input-container\">\n  <span *ng-for=\"#a of active\" class=\"selectivity-multiple-selected-item\">\n    <a class=\"selectivity-multiple-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{a.text}}</span>\n  <input (keydown)=\"inputEvent($event)\"\n         (keyup)=\"inputEvent($event, true)\"\n         placeholder=\"{{active.length <= 0 ? placeholder : ''}}\"\n         type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" class=\"selectivity-multiple-input\">\n  <span class=\"selectivity-multiple-input selectivity-width-detector\"></span><div class=\"selectivity-clearfix\"></div>\n</div>\n  ",
 	            styles: [cssSelectivity],
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.FORM_DIRECTIVES]
 	        }), 
