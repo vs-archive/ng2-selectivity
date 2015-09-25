@@ -119,13 +119,14 @@ export class SelectivityOptionsContainer {
       this.element.nativeElement.getElementsByClassName('selectivity-search-input'),
       this.element.nativeElement.parentElement.getElementsByClassName('selectivity-multiple-input')
     ];
+
     for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].length > 0) {
         this.inputComponent = inputs[i][0];
+        this.inputComponent.focus();
+        break;
       }
     }
-
-    this.inputComponent.focus();
   }
 
   public inputEvent(e:any, isUpMode:boolean = false) {
@@ -174,14 +175,7 @@ export class SelectivityOptionsContainer {
 
     // enter
     if (!isUpMode && e.keyCode === 13) {
-      let success = this.selectActiveMatch();
-      // clear user input after option selection from list
-      if (success) {
-        if (this.inputComponent) {
-          this.inputComponent.value = '';
-        }
-      }
-
+      this.selectActiveMatch();
       e.preventDefault();
       return;
     }
@@ -210,7 +204,7 @@ export class SelectivityOptionsContainer {
     return this.selectMatch(this.active);
   }
 
-  private selectMatch(value:SelectivityItem, e:Event = null):boolean {
+  private selectMatch(value:SelectivityItem, e:Event = null) {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
@@ -218,7 +212,7 @@ export class SelectivityOptionsContainer {
 
     if (this.options.sel.isMultiple === true) {
       if (this.items.length <= 0) {
-        return false;
+        return;
       }
 
       this.options.sel.active.push(value);
@@ -234,8 +228,12 @@ export class SelectivityOptionsContainer {
       this.options.sel.element.nativeElement.children[1].children[0].focus();
     }
 
+    // clear user input after option selection from list
+    if (this.inputComponent) {
+      this.inputComponent.value = '';
+    }
+
     this.options.sel.hide();
-    return true;
   }
 
   private selectActive(value:SelectivityItem) {
@@ -399,13 +397,7 @@ export class Selectivity implements OnInit, OnDestroy {
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-      let currentOption:SelectivityItem;
-      for (let i = 0; i < this.active.length; i++) {
-        if (this.active[i].text === e.srcElement.parentElement.parentElement.innerText) {
-          currentOption = this.active[i];
-          break;
-        }
-      }
+      let currentOption = this.active.find(o => o.text === e.srcElement.parentElement.parentElement.innerText);
 
       if (currentOption) {
         this.remove(currentOption);
