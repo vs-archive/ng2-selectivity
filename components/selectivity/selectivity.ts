@@ -14,6 +14,11 @@ import {positionService} from '../position';
 
 let cssSelectivity = require('./selectivity.css');
 
+export class SelectivityItem {
+  constructor(public id:string, public text:string) {
+  }
+}
+
 export class SelectivityOptions {
   public placement:string;
   public sel:Selectivity;
@@ -32,9 +37,9 @@ export class SelectivityOptions {
   template: `
 <div *ng-if="options.sel && options.sel.items"
      class="selectivity-dropdown"
-     [ng-class]="{'has-search-input': options.sel.multiple === false}"
+     [ng-class]="{'has-search-input': options.sel.isMultiple === false}"
      [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div *ng-if="options.sel.multiple === false"
+  <div *ng-if="options.sel.isMultiple === false"
        class="selectivity-search-input-container">
     <input (keydown)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
@@ -48,9 +53,29 @@ export class SelectivityOptions {
          [ng-class]="{'highlight': isActive(i)}"
          (mouseenter)="selectActive(i)"
          (click)="selectMatch(i, $event)"
-         class="selectivity-result-item">{{i}}</div>
+         class="selectivity-result-item">{{i.text}}</div>
   </div>
 </div>
+
+<!--<div class="selectivity-results-container">
+  <div class="selectivity-result-label">Austria</div>
+  <div class="selectivity-result-children">
+    <div class="selectivity-result-item" data-item-id="54">Vienna</div>
+  </div>
+  <div class="selectivity-result-label">Belgium</div>
+  <div class="selectivity-result-children">
+    <div class="selectivity-result-item" data-item-id="2">Antwerp</div>
+    <div class="selectivity-result-item highlight" data-item-id="9">Brussels</div>
+  </div>
+</div>-->
+
+<!--<div class="selectivity-results-container">
+  <div class="selectivity-result-item" data-item-id="+00:00">Western European Time Zone<i class="selectivity-submenu-icon fa fa-chevron-right"></i></div>
+  <div class="selectivity-result-item highlight" data-item-id="+01:00">Central European Time Zone<i class="selectivity-submenu-icon fa fa-chevron-right"></i></div>
+  <div class="selectivity-result-item" data-item-id="+02:00">Eastern European Time Zone<i class="selectivity-submenu-icon fa fa-chevron-right"></i></div>
+</div>-->
+
+
   `,
   styles: [cssSelectivity],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle],
@@ -62,8 +87,8 @@ export class SelectivityOptionsContainer {
   private width:string;
   private display:string;
   private placement:string;
-  private items:Array<any> = [];
-  private active:string;
+  private items:Array<SelectivityItem> = [];
+  private active:SelectivityItem;
   private inputValue:string;
   private inputComponent:any;
 
@@ -72,9 +97,9 @@ export class SelectivityOptionsContainer {
   }
 
   public position(hostEl:ElementRef) {
-    this.items = this.options.sel.items.filter(option => {
-      return (this.options.sel.multiple === false ||
-      this.options.sel.multiple === true && this.options.sel.active.indexOf(option) < 0);
+    this.items = this.options.sel.itemObjects.filter(option => {
+      return (this.options.sel.isMultiple === false ||
+      this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0);
     });
 
     if (this.items.length > 0) {
@@ -117,7 +142,7 @@ export class SelectivityOptionsContainer {
     // backspace
     if (!isUpMode && e.keyCode === 8) {
       if (!this.inputValue) {
-        this.options.sel.remove(e.srcElement.parentElement.parentElement.innerText);
+        this.options.sel.remove(this.options.sel.active[this.options.sel.active.length - 1]);
       }
     }
 
@@ -167,10 +192,10 @@ export class SelectivityOptionsContainer {
       this.inputValue = e.srcElement.value;
 
       let query = new RegExp(e.srcElement.value, 'ig');
-      this.items = this.options.sel.items.filter(option => {
-        return query.test(option) &&
-          (this.options.sel.multiple === false ||
-          this.options.sel.multiple === true && this.options.sel.active.indexOf(option) < 0);
+      this.items = this.options.sel.itemObjects.filter((option:SelectivityItem) => {
+        return query.test(option.text) &&
+          (this.options.sel.isMultiple === false ||
+          this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0);
       });
     }
   }
@@ -189,22 +214,24 @@ export class SelectivityOptionsContainer {
     return this.selectMatch(this.active);
   }
 
-  private selectMatch(value:string, e:Event = null):boolean {
+  private selectMatch(value:SelectivityItem, e:Event = null):boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
     }
 
-    if (this.options.sel.multiple === true) {
+    if (this.options.sel.isMultiple === true) {
       if (this.items.length <= 0) {
         return false;
       }
 
       this.options.sel.active.push(value);
+      this.options.sel.doEvent('selected', value);
     }
 
-    if (this.options.sel.multiple === false) {
+    if (this.options.sel.isMultiple === false) {
       this.options.sel.active[0] = value;
+      this.options.sel.doEvent('selected', value);
       // turn back focus to input from options
       this.options.sel.element.nativeElement.children[1].children[0].focus();
     }
@@ -213,12 +240,12 @@ export class SelectivityOptionsContainer {
     return true;
   }
 
-  private selectActive(value:string) {
+  private selectActive(value:SelectivityItem) {
     this.active = value;
   }
 
-  private isActive(value):boolean {
-    return this.active === value;
+  private isActive(value:SelectivityItem):boolean {
+    return this.active.text === value.text;
   }
 }
 
@@ -229,7 +256,8 @@ export class SelectivityOptionsContainer {
     'placeholder',
     'items',
     'multiple',
-    'showSearchInputInDropdown']
+    'showSearchInputInDropdown'],
+  events: ['selected', 'removed']
 })
 @View({
   template: `
@@ -238,14 +266,14 @@ export class SelectivityOptionsContainer {
   <div class="selectivity-single-result-container">
     <div *ng-if="active.length <= 0" class="selectivity-placeholder">{{placeholder}}</div>
     <span *ng-if="active.length > 0" class="selectivity-single-selected-item">
-      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active[0]}}
+      <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active[0].text}}
     </span>
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
 </div>
 
 <div *ng-if="multiple" (click)="onClick($event)" class="selectivity-multiple-input-container">
   <span *ng-for="#a of active" class="selectivity-multiple-selected-item">
-    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>{{a}}</span>
+    <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>{{a.text}}</span>
   <input (keydown)="inputEvent($event)"
          (keyup)="inputEvent($event, true)"
          placeholder="{{active.length <= 0 ? placeholder : ''}}"
@@ -260,12 +288,15 @@ export class Selectivity implements OnInit, OnDestroy {
   private allowClear:boolean = false;
   private placeholder:string = '';
   private _items:Array<any> = [];
-  private _multiple:boolean = false;
+  private _itemObjects:Array<SelectivityItem> = [];
+  private multiple:boolean = false;
   private _popup:Promise<ComponentRef>;
-  private _active:Array<string> = [];
+  private _active:Array<SelectivityItem> = [];
   private showSearchInputInDropdown:boolean = true;
   private offSideClickHandler:any;
   private optContainer:SelectivityOptionsContainer;
+  private selected:EventEmitter = new EventEmitter();
+  private removed:EventEmitter = new EventEmitter();
 
   constructor(public element:ElementRef, private loader:DynamicComponentLoader) {
   }
@@ -274,28 +305,37 @@ export class Selectivity implements OnInit, OnDestroy {
     return this._popup;
   }
 
-  public get items():Array<any> {
+  private get items():Array<any> {
     return this._items;
   }
 
-  set items(value:Array<any>) {
+  private set items(value:Array<any>) {
     this._items = value;
+    this._itemObjects = this._items.map((item:any) => {
+      if (typeof item === 'string') {
+        return new SelectivityItem(item, item);
+      }
+
+      if (typeof item === 'object' && item.id && item.text) {
+        return new SelectivityItem(item.id, item.text);
+      }
+    });
   }
 
-  public get active():Array<string> {
+  public get itemObjects():Array<SelectivityItem> {
+    return this._itemObjects;
+  }
+
+  public get active():Array<SelectivityItem> {
     return this._active;
   }
 
-  public set active(value:Array<string>) {
+  public set active(value:Array<SelectivityItem>) {
     this._active = value;
   }
 
-  public get multiple():boolean {
-    return this._multiple;
-  }
-
-  set multiple(value:boolean) {
-    this._multiple = value;
+  public get isMultiple():boolean {
+    return this.multiple;
   }
 
   onInit() {
@@ -328,21 +368,23 @@ export class Selectivity implements OnInit, OnDestroy {
     };
   }
 
-  public remove(text:string) {
+  public remove(item:SelectivityItem) {
     if (this.multiple === true && this.active) {
-      let index = this.active.indexOf(text);
+      let index = this.active.indexOf(item);
       this.active.splice(index, 1);
+      this.doEvent('removed', item);
     }
 
     if (this.multiple === false) {
       this.active = [];
+      this.doEvent('removed', item);
     }
   }
 
   private onClick(e:any) {
     if (e.srcElement && e.srcElement.className &&
       e.srcElement.className.indexOf('fa-remove') >= 0) {
-      this.remove(e.srcElement.parentElement.parentElement.innerText);
+      this.remove(this.active[this.active.length - 1]);
       return;
     }
 
@@ -350,6 +392,12 @@ export class Selectivity implements OnInit, OnDestroy {
       this.show();
     } else {
       this.hide();
+    }
+  }
+
+  public doEvent(type:string, value:any) {
+    if (this[type] && value) {
+      this[type].next(value);
     }
   }
 

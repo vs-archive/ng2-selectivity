@@ -27,4 +27,12 @@ export class MultipleDemo {
     'Paris', 'Poznań', 'Prague', 'Riga', 'Rome', 'Rotterdam', 'Seville', 'Sheffield',
     'Sofia', 'Stockholm', 'Stuttgart', 'The Hague', 'Turin', 'Valencia', 'Vienna',
     'Vilnius', 'Warsaw', 'Wrocław', 'Zagreb', 'Zaragoza'];
+
+  private selected(value:any) {
+    console.log('Selected value is: ', value);
+  }
+
+  private removed(value:any) {
+    console.log('Removed value is: ', value);
+  }
 }

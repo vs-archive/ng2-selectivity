@@ -26,9 +26,6 @@
     "./demo/components/selectivity-section.ts",
     "./demo/components/selectivity/single-demo.ts",
     "./demo/index.ts",
-    "./dist/selectivity/selectivity.d.ts",
-    "./dist/index.d.ts",
-    "./dist/module.d.ts",
     "./tsd.d.ts",
     "./typings/tsd.d.ts"
   ]
