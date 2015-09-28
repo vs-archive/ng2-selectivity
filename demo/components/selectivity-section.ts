@@ -22,12 +22,12 @@ let tabDesc:Array<any> = [
     heading: 'Multiple',
     ts: require('!!prismjs?lang=typescript!./selectivity/multiple-demo.ts'),
     html: require('!!prismjs?lang=markup!./selectivity/multiple-demo.html')
-  }/*,
+  },
   {
     heading: 'Children',
     ts: require('!!prismjs?lang=typescript!./selectivity/children-demo.ts'),
     html: require('!!prismjs?lang=markup!./selectivity/children-demo.html')
-  }*/
+  }
 ];
 
 let tabsContent:string = ``;

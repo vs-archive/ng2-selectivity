@@ -15,7 +15,30 @@ import {positionService} from '../position';
 let cssSelectivity = require('./selectivity.css');
 
 export class SelectivityItem {
-  constructor(public id:string, public text:string) {
+  public id:string;
+  public text:string;
+  public children:Array<any>;
+
+  constructor(source:any) {
+    if (typeof source === 'string') {
+      this.id = this.text = source;
+    }
+
+    if (typeof source === 'object') {
+      if (source.id && source.text) {
+        this.id = source.id;
+        this.text = source.text;
+      }
+
+      if (source.children && source.text) {
+        this.children = source.children;
+        this.text = source.text;
+      }
+    }
+  }
+
+  public hasChildren():boolean {
+    return this.children && this.children.length > 0;
   }
 }
 
@@ -46,7 +69,7 @@ export class SelectivityOptions {
            type="text"
            class="selectivity-search-input">
   </div>
-  <div class="selectivity-results-container">
+  <div *ng-if="!options.sel.itemObjects[0].hasChildren()" class="selectivity-results-container">
     <div *ng-if="items.length <= 0"
          class="selectivity-error">No results for <b>{{inputValue}}</b></div>
     <div *ng-for="#i of items"
@@ -55,19 +78,20 @@ export class SelectivityOptions {
          (click)="selectMatch(i, $event)"
          class="selectivity-result-item">{{i.text}}</div>
   </div>
-</div>
 
-<!--<div class="selectivity-results-container">
-  <div class="selectivity-result-label">Austria</div>
-  <div class="selectivity-result-children">
-    <div class="selectivity-result-item" data-item-id="54">Vienna</div>
+  <div *ng-if="options.sel.itemObjects[0].hasChildren()" class="selectivity-results-container">
+      <div *ng-for="#i of items">
+      <div class="selectivity-result-label">{{i.text}}</div>
+          <div class="selectivity-result-children">
+              <div *ng-for="#ii of i.children"
+                   (mouseenter)="selectActive(ii)"
+                   (click)="selectMatch(ii, $event)"
+                   [ng-class]="{'highlight': isActive(ii)}"
+                   class="selectivity-result-item">{{ii.text}}</div>
+          </div>
+      </div>
   </div>
-  <div class="selectivity-result-label">Belgium</div>
-  <div class="selectivity-result-children">
-    <div class="selectivity-result-item" data-item-id="2">Antwerp</div>
-    <div class="selectivity-result-item highlight" data-item-id="9">Brussels</div>
-  </div>
-</div>-->
+</div>
 
 <!--<div class="selectivity-results-container">
   <div class="selectivity-result-item" data-item-id="+00:00">Western European Time Zone<i class="selectivity-submenu-icon fa fa-chevron-right"></i></div>
@@ -82,15 +106,16 @@ export class SelectivityOptions {
   encapsulation: ViewEncapsulation.None
 })
 export class SelectivityOptionsContainer {
+  public items:Array<SelectivityItem> = [];
+  public active:SelectivityItem;
   private top:string;
   private left:string;
   private width:string;
   private display:string;
   private placement:string;
-  private items:Array<SelectivityItem> = [];
-  private active:SelectivityItem;
   private inputValue:string;
   private inputComponent:any;
+  private behavior:SelectivityOptionsContainer.GenericBehavior;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
@@ -127,6 +152,14 @@ export class SelectivityOptionsContainer {
         break;
       }
     }
+
+    if (this.options.sel.itemObjects[0].hasChildren()) {
+      this.behavior = new SelectivityOptionsContainer.ChildrenBehavior(this);
+    }
+
+    if (!this.behavior) {
+      this.behavior = new SelectivityOptionsContainer.GenericBehavior(this);
+    }
   }
 
   public inputEvent(e:any, isUpMode:boolean = false) {
@@ -147,28 +180,28 @@ export class SelectivityOptionsContainer {
 
     // left
     if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
-      this.active = this.items[0];
+      this.behavior.first();
       e.preventDefault();
       return;
     }
 
     // right
     if (!isUpMode && e.keyCode === 39 && this.items.length > 0) {
-      this.active = this.items[this.items.length - 1];
+      this.behavior.last();
       e.preventDefault();
       return;
     }
 
     // up
     if (!isUpMode && e.keyCode === 38) {
-      this.prevActiveMatch();
+      this.behavior.prev();
       e.preventDefault();
       return;
     }
 
     // down
     if (!isUpMode && e.keyCode === 40) {
-      this.nextActiveMatch();
+      this.behavior.next();
       e.preventDefault();
       return;
     }
@@ -188,16 +221,6 @@ export class SelectivityOptionsContainer {
       (this.options.sel.isMultiple === false ||
       this.options.sel.isMultiple === true && this.options.sel.active.indexOf(option) < 0));
     }
-  }
-
-  private prevActiveMatch() {
-    let index = this.items.indexOf(this.active);
-    this.active = this.items[index - 1 < 0 ? this.items.length - 1 : index - 1];
-  }
-
-  private nextActiveMatch() {
-    let index = this.items.indexOf(this.active);
-    this.active = this.items[index + 1 > this.items.length - 1 ? 0 : index + 1];
   }
 
   private selectActiveMatch():boolean {
@@ -242,6 +265,55 @@ export class SelectivityOptionsContainer {
 
   private isActive(value:SelectivityItem):boolean {
     return this.active.text === value.text;
+  }
+}
+
+export interface IOptionsBehavior {
+  first();
+  last();
+  prev();
+  next();
+}
+
+export module SelectivityOptionsContainer {
+  export class GenericBehavior implements IOptionsBehavior {
+    constructor(private actor:SelectivityOptionsContainer) {
+    }
+
+    public first() {
+      this.actor.active = this.actor.items[0];
+    }
+
+    public last() {
+      this.actor.active = this.actor.items[this.actor.items.length - 1];
+    }
+
+    public prev() {
+      let index = this.actor.items.indexOf(this.actor.active);
+      this.actor.active = this.actor.items[index - 1 < 0 ? this.actor.items.length - 1 : index - 1];
+    }
+
+    public next() {
+      let index = this.actor.items.indexOf(this.actor.active);
+      this.actor.active = this.actor.items[index + 1 > this.actor.items.length - 1 ? 0 : index + 1];
+    }
+  }
+
+  export class ChildrenBehavior implements IOptionsBehavior {
+    constructor(private actor:SelectivityOptionsContainer) {
+    }
+
+    public first() {
+    }
+
+    public last() {
+    }
+
+    public prev() {
+    }
+
+    public next() {
+    }
   }
 }
 
@@ -305,27 +377,13 @@ export class Selectivity implements OnInit, OnDestroy {
     return this._popup;
   }
 
-  private getSelectivityItem(source:any):SelectivityItem {
-    if (typeof source === 'string') {
-      return new SelectivityItem(source, source);
-    }
-
-    if (typeof source === 'object' && source.id && source.text) {
-      return new SelectivityItem(source.id, source.text);
-    }
-
-    return null;
-  }
-
   private get items():Array<any> {
     return this._items;
   }
 
   private set items(value:Array<any>) {
     this._items = value;
-    this._itemObjects = this._items.map((item:any) => {
-      return this.getSelectivityItem(item);
-    });
+    this._itemObjects = this._items.map((item:any) => new SelectivityItem(item));
   }
 
   public get itemObjects():Array<SelectivityItem> {
@@ -349,7 +407,7 @@ export class Selectivity implements OnInit, OnDestroy {
     document.addEventListener('click', this.offSideClickHandler);
 
     if (this.initData) {
-      this.active = this.initData.map(d => this.getSelectivityItem(d));
+      this.active = this.initData.map(d => new SelectivityItem(d));
       this.data.next(this.active);
     }
   }
