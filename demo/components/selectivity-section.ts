@@ -6,6 +6,7 @@ import {tabs} from 'ng2-bootstrap';
 import {SingleDemo} from './selectivity/single-demo';
 import {MultipleDemo} from './selectivity/multiple-demo';
 import {ChildrenDemo} from './selectivity/children-demo';
+import {MenuDemo} from './selectivity/menu-demo';
 
 let name = 'Selectivity';
 let src = 'https://github.com/valor-software/ng2-selectivity/blob/master/components/selectivity/selectivity.ts';
@@ -27,6 +28,11 @@ let tabDesc:Array<any> = [
     heading: 'Children',
     ts: require('!!prismjs?lang=typescript!./selectivity/children-demo.ts'),
     html: require('!!prismjs?lang=markup!./selectivity/children-demo.html')
+  },
+  {
+    heading: 'Menu',
+    ts: require('!!prismjs?lang=typescript!./selectivity/menu-demo.ts'),
+    html: require('!!prismjs?lang=markup!./selectivity/menu-demo.html')
   }
 ];
 
@@ -79,7 +85,7 @@ tabDesc.forEach(desc => {
     </div>
   </section>
   `,
-  directives: [SingleDemo, MultipleDemo, ChildrenDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [SingleDemo, MultipleDemo, ChildrenDemo, MenuDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
 })
 export class SelectivitySection {
   private currentHeading:string = 'Single';
