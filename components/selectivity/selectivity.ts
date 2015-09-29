@@ -17,7 +17,8 @@ let cssSelectivity = require('./selectivity.css');
 export class SelectivityItem {
   public id:string;
   public text:string;
-  public children:Array<any>;
+  public children:Array<SelectivityItem>;
+  public parent:SelectivityItem;
 
   constructor(source:any) {
     if (typeof source === 'string') {
@@ -31,7 +32,11 @@ export class SelectivityItem {
       }
 
       if (source.children && source.text) {
-        this.children = source.children;
+        this.children = source.children.map(c => {
+          let r:SelectivityItem = new SelectivityItem(c);
+          r.parent = this;
+          return r;
+        });
         this.text = source.text;
       }
     }
@@ -115,7 +120,7 @@ export class SelectivityOptionsContainer {
   private placement:string;
   private inputValue:string;
   private inputComponent:any;
-  private behavior:SelectivityOptionsContainer.GenericBehavior;
+  private behavior:IOptionsBehavior;
 
   constructor(public element:ElementRef, private options:SelectivityOptions) {
     Object.assign(this, options);
@@ -125,8 +130,16 @@ export class SelectivityOptionsContainer {
     this.items = this.options.sel.itemObjects.filter(option => (this.options.sel.isMultiple === false ||
     this.options.sel.isMultiple === true && !this.options.sel.active.find(o => option.text === o.text)));
 
+    if (this.options.sel.itemObjects[0].hasChildren()) {
+      this.behavior = new SelectivityOptionsContainer.ChildrenBehavior(this);
+    }
+
+    if (!this.behavior) {
+      this.behavior = new SelectivityOptionsContainer.GenericBehavior(this);
+    }
+
     if (this.items.length > 0) {
-      this.active = this.items[0];
+      this.behavior.first();
     }
 
     this.display = 'block';
@@ -151,14 +164,6 @@ export class SelectivityOptionsContainer {
         this.inputComponent.focus();
         break;
       }
-    }
-
-    if (this.options.sel.itemObjects[0].hasChildren()) {
-      this.behavior = new SelectivityOptionsContainer.ChildrenBehavior(this);
-    }
-
-    if (!this.behavior) {
-      this.behavior = new SelectivityOptionsContainer.GenericBehavior(this);
     }
   }
 
@@ -223,8 +228,8 @@ export class SelectivityOptionsContainer {
     }
   }
 
-  private selectActiveMatch():boolean {
-    return this.selectMatch(this.active);
+  private selectActiveMatch() {
+    this.selectMatch(this.active);
   }
 
   private selectMatch(value:SelectivityItem, e:Event = null) {
@@ -304,15 +309,48 @@ export module SelectivityOptionsContainer {
     }
 
     public first() {
+      this.actor.active = this.actor.items[0].children[0];
     }
 
     public last() {
+      this.actor.active =
+        this.actor
+          .items[this.actor.items.length - 1]
+          .children[this.actor.items[this.actor.items.length - 1].children.length - 1];
     }
 
     public prev() {
+      let indexParent:number = this.actor.items.indexOf(this.actor.active.parent);
+      let index:number = this.actor.items[indexParent].children.indexOf(this.actor.active);
+      this.actor.active = this.actor.items[indexParent].children[index - 1];
+
+      if (!this.actor.active) {
+        if (this.actor.items[indexParent - 1]) {
+          this.actor.active = this.actor
+            .items[indexParent - 1]
+            .children[this.actor.items[indexParent - 1].children.length - 1];
+        }
+      }
+
+      if (!this.actor.active) {
+        this.last();
+      }
     }
 
     public next() {
+      let indexParent:number = this.actor.items.indexOf(this.actor.active.parent);
+      let index:number = this.actor.items[indexParent].children.indexOf(this.actor.active);
+      this.actor.active = this.actor.items[indexParent].children[index + 1];
+
+      if (!this.actor.active) {
+        if (this.actor.items[indexParent + 1]) {
+          this.actor.active = this.actor.items[indexParent + 1].children[0];
+        }
+      }
+
+      if (!this.actor.active) {
+        this.first();
+      }
     }
   }
 }
