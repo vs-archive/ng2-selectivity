@@ -57,7 +57,8 @@ let cssSelectivity = require('./selectivity.css');
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class Selectivity implements ISelectivity, OnInit, OnDestroy {
-  private data:EventEmitter = new EventEmitter();
+  public data:EventEmitter = new EventEmitter();
+  public multiple:boolean = false;
   private selected:EventEmitter = new EventEmitter();
   private removed:EventEmitter = new EventEmitter();
   private allowClear:boolean = false;
@@ -65,14 +66,13 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
   private initData:Array<any> = [];
   private _items:Array<any> = [];
   private _itemObjects:Array<SelectivityItem> = [];
-  private multiple:boolean = false;
   private _popup:Promise<ComponentRef>;
   private _active:Array<SelectivityItem> = [];
   private showSearchInputInDropdown:boolean = true;
   private offSideClickHandler:any;
   private optContainer:SelectivityOptionsContainer;
 
-  constructor(private element:ElementRef,
+  constructor(public element:ElementRef,
               private loader:DynamicComponentLoader) {
   }
 
@@ -99,10 +99,6 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
 
   public set active(value:Array<SelectivityItem>) {
     this._active = value;
-  }
-
-  public isMultiple():boolean {
-    return this.multiple;
   }
 
   onInit() {
@@ -219,20 +215,8 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
     return this.itemObjects;
   }
 
-  public getActive():Array<SelectivityItem> {
-    return this._active;
-  }
-
-  public getDataEvent():EventEmitter {
-    return this.data;
-  }
-
-  public getElement():ElementRef {
-    return this.element;
-  }
-
   public hasSearchInput():boolean {
-    if (this.isMultiple() === true) {
+    if (this.multiple === true) {
       return false;
     }
 

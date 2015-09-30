@@ -49,7 +49,9 @@ export class SelectivityMenuContainer implements ISelectivity {
   private data:EventEmitter = new EventEmitter();
   private hostEl:ElementRef;
 
-  constructor(public element:ElementRef, private options:SelectivityOptions, private loader:DynamicComponentLoader) {
+  constructor(public element:ElementRef,
+              private options:SelectivityOptions,
+              private loader:DynamicComponentLoader) {
     Object.assign(this, options);
   }
 

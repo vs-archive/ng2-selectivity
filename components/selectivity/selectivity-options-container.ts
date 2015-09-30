@@ -22,7 +22,7 @@ let cssSelectivity = require('./selectivity.css');
   template: `
 <div *ng-if="options.selectivity && options.container"
      class="selectivity-dropdown"
-     [ng-class]="{'has-search-input': options.selectivity.isMultiple() === false}"
+     [ng-class]="{'has-search-input': options.selectivity.multiple === false}"
      [ng-style]="{top: top, left: left, width: width, display: display}">
   <div *ng-if="options.container.hasSearchInput()"
        class="selectivity-search-input-container">
@@ -78,9 +78,9 @@ export class SelectivityOptionsContainer {
   public position(hostEl:ElementRef, itemPosition:any = {}) {
     this.items = this.options.container
       .getItemObjects()
-      .filter(option => (this.options.selectivity.isMultiple() === false ||
-    this.options.selectivity.isMultiple() === true && !this.options.selectivity
-      .getActive()
+      .filter(option => (this.options.selectivity.multiple === false ||
+    this.options.selectivity.multiple === true && !this.options.selectivity
+      .active
       .find(o => option.text === o.text)));
 
     if (this.options.container.getItemObjects()[0].hasChildren()) {
@@ -136,7 +136,7 @@ export class SelectivityOptionsContainer {
     if (!isUpMode && e.keyCode === 8) {
       if (!this.inputValue) {
         this.options.selectivity
-          .remove(this.options.selectivity.getActive()[this.options.selectivity.getActive().length - 1]);
+          .remove(this.options.selectivity.active[this.options.selectivity.active.length - 1]);
       }
     }
 
@@ -181,8 +181,8 @@ export class SelectivityOptionsContainer {
       let query = new RegExp(e.srcElement.value, 'ig');
       this.items = this.options.container
         .getItemObjects().filter((option:SelectivityItem) => query.test(option.text) &&
-      (this.options.selectivity.isMultiple() === false ||
-      this.options.selectivity.isMultiple() === true && this.options.selectivity.getActive().indexOf(option) < 0));
+      (this.options.selectivity.multiple === false ||
+      this.options.selectivity.multiple === true && this.options.selectivity.active.indexOf(option) < 0));
     }
   }
 
@@ -196,22 +196,22 @@ export class SelectivityOptionsContainer {
       e.preventDefault();
     }
 
-    if (this.options.selectivity.isMultiple() === true) {
+    if (this.options.selectivity.multiple === true) {
       if (this.items.length <= 0) {
         return;
       }
 
-      this.options.selectivity.getActive().push(value);
-      this.options.selectivity.getDataEvent().next(this.options.selectivity.getActive());
+      this.options.selectivity.active.push(value);
+      this.options.selectivity.data.next(this.options.selectivity.active);
       this.options.selectivity.doEvent('selected', value);
     }
 
-    if (this.options.selectivity.isMultiple() === false) {
-      this.options.selectivity.getActive()[0] = value;
-      this.options.selectivity.getDataEvent().next(this.options.selectivity.getActive()[0]);
+    if (this.options.selectivity.multiple === false) {
+      this.options.selectivity.active[0] = value;
+      this.options.selectivity.data.next(this.options.selectivity.active[0]);
       this.options.selectivity.doEvent('selected', value);
       // turn back focus to input from options
-      this.options.selectivity.getElement().nativeElement.children[1].children[0].focus();
+      this.options.selectivity.element.nativeElement.children[1].children[0].focus();
     }
 
     // clear user input after option selection from list
