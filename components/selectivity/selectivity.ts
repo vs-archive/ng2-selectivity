@@ -56,10 +56,6 @@ export class SelectivityItem {
   public hasChildren():boolean {
     return this.children && this.children.length > 0;
   }
-
-  public hasSubmenu():boolean {
-    return !!this.subMenu;
-  }
 }
 
 export class SelectivitySubMenu {
@@ -139,7 +135,6 @@ export class SelectivityMenuContainer implements ISelectivity {
     this.top = p.top + 'px';
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
-    console.log(this.items[0].subMenu);
   }
 
   private isActive(value:SelectivityItem):boolean {
@@ -293,7 +288,10 @@ export class SelectivityOptionsContainer {
       .positionElements(hostEl.nativeElement,
       this.element.nativeElement.children[0],
       this.placement, false);
-    this.top = (p.top + (itemPosition.top || 0)) + 'px';
+
+    // will be calculated in case of this container have parent menu
+    let topOffset:number = itemPosition ? itemPosition.top + itemPosition.height : 0;
+    this.top = (p.top + topOffset) + 'px';
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
 
