@@ -16,13 +16,7 @@ let cssSelectivity = require('./selectivity.css');
 
 export interface ISelectivity {
   getItemObjects():Array<SelectivityItem>;
-  isMultiple():boolean;
-  getActive():Array<SelectivityItem>;
-  hide(cb:Function);
-  remove(item:SelectivityItem);
-  getDataEvent():EventEmitter;
-  doEvent(type:string, value:any);
-  getElement():ElementRef;
+  hide();
 }
 
 export class SelectivityItem {
@@ -83,7 +77,8 @@ export class SelectivitySubMenu {
 
 export class SelectivityOptions {
   public placement:string;
-  public sel:ISelectivity;
+  public container:ISelectivity;
+  public selectivity:Selectivity;
 
   constructor(options:SelectivityOptions) {
     Object.assign(this, options);
@@ -122,7 +117,6 @@ export class SelectivityMenuContainer implements ISelectivity {
   private display:string;
   private placement:string;
   private _popup:Promise<ComponentRef>;
-  private optContainer:SelectivityOptionsContainer;
   private data:EventEmitter = new EventEmitter();
   private hostEl:ElementRef;
 
@@ -132,7 +126,7 @@ export class SelectivityMenuContainer implements ISelectivity {
 
   public position(hostEl:ElementRef) {
     this.hostEl = hostEl;
-    this.items = this.options.sel.getItemObjects();
+    this.items = this.options.container.getItemObjects();
     this.active = this.items[0].subMenu.items[0];
     this.display = 'block';
     // todo: adaptive top: in case of options at bottom of the screen
@@ -150,18 +144,32 @@ export class SelectivityMenuContainer implements ISelectivity {
     return this.active.text === value.text;
   }
 
-  private selectActive(value:SelectivityItem, e:Event = null) {
-    this.hide(() => {
-      this.active = value;
-      this.itemObjects = this.active.subMenu.items.map((item:any) => new SelectivityItem(item));
-      this.show(positionService.position(e.srcElement));
+  private doActive(value:SelectivityItem, e:Event) {
+    this.active = value;
+    this.itemObjects = this.active.subMenu.items.map((item:any) => new SelectivityItem(item));
+    this.show(positionService.position(e.srcElement));
+  }
+
+  private selectActive(value:SelectivityItem, e:Event) {
+    if (!this._popup) {
+      this.doActive(value, e);
+      return;
+    }
+
+    this._popup.then((componentRef:ComponentRef) => {
+      componentRef.dispose();
+      this._popup = null;
+      this.doActive(value, e);
+
+      return componentRef;
     });
   }
 
   show(position:any) {
     let options = new SelectivityOptions({
       placement: 'top-right',
-      sel: this
+      selectivity: this.options.selectivity,
+      container: this
     });
 
     let binding = Injector.resolve([
@@ -172,52 +180,23 @@ export class SelectivityMenuContainer implements ISelectivity {
       .loadNextToLocation(SelectivityOptionsContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
       componentRef.instance.position(this.hostEl, position);
-      this.optContainer = componentRef.instance;
       this.element.nativeElement.focus();
       return componentRef;
     });
   }
 
-  public hide(cb:Function) {
+  public hide() {
     if (this._popup) {
       this._popup.then((componentRef:ComponentRef) => {
         componentRef.dispose();
         this._popup = null;
-        this.optContainer = null;
-        cb();
         return componentRef;
       });
-    } else {
-      cb();
     }
   }
 
   public getItemObjects():Array<SelectivityItem> {
     return this.itemObjects;
-  }
-
-  public isMultiple():boolean {
-    return false;
-  }
-
-  public getActive():Array<SelectivityItem> {
-    return [];
-  }
-
-  remove(item:SelectivityItem) {
-
-  }
-
-  public getDataEvent():EventEmitter {
-    return this.data;
-  }
-
-  public doEvent(type:string, value:any) {
-
-  }
-
-  public getElement():ElementRef {
-    return this.element;
   }
 }
 
@@ -226,18 +205,18 @@ export class SelectivityMenuContainer implements ISelectivity {
 })
 @View({
   template: `
-<div *ng-if="options.sel"
+<div *ng-if="options.selectivity && options.container"
      class="selectivity-dropdown"
-     [ng-class]="{'has-search-input': options.sel.isMultiple() === false}"
+     [ng-class]="{'has-search-input': options.selectivity.isMultiple() === false}"
      [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div *ng-if="options.sel.isMultiple() === false"
+  <div *ng-if="options.selectivity.isMultiple() === false"
        class="selectivity-search-input-container">
     <input (keydown)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
            type="text"
            class="selectivity-search-input">
   </div>
-  <div *ng-if="!options.sel.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
+  <div *ng-if="!options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
     <div *ng-if="items.length <= 0"
          class="selectivity-error">No results for <b>{{inputValue}}</b></div>
     <div *ng-for="#i of items"
@@ -247,7 +226,7 @@ export class SelectivityMenuContainer implements ISelectivity {
          class="selectivity-result-item">{{i.text}}</div>
   </div>
 
-  <div *ng-if="options.sel.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
+  <div *ng-if="options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
       <div *ng-for="#i of items">
       <div class="selectivity-result-label">{{i.text}}</div>
           <div class="selectivity-result-children">
@@ -282,10 +261,14 @@ export class SelectivityOptionsContainer {
   }
 
   public position(hostEl:ElementRef, itemPosition:any = {}) {
-    this.items = this.options.sel.getItemObjects().filter(option => (this.options.sel.isMultiple() === false ||
-    this.options.sel.isMultiple() === true && !this.options.sel.getActive().find(o => option.text === o.text)));
+    this.items = this.options.container
+      .getItemObjects()
+      .filter(option => (this.options.selectivity.isMultiple() === false ||
+    this.options.selectivity.isMultiple() === true && !this.options.selectivity
+      .getActive()
+      .find(o => option.text === o.text)));
 
-    if (this.options.sel.getItemObjects()[0].hasChildren()) {
+    if (this.options.container.getItemObjects()[0].hasChildren()) {
       this.behavior = new SelectivityOptionsContainer.ChildrenBehavior(this);
     }
 
@@ -326,8 +309,7 @@ export class SelectivityOptionsContainer {
     // todo: scroll processing during active option changing is expected
     // esc and tab
     if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
-      this.options.sel.hide(() => {
-      });
+      this.options.container.hide();
       e.preventDefault();
       return;
     }
@@ -335,7 +317,8 @@ export class SelectivityOptionsContainer {
     // backspace
     if (!isUpMode && e.keyCode === 8) {
       if (!this.inputValue) {
-        this.options.sel.remove(this.options.sel.getActive()[this.options.sel.getActive().length - 1]);
+        this.options.selectivity
+          .remove(this.options.selectivity.getActive()[this.options.selectivity.getActive().length - 1]);
       }
     }
 
@@ -378,9 +361,10 @@ export class SelectivityOptionsContainer {
       this.inputValue = e.srcElement.value;
 
       let query = new RegExp(e.srcElement.value, 'ig');
-      this.items = this.options.sel.getItemObjects().filter((option:SelectivityItem) => query.test(option.text) &&
-      (this.options.sel.isMultiple() === false ||
-      this.options.sel.isMultiple() === true && this.options.sel.getActive().indexOf(option) < 0));
+      this.items = this.options.container
+        .getItemObjects().filter((option:SelectivityItem) => query.test(option.text) &&
+      (this.options.selectivity.isMultiple() === false ||
+      this.options.selectivity.isMultiple() === true && this.options.selectivity.getActive().indexOf(option) < 0));
     }
   }
 
@@ -394,22 +378,22 @@ export class SelectivityOptionsContainer {
       e.preventDefault();
     }
 
-    if (this.options.sel.isMultiple() === true) {
+    if (this.options.selectivity.isMultiple() === true) {
       if (this.items.length <= 0) {
         return;
       }
 
-      this.options.sel.getActive().push(value);
-      this.options.sel.getDataEvent().next(this.options.sel.getActive());
-      this.options.sel.doEvent('selected', value);
+      this.options.selectivity.getActive().push(value);
+      this.options.selectivity.getDataEvent().next(this.options.selectivity.getActive());
+      this.options.selectivity.doEvent('selected', value);
     }
 
-    if (this.options.sel.isMultiple() === false) {
-      this.options.sel.getActive()[0] = value;
-      this.options.sel.getDataEvent().next(this.options.sel.getActive()[0]);
-      this.options.sel.doEvent('selected', value);
+    if (this.options.selectivity.isMultiple() === false) {
+      this.options.selectivity.getActive()[0] = value;
+      this.options.selectivity.getDataEvent().next(this.options.selectivity.getActive()[0]);
+      this.options.selectivity.doEvent('selected', value);
       // turn back focus to input from options
-      this.options.sel.getElement().nativeElement.children[1].children[0].focus();
+      this.options.selectivity.getElement().nativeElement.children[1].children[0].focus();
     }
 
     // clear user input after option selection from list
@@ -417,8 +401,8 @@ export class SelectivityOptionsContainer {
       this.inputComponent.value = '';
     }
 
-    this.options.sel.hide(() => {
-    });
+    this.options.container.hide();
+    this.options.selectivity.hide();
   }
 
   private selectActive(value:SelectivityItem) {
@@ -674,7 +658,8 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
   show() {
     let options = new SelectivityOptions({
       placement: 'bottom-left',
-      sel: this
+      selectivity: this,
+      container: this
     });
 
     let binding = Injector.resolve([
