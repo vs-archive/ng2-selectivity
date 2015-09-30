@@ -42,6 +42,8 @@ let cssSelectivity = require('./selectivity.css');
   </div>
 
   <div *ng-if="options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
+      <div *ng-if="items.length <= 0"
+         class="selectivity-error">No results for <b>{{inputValue}}</b></div>
       <div *ng-for="#i of items">
       <div class="selectivity-result-label">{{i.text}}</div>
           <div class="selectivity-result-children">
@@ -71,7 +73,7 @@ export class SelectivityOptionsContainer {
   private inputComponent:any;
   private behavior:IOptionsBehavior;
 
-  constructor(public element:ElementRef, private options:SelectivityOptions) {
+  constructor(public element:ElementRef, public options:SelectivityOptions) {
     Object.assign(this, options);
   }
 
@@ -177,12 +179,13 @@ export class SelectivityOptionsContainer {
 
     if (e.srcElement) {
       this.inputValue = e.srcElement.value;
+      let query:RegExp = new RegExp(e.srcElement.value, 'ig');
+      let {items, isActiveAvailable} = this.behavior.filter(query);
+      this.items = items;
 
-      let query = new RegExp(e.srcElement.value, 'ig');
-      this.items = this.options.container
-        .getItemObjects().filter((option:SelectivityItem) => query.test(option.text) &&
-      (this.options.selectivity.multiple === false ||
-      this.options.selectivity.multiple === true && this.options.selectivity.active.indexOf(option) < 0));
+      if (this.items.length > 0 && !isActiveAvailable) {
+        this.behavior.first();
+      }
     }
   }
 
@@ -233,6 +236,17 @@ export class SelectivityOptionsContainer {
 }
 
 export module SelectivityOptionsContainer {
+
+  function getIndex(a:Array<SelectivityItem>, v:SelectivityItem):number {
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].id === v.id) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
   export class GenericBehavior implements IOptionsBehavior {
     constructor(private actor:SelectivityOptionsContainer) {
     }
@@ -254,6 +268,16 @@ export module SelectivityOptionsContainer {
       let index = this.actor.items.indexOf(this.actor.active);
       this.actor.active = this.actor.items[index + 1 > this.actor.items.length - 1 ? 0 : index + 1];
     }
+
+    public filter(query:RegExp):any {
+      let items:Array<SelectivityItem> = this.actor.options.container.getItemObjects()
+        .filter((option:SelectivityItem) => query.test(option.text) &&
+      (this.actor.options.selectivity.multiple === false ||
+      (this.actor.options.selectivity.multiple === true &&
+      this.actor.options.selectivity.active.indexOf(option) < 0)));
+      let isActiveAvailable = getIndex(items, this.actor.active);
+      return {items, isActiveAvailable};
+    }
   }
 
   export class ChildrenBehavior implements IOptionsBehavior {
@@ -272,8 +296,8 @@ export module SelectivityOptionsContainer {
     }
 
     public prev() {
-      let indexParent:number = this.actor.items.indexOf(this.actor.active.parent);
-      let index:number = this.actor.items[indexParent].children.indexOf(this.actor.active);
+      let indexParent = getIndex(this.actor.items, this.actor.active.parent);
+      let index = getIndex(this.actor.items[indexParent].children, this.actor.active);
       this.actor.active = this.actor.items[indexParent].children[index - 1];
 
       if (!this.actor.active) {
@@ -290,8 +314,8 @@ export module SelectivityOptionsContainer {
     }
 
     public next() {
-      let indexParent:number = this.actor.items.indexOf(this.actor.active.parent);
-      let index:number = this.actor.items[indexParent].children.indexOf(this.actor.active);
+      let indexParent = getIndex(this.actor.items, this.actor.active.parent);
+      let index = getIndex(this.actor.items[indexParent].children, this.actor.active);
       this.actor.active = this.actor.items[indexParent].children[index + 1];
 
       if (!this.actor.active) {
@@ -303,6 +327,28 @@ export module SelectivityOptionsContainer {
       if (!this.actor.active) {
         this.first();
       }
+    }
+
+    public filter(query:RegExp):any {
+      let items:Array<SelectivityItem> = [];
+      let isActiveAvailable = false;
+
+      for (let si:SelectivityItem of this.actor.options.container.getItemObjects()) {
+        let children:Array<SelectivityItem> = si.children.filter(option => query.test(option.text));
+
+        if (children.length > 0) {
+
+          if (getIndex(children, this.actor.active) >= 0) {
+            isActiveAvailable = true;
+          }
+
+          let newSi = si.getSimilar();
+          newSi.children = children;
+          items.push(newSi);
+        }
+      }
+
+      return {items, isActiveAvailable};
     }
   }
 }

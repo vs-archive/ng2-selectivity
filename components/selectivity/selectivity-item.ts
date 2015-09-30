@@ -13,10 +13,8 @@ export class SelectivityItem {
     }
 
     if (typeof source === 'object') {
-      if (source.id && source.text) {
-        this.id = source.id;
-        this.text = source.text;
-      }
+      this.id = source.id || source.text;
+      this.text = source.text;
 
       if (source.children && source.text) {
         this.children = source.children.map(c => {
@@ -35,5 +33,13 @@ export class SelectivityItem {
 
   public hasChildren():boolean {
     return this.children && this.children.length > 0;
+  }
+
+  public getSimilar():SelectivityItem {
+    let r:SelectivityItem = new SelectivityItem(false);
+    r.id = this.id;
+    r.text = this.text;
+    r.parent = this.parent;
+    return r;
   }
 }

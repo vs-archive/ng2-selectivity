@@ -11,4 +11,5 @@ export interface IOptionsBehavior {
   last();
   prev();
   next();
+  filter(query:RegExp):any;
 }
