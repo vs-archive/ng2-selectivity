@@ -16,6 +16,7 @@ let cssSelectivity = require('./selectivity.css');
 
 export interface ISelectivity {
   getItemObjects():Array<SelectivityItem>;
+  hasSearchInput():boolean;
   hide();
 }
 
@@ -138,6 +139,7 @@ export class SelectivityMenuContainer implements ISelectivity {
     this.top = p.top + 'px';
     this.left = p.left + 'px';
     this.width = parentPosition.width + 'px';
+    console.log(this.items[0].subMenu);
   }
 
   private isActive(value:SelectivityItem):boolean {
@@ -198,6 +200,10 @@ export class SelectivityMenuContainer implements ISelectivity {
   public getItemObjects():Array<SelectivityItem> {
     return this.itemObjects;
   }
+
+  public hasSearchInput():boolean {
+    return this.active.subMenu.options.showSearchInput;
+  }
 }
 
 @Component({
@@ -209,7 +215,7 @@ export class SelectivityMenuContainer implements ISelectivity {
      class="selectivity-dropdown"
      [ng-class]="{'has-search-input': options.selectivity.isMultiple() === false}"
      [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div *ng-if="options.selectivity.isMultiple() === false"
+  <div *ng-if="options.container.hasSearchInput()"
        class="selectivity-search-input-container">
     <input (keydown)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
@@ -705,6 +711,14 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
 
   public getElement():ElementRef {
     return this.element;
+  }
+
+  public hasSearchInput():boolean {
+    if (this.isMultiple() === true) {
+      return false;
+    }
+
+    return this.showSearchInputInDropdown;
   }
 }
 
