@@ -20,6 +20,12 @@
   ],
   "files": [
     "./components/selectivity/selectivity.ts",
+    "./components/selectivity/selectivity-interfaces.ts",
+    "./components/selectivity/selectivity-item.ts",
+    "./components/selectivity/selectivity-submenu.ts",
+    "./components/selectivity/selectivity-options.ts",
+    "./components/selectivity/selectivity-menu-container.ts",
+    "./components/selectivity/selectivity-options-container.ts",
     "./components/index.ts",
     "./components/module.ts",
     "./components/position.ts",
