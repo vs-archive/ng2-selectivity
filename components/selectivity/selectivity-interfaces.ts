@@ -9,7 +9,7 @@ export interface ISelectivity {
 export interface IOptionsBehavior {
   first();
   last();
-  prev();
-  next();
+  prev():boolean;
+  next():boolean;
   filter(query:RegExp):any;
 }

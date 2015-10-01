@@ -81,9 +81,9 @@ export class SelectivityOptionsContainer {
     this.items = this.options.container
       .getItemObjects()
       .filter(option => (this.options.selectivity.multiple === false ||
-    this.options.selectivity.multiple === true && !this.options.selectivity
-      .active
-      .find(o => option.text === o.text)));
+      this.options.selectivity.multiple === true && !this.options.selectivity
+        .active
+        .find(o => option.text === o.text)));
 
     if (this.options.container.getItemObjects()[0].hasChildren()) {
       this.behavior = new SelectivityOptionsContainer.ChildrenBehavior(this);
@@ -102,8 +102,8 @@ export class SelectivityOptionsContainer {
     let parentPosition = positionService.position(hostEl.nativeElement);
     let p = positionService
       .positionElements(hostEl.nativeElement,
-      this.element.nativeElement.children[0],
-      this.placement, false);
+        this.element.nativeElement.children[0],
+        this.placement, false);
 
     // will be calculated in case of this container have parent menu
     let topOffset:number = itemPosition ? itemPosition.top + itemPosition.height : 0;
@@ -126,7 +126,9 @@ export class SelectivityOptionsContainer {
   }
 
   public inputEvent(e:any, isUpMode:boolean = false) {
-    // todo: scroll processing during active option changing is expected
+    let resultsEl:any = this.element.nativeElement.children[1].children[3];
+    let resultsPosition = positionService.position(resultsEl);
+
     // esc and tab
     if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
       this.options.container.hide();
@@ -145,6 +147,8 @@ export class SelectivityOptionsContainer {
     // left
     if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
       this.behavior.first();
+      resultsEl.scrollTop = 0;
+
       e.preventDefault();
       return;
     }
@@ -152,20 +156,46 @@ export class SelectivityOptionsContainer {
     // right
     if (!isUpMode && e.keyCode === 39 && this.items.length > 0) {
       this.behavior.last();
+      resultsEl.scrollTop = resultsEl.scrollHeight;
+
       e.preventDefault();
       return;
     }
 
     // up
     if (!isUpMode && e.keyCode === 38) {
-      this.behavior.prev();
+      let reverse = this.behavior.prev();
+
+      let activeEl:any = resultsEl.getElementsByClassName('highlight');
+      let activePosition = positionService.position(activeEl[0]);
+
+      if (reverse) {
+        resultsEl.scrollTop = resultsEl.scrollHeight;
+      }
+
+      if (!reverse && activePosition.top <= resultsEl.scrollTop) {
+        resultsEl.scrollTop = activePosition.top - activePosition.height;
+      }
+
       e.preventDefault();
       return;
     }
 
     // down
     if (!isUpMode && e.keyCode === 40) {
-      this.behavior.next();
+      let reverse = this.behavior.next();
+
+      let activeEl:any = resultsEl.getElementsByClassName('highlight');
+      let activePosition = positionService.position(activeEl[0]);
+
+      if (reverse) {
+        resultsEl.scrollTop = 0;
+      }
+
+      if (!reverse && activePosition.top > resultsPosition.height - activePosition.height) {
+        resultsEl.scrollTop = activePosition.top + activePosition.height;
+      }
+
       e.preventDefault();
       return;
     }
@@ -259,22 +289,26 @@ export module SelectivityOptionsContainer {
       this.actor.active = this.actor.items[this.actor.items.length - 1];
     }
 
-    public prev() {
+    public prev():boolean {
       let index = this.actor.items.indexOf(this.actor.active);
-      this.actor.active = this.actor.items[index - 1 < 0 ? this.actor.items.length - 1 : index - 1];
+      let reverse = index - 1 < 0;
+      this.actor.active = this.actor.items[reverse ? this.actor.items.length - 1 : index - 1];
+      return reverse;
     }
 
     public next() {
       let index = this.actor.items.indexOf(this.actor.active);
-      this.actor.active = this.actor.items[index + 1 > this.actor.items.length - 1 ? 0 : index + 1];
+      let reverse = index + 1 > this.actor.items.length - 1;
+      this.actor.active = this.actor.items[reverse ? 0 : index + 1];
+      return reverse;
     }
 
     public filter(query:RegExp):any {
       let items:Array<SelectivityItem> = this.actor.options.container.getItemObjects()
         .filter((option:SelectivityItem) => query.test(option.text) &&
-      (this.actor.options.selectivity.multiple === false ||
-      (this.actor.options.selectivity.multiple === true &&
-      this.actor.options.selectivity.active.indexOf(option) < 0)));
+        (this.actor.options.selectivity.multiple === false ||
+        (this.actor.options.selectivity.multiple === true &&
+        this.actor.options.selectivity.active.indexOf(option) < 0)));
       let isActiveAvailable = getIndex(items, this.actor.active);
       return {items, isActiveAvailable};
     }
@@ -295,7 +329,8 @@ export module SelectivityOptionsContainer {
           .children[this.actor.items[this.actor.items.length - 1].children.length - 1];
     }
 
-    public prev() {
+    public prev():boolean {
+      let reverse = false;
       let indexParent = getIndex(this.actor.items, this.actor.active.parent);
       let index = getIndex(this.actor.items[indexParent].children, this.actor.active);
       this.actor.active = this.actor.items[indexParent].children[index - 1];
@@ -310,10 +345,14 @@ export module SelectivityOptionsContainer {
 
       if (!this.actor.active) {
         this.last();
+        reverse = true;
       }
+
+      return reverse;
     }
 
-    public next() {
+    public next():boolean {
+      let reverse = false;
       let indexParent = getIndex(this.actor.items, this.actor.active.parent);
       let index = getIndex(this.actor.items[indexParent].children, this.actor.active);
       this.actor.active = this.actor.items[indexParent].children[index + 1];
@@ -326,7 +365,10 @@ export module SelectivityOptionsContainer {
 
       if (!this.actor.active) {
         this.first();
+        reverse = true;
       }
+
+      return reverse;
     }
 
     public filter(query:RegExp):any {
