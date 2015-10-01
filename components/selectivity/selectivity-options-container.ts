@@ -126,8 +126,8 @@ export class SelectivityOptionsContainer {
   }
 
   public inputEvent(e:any, isUpMode:boolean = false) {
-    let resultsEl:any = this.element.nativeElement.children[1].children[3];
-    let resultsPosition = positionService.position(resultsEl);
+    /*let resultsEl:any = this.element.nativeElement.children[1].children[3];
+     let resultsPosition = positionService.position(resultsEl);*/
 
     // esc and tab
     if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
@@ -147,7 +147,7 @@ export class SelectivityOptionsContainer {
     // left
     if (!isUpMode && e.keyCode === 37 && this.items.length > 0) {
       this.behavior.first();
-      resultsEl.scrollTop = 0;
+      // resultsEl.scrollTop = 0;
 
       e.preventDefault();
       return;
@@ -156,7 +156,7 @@ export class SelectivityOptionsContainer {
     // right
     if (!isUpMode && e.keyCode === 39 && this.items.length > 0) {
       this.behavior.last();
-      resultsEl.scrollTop = resultsEl.scrollHeight;
+      // resultsEl.scrollTop = resultsEl.scrollHeight;
 
       e.preventDefault();
       return;
@@ -166,16 +166,16 @@ export class SelectivityOptionsContainer {
     if (!isUpMode && e.keyCode === 38) {
       let reverse = this.behavior.prev();
 
-      let activeEl:any = resultsEl.getElementsByClassName('highlight');
-      let activePosition = positionService.position(activeEl[0]);
+      /*let activeEl:any = resultsEl.getElementsByClassName('highlight');
+       let activePosition = positionService.position(activeEl[0]);
 
-      if (reverse) {
-        resultsEl.scrollTop = resultsEl.scrollHeight;
-      }
+       if (reverse) {
+       resultsEl.scrollTop = resultsEl.scrollHeight;
+       }
 
-      if (!reverse && activePosition.top <= resultsEl.scrollTop) {
-        resultsEl.scrollTop = activePosition.top - activePosition.height;
-      }
+       if (!reverse && activePosition.top <= resultsEl.scrollTop) {
+       resultsEl.scrollTop = activePosition.top - activePosition.height;
+       }*/
 
       e.preventDefault();
       return;
@@ -185,16 +185,16 @@ export class SelectivityOptionsContainer {
     if (!isUpMode && e.keyCode === 40) {
       let reverse = this.behavior.next();
 
-      let activeEl:any = resultsEl.getElementsByClassName('highlight');
-      let activePosition = positionService.position(activeEl[0]);
+      /*let activeEl:any = resultsEl.getElementsByClassName('highlight');
+       let activePosition = positionService.position(activeEl[0]);
 
-      if (reverse) {
-        resultsEl.scrollTop = 0;
-      }
+       if (reverse) {
+       resultsEl.scrollTop = 0;
+       }
 
-      if (!reverse && activePosition.top > resultsPosition.height - activePosition.height) {
-        resultsEl.scrollTop = activePosition.top + activePosition.height;
-      }
+       if (!reverse && activePosition.top > resultsPosition.height - activePosition.height) {
+       resultsEl.scrollTop = activePosition.top + activePosition.height;
+       }*/
 
       e.preventDefault();
       return;
