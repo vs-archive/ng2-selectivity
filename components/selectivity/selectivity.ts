@@ -8,7 +8,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle
 } from 'angular2/angular2';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
+import {bind, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
 
 import {positionService} from '../position';
 import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
