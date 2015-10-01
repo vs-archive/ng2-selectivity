@@ -375,7 +375,7 @@ export module SelectivityOptionsContainer {
       let items:Array<SelectivityItem> = [];
       let isActiveAvailable = false;
 
-      for (let si:SelectivityItem of this.actor.options.container.getItemObjects()) {
+      for (let si of this.actor.options.container.getItemObjects()) {
         let children:Array<SelectivityItem> = si.children.filter(option => query.test(option.text));
 
         if (children.length > 0) {
