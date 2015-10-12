@@ -1,5 +1,5 @@
 {
-  "version": "1.5.3",
+  "version": "1.6.2",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -15,10 +15,10 @@
     "noImplicitAny": false
   },
   "filesGlob": [
-    "./**/*.ts",
     "!./node_modules/**/*.ts"
   ],
   "files": [
+    "./tsd.d.ts",
     "./components/selectivity/selectivity.ts",
     "./components/selectivity/selectivity-interfaces.ts",
     "./components/selectivity/selectivity-item.ts",
@@ -27,15 +27,6 @@
     "./components/selectivity/selectivity-menu-container.ts",
     "./components/selectivity/selectivity-options-container.ts",
     "./components/index.ts",
-    "./components/module.ts",
-    "./components/position.ts",
-    "./demo/components/selectivity-section.ts",
-    "./demo/components/selectivity/single-demo.ts",
-    "./demo/components/selectivity/multiple-demo.ts",
-    "./demo/components/selectivity/children-demo.ts",
-    "./demo/components/selectivity/menu-demo.ts",
-    "./demo/index.ts",
-    "./tsd.d.ts",
-    "./typings/tsd.d.ts"
+    "./components/position.ts"
   ]
 }

@@ -1,3 +1,3 @@
 declare module 'ng2-selectivity' {
-  export * from 'index';
+  // export * from 'index';
 }

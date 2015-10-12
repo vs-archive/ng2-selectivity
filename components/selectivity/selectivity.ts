@@ -5,10 +5,9 @@ import {
   Directive, ViewEncapsulation, Self,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle
+  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle,
+  bind, forwardRef, ResolvedBinding, Injector
 } from 'angular2/angular2';
-
-import {bind, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
 
 import {positionService} from '../position';
 import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
