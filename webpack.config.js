@@ -107,8 +107,14 @@ var config = {
         loader: 'ts',
         query: {
           ignoreDiagnostics: [
-            // 2300, // 2300 -> Duplicate identifier
-            // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
+            // TS2305 -> Module ... has no exported member
+            2305,
+            // TS2307 ->  Cannot find external module
+            2307,
+            // TS2300 -> Duplicate identifier
+            2300,
+            // TS2309 -> An export assignment cannot be used in a module with other exported elements.
+            2309
           ]
         },
         exclude: [
