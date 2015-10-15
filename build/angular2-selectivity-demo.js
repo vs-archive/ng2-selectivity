@@ -14,9 +14,9 @@ webpackJsonp([1],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	/// <reference path="../tsd.d.ts" />
-	var angular2_1 = __webpack_require__(5);
-	var selectivity_section_1 = __webpack_require__(328);
-	var gettingStarted = __webpack_require__(290);
+	var angular2_1 = __webpack_require__(6);
+	var selectivity_section_1 = __webpack_require__(354);
+	var gettingStarted = __webpack_require__(319);
 	var Demo = (function () {
 	    function Demo() {
 	    }
@@ -37,7 +37,7 @@ webpackJsonp([1],[
 	})();
 	exports.Demo = Demo;
 	angular2_1.bootstrap(Demo);
-	//# sourceMappingURL=index.js.map
+
 
 /***/ },
 /* 1 */,
@@ -312,7 +312,7 @@ webpackJsonp([1],[
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(291)("./" + name);
+	                __webpack_require__(320)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -3239,7 +3239,7 @@ webpackJsonp([1],[
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(229)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(253)(module)))
 
 /***/ },
 /* 3 */,
@@ -3260,14 +3260,13 @@ webpackJsonp([1],[
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */,
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = ".selectivity-backdrop {\n    background: transparent;\n    position: fixed;\n    z-index: 1045;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n}\n\n.selectivity-clearfix {\n    clear: both;\n}\n\n.selectivity-input {\n    display: inline-block;\n    width: 250px;\n}\n\nselect {\n    display: none;\n}\n\n.selectivity-placeholder {\n    color: #999;\n}\n\n.selectivity-dropdown {\n    background: #fff;\n    border-radius: 4px;\n    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15), 0 10px 16px 0 rgba(0, 0, 0, 0.2);\n    position: absolute;\n    z-index: 1046;\n}\n\n.selectivity-search-input-container {\n    border-bottom: 1px solid #eee;\n}\n\n.selectivity-search-input {\n    background: transparent;\n    border: 0;\n    outline: 0;\n    width: 100%;\n}\n\n.selectivity-results-container {\n    max-height: 28em;\n    overflow: auto;\n    position: relative;\n}\n\n.selectivity-load-more,\n.selectivity-result-item {\n    cursor: pointer;\n    padding: 7px;\n}\n\n.selectivity-result-children .selectivity-result-item {\n    padding-left: 17px;\n}\n\n.selectivity-load-more.highlight,\n.selectivity-result-item.highlight {\n    background: #4484c7;\n    color: #fff;\n}\n\n.selectivity-result-item:first-child {\n    border-radius: 4px 4px 0 0;\n}\n\n.selectivity-dropdown.has-search-input .selectivity-result-item:first-child {\n    border-radius: 0;\n}\n\n.selectivity-result-label {\n    font-weight: bold;\n}\n\n.selectivity-load-more,\n.selectivity-result-item:last-child,\n.selectivity-result-children:last-child .selectivity-result-item:last-child {\n    border-radius: 0 0 4px 4px;\n}\n\n.selectivity-result-children .selectivity-result-item:last-child {\n    border-radius: 0;\n}\n\n.selectivity-error,\n.selectivity-loading,\n.selectivity-search-input-container,\n.selectivity-result-label {\n    padding: 7px;\n}\n\n.selectivity-multiple-input-container {\n    background: #eee;\n    border-radius: 2px;\n    cursor: text;\n    max-height: 10em;\n    min-height: calc(2em + 4px);\n    overflow: auto;\n    padding: 5px;\n}\n\n.selectivity-multiple-input-container .selectivity-placeholder {\n    height: calc(2em + 4px);\n    line-height: calc(2em + 4px);\n}\n\n.selectivity-multiple-input,\ninput[type='text'].selectivity-multiple-input {\n    background-color: transparent;\n    border: none;\n    float: left;\n    height: calc(2em + 4px);\n    max-width: 100%;\n    outline: 0;\n    padding: 0;\n}\n\n.selectivity-multiple-input:focus,\ninput[type='text'].selectivity-multiple-input:focus {\n    background-color: transparent;\n    box-shadow: none;\n    outline: none;\n}\n\n.selectivity-multiple-input::-ms-clear {\n    display: none;\n}\n\n.selectivity-multiple-input.selectivity-width-detector {\n    position: absolute;\n    top: -10000px;\n    left: 0;\n    white-space: pre;\n}\n\n.selectivity-multiple-selected-item {\n    background: #4484c7;\n    border-radius: 3px;\n    color: #fff;\n    cursor: default;\n    float: left;\n    line-height: 2em;\n    margin: 2px;\n    padding-right: 5px;\n    position: relative;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    -webkit-user-select: none;\n    user-select: none;\n    white-space: nowrap;\n}\n\n.selectivity-multiple-selected-item.highlighted {\n    background-color: #ccc;\n}\n\n.selectivity-multiple-selected-item-remove {\n    color: #fff;\n    cursor: pointer;\n    padding: 5px;\n}\n\n.selectivity-single-select {\n    background: #eee;\n    border-radius: 2px;\n    cursor: pointer;\n    min-height: 2em;\n    padding: 5px;\n    position: relative;\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    box-sizing: content-box;\n}\n\n.selectivity-single-select-input {\n    opacity: 0;\n}\n\n.selectivity-single-result-container {\n    position: absolute;\n    top: 0.8em;\n    right: 15px;\n    left: 5px;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n}\n\n.selectivity-single-selected-item {\n    color: #000;\n}\n\n.selectivity-single-selected-item-remove {\n    color: #000;\n    float: right;\n    padding: 0 5px;\n}\n\n.selectivity-caret {\n    position: absolute;\n    right: 5px;\n    top: 0.7em;\n}\n\n@media only screen and (max-device-width: 480px) {\n    .selectivity-single-select {\n        background: #eee;\n        border-radius: 2px;\n    }\n\n    .selectivity-single-result-container {\n        right: 5px;\n    }\n\n    .selectivity-caret {\n        display: none;\n    }\n}\n\n.selectivity-submenu-icon {\n    position: absolute;\n    right: 4px;\n}\n"
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	var SelectivityOptions = (function () {
@@ -3277,14 +3276,18 @@ webpackJsonp([1],[
 	    return SelectivityOptions;
 	})();
 	exports.SelectivityOptions = SelectivityOptions;
-	//# sourceMappingURL=selectivity-options.js.map
+
 
 /***/ },
+/* 23 */,
 /* 24 */,
 /* 25 */,
 /* 26 */,
 /* 27 */,
-/* 28 */
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */
 /***/ function(module, exports) {
 
 	(function (Ng2BootstrapTheme) {
@@ -3315,22 +3318,24 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../components/dist/ng2-bootstrap-config.js.map
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../tsd.d.ts"/>
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(89));
-	//# sourceMappingURL=index.js.map
+	__export(__webpack_require__(102));
+
 
 /***/ },
-/* 30 */,
-/* 31 */,
-/* 32 */,
 /* 33 */,
-/* 34 */
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */
 /***/ function(module, exports) {
 
 	/// <reference path="../tsd.d.ts" />
@@ -3462,13 +3467,13 @@ webpackJsonp([1],[
 	})();
 	exports.PositionService = PositionService;
 	exports.positionService = new PositionService();
-	//# sourceMappingURL=position.js.map
+
 
 /***/ },
-/* 35 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var selectivity_submenu_1 = __webpack_require__(88);
+	var selectivity_submenu_1 = __webpack_require__(101);
 	var SelectivityItem = (function () {
 	    function SelectivityItem(source) {
 	        var _this = this;
@@ -3504,10 +3509,10 @@ webpackJsonp([1],[
 	    return SelectivityItem;
 	})();
 	exports.SelectivityItem = SelectivityItem;
-	//# sourceMappingURL=selectivity-item.js.map
+
 
 /***/ },
-/* 36 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3521,10 +3526,10 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var position_1 = __webpack_require__(34);
-	var selectivity_options_1 = __webpack_require__(23);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var position_1 = __webpack_require__(39);
+	var selectivity_options_1 = __webpack_require__(22);
+	var cssSelectivity = __webpack_require__(21);
 	var SelectivityOptionsContainer = (function () {
 	    function SelectivityOptionsContainer(element, options) {
 	        this.element = element;
@@ -3571,6 +3576,8 @@ webpackJsonp([1],[
 	        }
 	    };
 	    SelectivityOptionsContainer.prototype.inputEvent = function (e, isUpMode) {
+	        /*let resultsEl:any = this.element.nativeElement.children[1].children[3];
+	         let resultsPosition = positionService.position(resultsEl);*/
 	        if (isUpMode === void 0) { isUpMode = false; }
 	        if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
 	            this.options.container.hide();
@@ -3594,12 +3601,12 @@ webpackJsonp([1],[
 	            return;
 	        }
 	        if (!isUpMode && e.keyCode === 38) {
-	            this.behavior.prev();
+	            var reverse = this.behavior.prev();
 	            e.preventDefault();
 	            return;
 	        }
 	        if (!isUpMode && e.keyCode === 40) {
-	            this.behavior.next();
+	            var reverse = this.behavior.next();
 	            e.preventDefault();
 	            return;
 	        }
@@ -3690,11 +3697,15 @@ webpackJsonp([1],[
 	        };
 	        GenericBehavior.prototype.prev = function () {
 	            var index = this.actor.items.indexOf(this.actor.active);
-	            this.actor.active = this.actor.items[index - 1 < 0 ? this.actor.items.length - 1 : index - 1];
+	            var reverse = index - 1 < 0;
+	            this.actor.active = this.actor.items[reverse ? this.actor.items.length - 1 : index - 1];
+	            return reverse;
 	        };
 	        GenericBehavior.prototype.next = function () {
 	            var index = this.actor.items.indexOf(this.actor.active);
-	            this.actor.active = this.actor.items[index + 1 > this.actor.items.length - 1 ? 0 : index + 1];
+	            var reverse = index + 1 > this.actor.items.length - 1;
+	            this.actor.active = this.actor.items[reverse ? 0 : index + 1];
+	            return reverse;
 	        };
 	        GenericBehavior.prototype.filter = function (query) {
 	            var _this = this;
@@ -3723,6 +3734,7 @@ webpackJsonp([1],[
 	                    .children[this.actor.items[this.actor.items.length - 1].children.length - 1];
 	        };
 	        ChildrenBehavior.prototype.prev = function () {
+	            var reverse = false;
 	            var indexParent = getIndex(this.actor.items, this.actor.active.parent);
 	            var index = getIndex(this.actor.items[indexParent].children, this.actor.active);
 	            this.actor.active = this.actor.items[indexParent].children[index - 1];
@@ -3735,9 +3747,12 @@ webpackJsonp([1],[
 	            }
 	            if (!this.actor.active) {
 	                this.last();
+	                reverse = true;
 	            }
+	            return reverse;
 	        };
 	        ChildrenBehavior.prototype.next = function () {
+	            var reverse = false;
 	            var indexParent = getIndex(this.actor.items, this.actor.active.parent);
 	            var index = getIndex(this.actor.items[indexParent].children, this.actor.active);
 	            this.actor.active = this.actor.items[indexParent].children[index + 1];
@@ -3748,7 +3763,9 @@ webpackJsonp([1],[
 	            }
 	            if (!this.actor.active) {
 	                this.first();
+	                reverse = true;
 	            }
+	            return reverse;
 	        };
 	        ChildrenBehavior.prototype.filter = function (query) {
 	            var items = [];
@@ -3771,14 +3788,9 @@ webpackJsonp([1],[
 	    })();
 	    SelectivityOptionsContainer.ChildrenBehavior = ChildrenBehavior;
 	})(SelectivityOptionsContainer = exports.SelectivityOptionsContainer || (exports.SelectivityOptionsContainer = {}));
-	//# sourceMappingURL=selectivity-options-container.js.map
+
 
 /***/ },
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
 /* 42 */,
 /* 43 */,
 /* 44 */,
@@ -3786,7 +3798,17 @@ webpackJsonp([1],[
 /* 46 */,
 /* 47 */,
 /* 48 */,
-/* 49 */
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -3801,8 +3823,8 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var date_formatter_1 = __webpack_require__(297);
+	var angular2_1 = __webpack_require__(6);
+	var date_formatter_1 = __webpack_require__(326);
 	var FORMAT_DAY = 'DD';
 	var FORMAT_MONTH = 'MMMM';
 	var FORMAT_YEAR = 'YYYY';
@@ -4046,7 +4068,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/datepicker-inner.js.map
 
 /***/ },
-/* 50 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -4061,8 +4083,8 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var dropdown_service_1 = __webpack_require__(227);
+	var angular2_1 = __webpack_require__(6);
+	var dropdown_service_1 = __webpack_require__(251);
 	var Dropdown = (function () {
 	    function Dropdown(el) {
 	        this.el = el;
@@ -4185,7 +4207,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/dropdown/dropdown.js.map
 
 /***/ },
-/* 51 */
+/* 61 */
 /***/ function(module, exports) {
 
 	/// <reference path="../tsd.d.ts" />
@@ -4320,16 +4342,6 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../components/dist/position.js.map
 
 /***/ },
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
 /* 62 */,
 /* 63 */,
 /* 64 */,
@@ -4355,7 +4367,20 @@ webpackJsonp([1],[
 /* 84 */,
 /* 85 */,
 /* 86 */,
-/* 87 */
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4369,13 +4394,12 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(34);
-	var selectivity_item_1 = __webpack_require__(35);
-	var selectivity_options_1 = __webpack_require__(23);
-	var selectivity_options_container_1 = __webpack_require__(36);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var position_1 = __webpack_require__(39);
+	var selectivity_item_1 = __webpack_require__(40);
+	var selectivity_options_1 = __webpack_require__(22);
+	var selectivity_options_container_1 = __webpack_require__(41);
+	var cssSelectivity = __webpack_require__(21);
 	var SelectivityMenuContainer = (function () {
 	    function SelectivityMenuContainer(element, options, loader) {
 	        this.element = element;
@@ -4426,8 +4450,8 @@ webpackJsonp([1],[
 	            selectivity: this.options.selectivity,
 	            container: this
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
+	        var binding = angular2_1.Injector.resolve([
+	            angular2_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
 	        ]);
 	        var expectedPopup = selectivity_options_container_1.SelectivityOptionsContainer;
 	        this._popup = this.loader
@@ -4470,10 +4494,10 @@ webpackJsonp([1],[
 	    return SelectivityMenuContainer;
 	})();
 	exports.SelectivityMenuContainer = SelectivityMenuContainer;
-	//# sourceMappingURL=selectivity-menu-container.js.map
+
 
 /***/ },
-/* 88 */
+/* 101 */
 /***/ function(module, exports) {
 
 	var SelectivitySubMenu = (function () {
@@ -4491,10 +4515,10 @@ webpackJsonp([1],[
 	    return SelectivitySubMenu;
 	})();
 	exports.SelectivitySubMenu = SelectivitySubMenu;
-	//# sourceMappingURL=selectivity-submenu.js.map
+
 
 /***/ },
-/* 89 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -4509,13 +4533,12 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var selectivity_item_1 = __webpack_require__(35);
-	var selectivity_options_1 = __webpack_require__(23);
-	var selectivity_menu_container_1 = __webpack_require__(87);
-	var selectivity_options_container_1 = __webpack_require__(36);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var selectivity_item_1 = __webpack_require__(40);
+	var selectivity_options_1 = __webpack_require__(22);
+	var selectivity_menu_container_1 = __webpack_require__(100);
+	var selectivity_options_container_1 = __webpack_require__(41);
+	var cssSelectivity = __webpack_require__(21);
 	var Selectivity = (function () {
 	    function Selectivity(element, loader) {
 	        this.element = element;
@@ -4637,8 +4660,8 @@ webpackJsonp([1],[
 	            selectivity: this,
 	            container: this
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
+	        var binding = angular2_1.Injector.resolve([
+	            angular2_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
 	        ]);
 	        var expectedPopup = this.items[0].submenu ?
 	            selectivity_menu_container_1.SelectivityMenuContainer :
@@ -4695,22 +4718,9 @@ webpackJsonp([1],[
 	})();
 	exports.Selectivity = Selectivity;
 	exports.selectivity = [Selectivity];
-	//# sourceMappingURL=selectivity.js.map
+
 
 /***/ },
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
 /* 103 */,
 /* 104 */,
 /* 105 */,
@@ -4746,7 +4756,31 @@ webpackJsonp([1],[
 /* 135 */,
 /* 136 */,
 /* 137 */,
-/* 138 */
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -4823,7 +4857,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 139 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -4886,7 +4920,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 140 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -4993,7 +5027,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 141 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5054,7 +5088,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 142 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5194,7 +5228,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 143 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5302,7 +5336,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 144 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5453,7 +5487,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 145 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5547,7 +5581,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 146 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5664,7 +5698,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 147 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5778,7 +5812,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 148 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5889,7 +5923,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 149 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6034,7 +6068,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 150 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6117,7 +6151,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 151 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6278,7 +6312,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 152 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6345,7 +6379,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 153 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6428,7 +6462,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 154 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6492,7 +6526,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 155 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6572,7 +6606,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 156 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6651,7 +6685,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 157 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6749,7 +6783,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 158 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6819,7 +6853,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 159 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6886,7 +6920,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 160 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6957,7 +6991,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 161 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7034,7 +7068,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 162 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7117,7 +7151,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 163 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7201,7 +7235,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 164 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7269,7 +7303,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 165 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7378,7 +7412,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 166 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7489,7 +7523,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 167 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7553,7 +7587,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 168 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7615,7 +7649,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 169 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7681,7 +7715,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 170 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7756,7 +7790,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 171 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7835,7 +7869,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 172 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7921,7 +7955,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 173 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8048,7 +8082,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 174 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8192,7 +8226,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 175 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8305,7 +8339,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 176 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8420,7 +8454,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 177 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8507,7 +8541,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 178 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8638,7 +8672,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 179 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8712,7 +8746,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 180 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8781,7 +8815,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 181 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8868,7 +8902,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 182 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8975,7 +9009,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 183 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9037,7 +9071,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 184 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9109,7 +9143,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 185 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9247,7 +9281,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 186 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9376,7 +9410,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 187 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9476,7 +9510,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 188 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9589,7 +9623,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 189 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9683,7 +9717,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 190 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9758,7 +9792,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 191 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9883,7 +9917,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 192 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9969,7 +10003,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 193 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10055,7 +10089,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 194 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10152,7 +10186,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 195 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10217,7 +10251,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 196 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10344,7 +10378,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 197 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10419,7 +10453,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 198 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10483,7 +10517,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 199 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10592,7 +10626,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 200 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10656,7 +10690,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 201 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10724,7 +10758,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 202 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10802,7 +10836,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 203 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10970,7 +11004,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 204 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11039,7 +11073,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 205 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11201,7 +11235,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 206 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11365,7 +11399,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 207 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11438,7 +11472,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 208 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11550,7 +11584,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 209 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11662,7 +11696,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 210 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11733,7 +11767,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 211 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11832,7 +11866,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 212 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11901,7 +11935,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 213 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11967,7 +12001,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 214 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12061,7 +12095,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 215 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12150,7 +12184,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 216 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12212,7 +12246,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 217 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12274,7 +12308,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 218 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12431,7 +12465,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 219 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12493,7 +12527,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 220 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12563,7 +12597,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 221 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12694,7 +12728,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 222 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12799,7 +12833,7 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 223 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -12814,7 +12848,7 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var Collapse = (function () {
 	    function Collapse(el) {
 	        this.el = el;
@@ -12888,7 +12922,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/collapse/collapse.js.map
 
 /***/ },
-/* 224 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12906,7 +12940,7 @@ webpackJsonp([1],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	/// <reference path="../tsd.d.ts" />
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var NgTransclude = (function () {
 	    function NgTransclude(viewRef) {
 	        this.viewRef = viewRef;
@@ -12930,7 +12964,7 @@ webpackJsonp([1],[
 	            properties: ['ngTransclude']
 	        }),
 	        __param(0, angular2_1.Inject(angular2_1.ViewContainerRef)), 
-	        __metadata('design:paramtypes', [Object])
+	        __metadata('design:paramtypes', [angular2_1.ViewContainerRef])
 	    ], NgTransclude);
 	    return NgTransclude;
 	})();
@@ -12938,15 +12972,10 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../components/dist/common.js.map
 
 /***/ },
-/* 225 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -12961,16 +12990,18 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var moment = __webpack_require__(2);
-	var datepicker_inner_1 = __webpack_require__(49);
-	var daypicker_1 = __webpack_require__(299);
-	var monthpicker_1 = __webpack_require__(301);
-	var yearpicker_1 = __webpack_require__(302);
-	var DatePicker = (function (_super) {
-	    __extends(DatePicker, _super);
-	    function DatePicker(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	var datepicker_inner_1 = __webpack_require__(59);
+	var daypicker_1 = __webpack_require__(328);
+	var monthpicker_1 = __webpack_require__(330);
+	var yearpicker_1 = __webpack_require__(331);
+	var DatePicker = (function () {
+	    function DatePicker(cd) {
+	        this.cd = cd;
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	    }
 	    Object.defineProperty(DatePicker.prototype, "activeDate", {
 	        get: function () {
@@ -12987,12 +13018,21 @@ webpackJsonp([1],[
 	        this.writeValue(event);
 	    };
 	    DatePicker.prototype.writeValue = function (value) {
-	        if (value) {
-	            if (typeof value !== 'Date') {
-	                value = new Date(value);
-	            }
-	            this.activeDate = value;
+	        console.log(value);
+	        if (value === this.activeDate) {
+	            return;
 	        }
+	        if (value && value instanceof Date) {
+	            this.activeDate = value;
+	            return;
+	        }
+	        this.activeDate = value ? new Date(value) : null;
+	    };
+	    DatePicker.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    DatePicker.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
 	    };
 	    DatePicker = __decorate([
 	        angular2_1.Component({
@@ -13015,15 +13055,15 @@ webpackJsonp([1],[
 	            directives: [datepicker_inner_1.DatePickerInner, daypicker_1.DayPicker, monthpicker_1.MonthPicker, yearpicker_1.YearPicker, angular2_1.FORM_DIRECTIVES, angular2_1.CORE_DIRECTIVES]
 	        }),
 	        __param(0, angular2_1.Self()), 
-	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
+	        __metadata('design:paramtypes', [angular2_1.NgModel])
 	    ], DatePicker);
 	    return DatePicker;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.DatePicker = DatePicker;
 	//# sourceMappingURL=../../components/dist/datepicker/datepicker.js.map
 
 /***/ },
-/* 226 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13041,8 +13081,8 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
-	var dropdown_1 = __webpack_require__(50);
+	var angular2_1 = __webpack_require__(6);
+	var dropdown_1 = __webpack_require__(60);
 	var DropdownMenu = (function () {
 	    function DropdownMenu(dropdown, el) {
 	        this.dropdown = dropdown;
@@ -13065,7 +13105,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/dropdown/dropdown-menu.js.map
 
 /***/ },
-/* 227 */
+/* 251 */
 /***/ function(module, exports) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13133,7 +13173,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/dropdown/dropdown-service.js.map
 
 /***/ },
-/* 228 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13151,8 +13191,8 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
-	var dropdown_1 = __webpack_require__(50);
+	var angular2_1 = __webpack_require__(6);
+	var dropdown_1 = __webpack_require__(60);
 	var DropdownToggle = (function () {
 	    function DropdownToggle(dropdown, el) {
 	        this.dropdown = dropdown;
@@ -13197,30 +13237,6 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/dropdown/dropdown-toggle.js.map
 
 /***/ },
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
 /* 253 */,
 /* 254 */,
 /* 255 */,
@@ -13257,192 +13273,221 @@ webpackJsonp([1],[
 /* 286 */,
 /* 287 */,
 /* 288 */,
-/* 289 */
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>selectivity<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-selectivity'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Selectivity</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'ng2-selectivity'</span><span class=\"token punctuation\" >,</span>\n  properties<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token string\" >'allowClear'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'placeholder'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'items'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'multiple'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'showSearchInputInDropdown'</span><span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n</code></pre>\n<h3 id=\"selectivity-properties\">Selectivity properties</h3>\n<ul>\n<li><code>items</code> - (<code>Array&lt;any&gt;</code>) - Array of items from which to select. Should be an array of objects with <code>id</code> and <code>text</code> properties.\nAs convenience, you may also pass an array of strings, in which case the same string is used for both the ID and the text.\nItems may be nested by adding a <code>children</code> property to any item, whose value should be another array of items. Items that have children may omit having an ID.\nIf <code>items</code> are specified, all items are expected to be available locally and all selection operations operate on this local array only.\nIf omitted, items are not available locally, and the <code>query</code> option should be provided to fetch data.</li>\n<li><code>data</code> (<code>?Array&lt;any&gt;</code>) - Initial selection data to set. This should be an object with <code>id</code> and <code>text</code> properties in the case of input type &#39;Single&#39;,\nor an array of such objects otherwise. This option is mutually exclusive with value.</li>\n<li><code>allowClear</code> (<code>?boolean=false</code>) (<em>not yet supported</em>) - Set to <code>true</code> to allow the selection to be cleared. This option only applies to single-value inputs.</li>\n<li><code>placeholder</code> (<code>?string=&#39;&#39;</code>) - Placeholder text to display when the element has no focus and selected items.</li>\n<li><code>multiple</code> - (<code>?boolean=false</code>) - Mode of this component. If set <code>true</code> user can select more than one option.</li>\n<li><code>showSearchInputInDropdown</code> - (<code>?boolean=true</code>) - Set to <code>false</code> to remove the search input used in dropdowns.\nThis option only applies to single-value inputs, as multiple-value inputs don&#39;t have the search input in the dropdown to begin with.</li>\n</ul>\n<h3 id=\"selectivity-events\">Selectivity events</h3>\n<ul>\n<li><code>data</code> - it fires during all events of this component; returns <code>Array&lt;any&gt;</code> - current selected data</li>\n<li><code>selected</code> - it fires after a new option selected; returns object with <code>id</code> and <code>text</code> properties that describes a new option.</li>\n<li><code>removed</code> - it fires after an option removed; returns object with <code>id</code> and <code>text</code> properties that describes a removed option.</li>\n</ul>\n";
 
 /***/ },
-/* 290 */
+/* 319 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1 id=\"getting-started\">Getting started</h1>\n<h2 id=\"first-of-all-welcome-\">First of all, Welcome!</h2>\n<h3 id=\"install\">Install</h3>\n<p>Install the components</p>\n<pre><code>npm install ng2-selectivity --save\n</code></pre><h2 id=\"examples\">Examples</h2>\n";
 
 /***/ },
-/* 291 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 138,
-		"./af.js": 138,
-		"./ar": 142,
-		"./ar-ma": 139,
-		"./ar-ma.js": 139,
-		"./ar-sa": 140,
-		"./ar-sa.js": 140,
-		"./ar-tn": 141,
-		"./ar-tn.js": 141,
-		"./ar.js": 142,
-		"./az": 143,
-		"./az.js": 143,
-		"./be": 144,
-		"./be.js": 144,
-		"./bg": 145,
-		"./bg.js": 145,
-		"./bn": 146,
-		"./bn.js": 146,
-		"./bo": 147,
-		"./bo.js": 147,
-		"./br": 148,
-		"./br.js": 148,
-		"./bs": 149,
-		"./bs.js": 149,
-		"./ca": 150,
-		"./ca.js": 150,
-		"./cs": 151,
-		"./cs.js": 151,
-		"./cv": 152,
-		"./cv.js": 152,
-		"./cy": 153,
-		"./cy.js": 153,
-		"./da": 154,
-		"./da.js": 154,
-		"./de": 156,
-		"./de-at": 155,
-		"./de-at.js": 155,
-		"./de.js": 156,
-		"./el": 157,
-		"./el.js": 157,
-		"./en-au": 158,
-		"./en-au.js": 158,
-		"./en-ca": 159,
-		"./en-ca.js": 159,
-		"./en-gb": 160,
-		"./en-gb.js": 160,
-		"./eo": 161,
-		"./eo.js": 161,
-		"./es": 162,
-		"./es.js": 162,
-		"./et": 163,
-		"./et.js": 163,
-		"./eu": 164,
-		"./eu.js": 164,
-		"./fa": 165,
-		"./fa.js": 165,
-		"./fi": 166,
-		"./fi.js": 166,
-		"./fo": 167,
-		"./fo.js": 167,
-		"./fr": 169,
-		"./fr-ca": 168,
-		"./fr-ca.js": 168,
-		"./fr.js": 169,
-		"./fy": 170,
-		"./fy.js": 170,
-		"./gl": 171,
-		"./gl.js": 171,
-		"./he": 172,
-		"./he.js": 172,
-		"./hi": 173,
-		"./hi.js": 173,
-		"./hr": 174,
-		"./hr.js": 174,
-		"./hu": 175,
-		"./hu.js": 175,
-		"./hy-am": 176,
-		"./hy-am.js": 176,
-		"./id": 177,
-		"./id.js": 177,
-		"./is": 178,
-		"./is.js": 178,
-		"./it": 179,
-		"./it.js": 179,
-		"./ja": 180,
-		"./ja.js": 180,
-		"./jv": 181,
-		"./jv.js": 181,
-		"./ka": 182,
-		"./ka.js": 182,
-		"./km": 183,
-		"./km.js": 183,
-		"./ko": 184,
-		"./ko.js": 184,
-		"./lb": 185,
-		"./lb.js": 185,
-		"./lt": 186,
-		"./lt.js": 186,
-		"./lv": 187,
-		"./lv.js": 187,
-		"./me": 188,
-		"./me.js": 188,
-		"./mk": 189,
-		"./mk.js": 189,
-		"./ml": 190,
-		"./ml.js": 190,
-		"./mr": 191,
-		"./mr.js": 191,
-		"./ms": 193,
-		"./ms-my": 192,
-		"./ms-my.js": 192,
-		"./ms.js": 193,
-		"./my": 194,
-		"./my.js": 194,
-		"./nb": 195,
-		"./nb.js": 195,
-		"./ne": 196,
-		"./ne.js": 196,
-		"./nl": 197,
-		"./nl.js": 197,
-		"./nn": 198,
-		"./nn.js": 198,
-		"./pl": 199,
-		"./pl.js": 199,
-		"./pt": 201,
-		"./pt-br": 200,
-		"./pt-br.js": 200,
-		"./pt.js": 201,
-		"./ro": 202,
-		"./ro.js": 202,
-		"./ru": 203,
-		"./ru.js": 203,
-		"./si": 204,
-		"./si.js": 204,
-		"./sk": 205,
-		"./sk.js": 205,
-		"./sl": 206,
-		"./sl.js": 206,
-		"./sq": 207,
-		"./sq.js": 207,
-		"./sr": 209,
-		"./sr-cyrl": 208,
-		"./sr-cyrl.js": 208,
-		"./sr.js": 209,
-		"./sv": 210,
-		"./sv.js": 210,
-		"./ta": 211,
-		"./ta.js": 211,
-		"./th": 212,
-		"./th.js": 212,
-		"./tl-ph": 213,
-		"./tl-ph.js": 213,
-		"./tr": 214,
-		"./tr.js": 214,
-		"./tzl": 215,
-		"./tzl.js": 215,
-		"./tzm": 217,
-		"./tzm-latn": 216,
-		"./tzm-latn.js": 216,
-		"./tzm.js": 217,
-		"./uk": 218,
-		"./uk.js": 218,
-		"./uz": 219,
-		"./uz.js": 219,
-		"./vi": 220,
-		"./vi.js": 220,
-		"./zh-cn": 221,
-		"./zh-cn.js": 221,
-		"./zh-tw": 222,
-		"./zh-tw.js": 222
+		"./af": 162,
+		"./af.js": 162,
+		"./ar": 166,
+		"./ar-ma": 163,
+		"./ar-ma.js": 163,
+		"./ar-sa": 164,
+		"./ar-sa.js": 164,
+		"./ar-tn": 165,
+		"./ar-tn.js": 165,
+		"./ar.js": 166,
+		"./az": 167,
+		"./az.js": 167,
+		"./be": 168,
+		"./be.js": 168,
+		"./bg": 169,
+		"./bg.js": 169,
+		"./bn": 170,
+		"./bn.js": 170,
+		"./bo": 171,
+		"./bo.js": 171,
+		"./br": 172,
+		"./br.js": 172,
+		"./bs": 173,
+		"./bs.js": 173,
+		"./ca": 174,
+		"./ca.js": 174,
+		"./cs": 175,
+		"./cs.js": 175,
+		"./cv": 176,
+		"./cv.js": 176,
+		"./cy": 177,
+		"./cy.js": 177,
+		"./da": 178,
+		"./da.js": 178,
+		"./de": 180,
+		"./de-at": 179,
+		"./de-at.js": 179,
+		"./de.js": 180,
+		"./el": 181,
+		"./el.js": 181,
+		"./en-au": 182,
+		"./en-au.js": 182,
+		"./en-ca": 183,
+		"./en-ca.js": 183,
+		"./en-gb": 184,
+		"./en-gb.js": 184,
+		"./eo": 185,
+		"./eo.js": 185,
+		"./es": 186,
+		"./es.js": 186,
+		"./et": 187,
+		"./et.js": 187,
+		"./eu": 188,
+		"./eu.js": 188,
+		"./fa": 189,
+		"./fa.js": 189,
+		"./fi": 190,
+		"./fi.js": 190,
+		"./fo": 191,
+		"./fo.js": 191,
+		"./fr": 193,
+		"./fr-ca": 192,
+		"./fr-ca.js": 192,
+		"./fr.js": 193,
+		"./fy": 194,
+		"./fy.js": 194,
+		"./gl": 195,
+		"./gl.js": 195,
+		"./he": 196,
+		"./he.js": 196,
+		"./hi": 197,
+		"./hi.js": 197,
+		"./hr": 198,
+		"./hr.js": 198,
+		"./hu": 199,
+		"./hu.js": 199,
+		"./hy-am": 200,
+		"./hy-am.js": 200,
+		"./id": 201,
+		"./id.js": 201,
+		"./is": 202,
+		"./is.js": 202,
+		"./it": 203,
+		"./it.js": 203,
+		"./ja": 204,
+		"./ja.js": 204,
+		"./jv": 205,
+		"./jv.js": 205,
+		"./ka": 206,
+		"./ka.js": 206,
+		"./km": 207,
+		"./km.js": 207,
+		"./ko": 208,
+		"./ko.js": 208,
+		"./lb": 209,
+		"./lb.js": 209,
+		"./lt": 210,
+		"./lt.js": 210,
+		"./lv": 211,
+		"./lv.js": 211,
+		"./me": 212,
+		"./me.js": 212,
+		"./mk": 213,
+		"./mk.js": 213,
+		"./ml": 214,
+		"./ml.js": 214,
+		"./mr": 215,
+		"./mr.js": 215,
+		"./ms": 217,
+		"./ms-my": 216,
+		"./ms-my.js": 216,
+		"./ms.js": 217,
+		"./my": 218,
+		"./my.js": 218,
+		"./nb": 219,
+		"./nb.js": 219,
+		"./ne": 220,
+		"./ne.js": 220,
+		"./nl": 221,
+		"./nl.js": 221,
+		"./nn": 222,
+		"./nn.js": 222,
+		"./pl": 223,
+		"./pl.js": 223,
+		"./pt": 225,
+		"./pt-br": 224,
+		"./pt-br.js": 224,
+		"./pt.js": 225,
+		"./ro": 226,
+		"./ro.js": 226,
+		"./ru": 227,
+		"./ru.js": 227,
+		"./si": 228,
+		"./si.js": 228,
+		"./sk": 229,
+		"./sk.js": 229,
+		"./sl": 230,
+		"./sl.js": 230,
+		"./sq": 231,
+		"./sq.js": 231,
+		"./sr": 233,
+		"./sr-cyrl": 232,
+		"./sr-cyrl.js": 232,
+		"./sr.js": 233,
+		"./sv": 234,
+		"./sv.js": 234,
+		"./ta": 235,
+		"./ta.js": 235,
+		"./th": 236,
+		"./th.js": 236,
+		"./tl-ph": 237,
+		"./tl-ph.js": 237,
+		"./tr": 238,
+		"./tr.js": 238,
+		"./tzl": 239,
+		"./tzl.js": 239,
+		"./tzm": 241,
+		"./tzm-latn": 240,
+		"./tzm-latn.js": 240,
+		"./tzm.js": 241,
+		"./uk": 242,
+		"./uk.js": 242,
+		"./uz": 243,
+		"./uz.js": 243,
+		"./vi": 244,
+		"./vi.js": 244,
+		"./zh-cn": 245,
+		"./zh-cn.js": 245,
+		"./zh-tw": 246,
+		"./zh-tw.js": 246
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -13455,11 +13500,11 @@ webpackJsonp([1],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 291;
+	webpackContext.id = 320;
 
 
 /***/ },
-/* 292 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13477,7 +13522,7 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var Accordion = (function () {
 	    function Accordion() {
 	        this.groups = [];
@@ -13532,12 +13577,12 @@ webpackJsonp([1],[
 	            properties: ['accordionTransclude']
 	        }),
 	        __param(0, angular2_1.Inject(angular2_1.ViewContainerRef)), 
-	        __metadata('design:paramtypes', [Object])
+	        __metadata('design:paramtypes', [angular2_1.ViewContainerRef])
 	    ], AccordionTransclude);
 	    return AccordionTransclude;
 	})();
 	exports.AccordionTransclude = AccordionTransclude;
-	var collapse_1 = __webpack_require__(223);
+	var collapse_1 = __webpack_require__(247);
 	var AccordionGroup = (function () {
 	    function AccordionGroup(accordion) {
 	        this.accordion = accordion;
@@ -13604,7 +13649,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/accordion/accordion.js.map
 
 /***/ },
-/* 293 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13619,7 +13664,7 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var Alert = (function () {
 	    function Alert(el) {
 	        this.el = el;
@@ -13658,8 +13703,8 @@ webpackJsonp([1],[
 	    Alert = __decorate([
 	        angular2_1.Component({
 	            selector: 'alert',
-	            properties: ['type', 'dismissible', 'dismissOnTimeout'],
-	            events: ['close']
+	            inputs: ['type', 'dismissible', 'dismissOnTimeout'],
+	            outputs: ['close']
 	        }),
 	        angular2_1.View({
 	            template: "\n  <div class=\"alert\" role=\"alert\" [ng-class]=\"classes\" *ng-if=\"!closed\">\n    <button *ng-if=\"closeable\" type=\"button\" class=\"close\" (click)=\"onClose($event)\">\n      <span aria-hidden=\"true\">&times;</span>\n      <span class=\"sr-only\">Close</span>\n    </button>\n    <ng-content></ng-content>\n  </div>\n  ",
@@ -13673,14 +13718,9 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/alert/alert.js.map
 
 /***/ },
-/* 294 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -13696,12 +13736,14 @@ webpackJsonp([1],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	/// <reference path="../../tsd.d.ts" />
-	var angular2_1 = __webpack_require__(5);
-	var ButtonCheckbox = (function (_super) {
-	    __extends(ButtonCheckbox, _super);
-	    function ButtonCheckbox(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	var angular2_1 = __webpack_require__(6);
+	var ButtonCheckbox = (function () {
+	    function ButtonCheckbox(cd) {
+	        this.cd = cd;
 	        this.state = false;
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	    }
 	    ButtonCheckbox.prototype.onInit = function () {
 	        this.toggle(this.trueValue === this.value);
@@ -13724,13 +13766,19 @@ webpackJsonp([1],[
 	        this.state = state;
 	        this.value = this.state ? this.trueValue : this.falseValue;
 	    };
+	    ButtonCheckbox.prototype.onClick = function () {
+	        this.toggle(!this.state);
+	        this.cd.viewToModelUpdate(this.value);
+	    };
 	    ButtonCheckbox.prototype.writeValue = function (value) {
 	        this.state = this.trueValue === value;
 	        this.value = value;
 	    };
-	    ButtonCheckbox.prototype.onClick = function () {
-	        this.toggle(!this.state);
-	        this.cd.viewToModelUpdate(this.value);
+	    ButtonCheckbox.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    ButtonCheckbox.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
 	    };
 	    ButtonCheckbox = __decorate([
 	        angular2_1.Directive({
@@ -13742,22 +13790,17 @@ webpackJsonp([1],[
 	            }
 	        }),
 	        __param(0, angular2_1.Self()), 
-	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
+	        __metadata('design:paramtypes', [angular2_1.NgModel])
 	    ], ButtonCheckbox);
 	    return ButtonCheckbox;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.ButtonCheckbox = ButtonCheckbox;
 	//# sourceMappingURL=../../components/dist/buttons/button-checkbox.js.map
 
 /***/ },
-/* 295 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -13773,11 +13816,14 @@ webpackJsonp([1],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	/// <reference path="../../tsd.d.ts" />
-	var angular2_1 = __webpack_require__(5);
-	var ButtonRadio = (function (_super) {
-	    __extends(ButtonRadio, _super);
-	    function ButtonRadio(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	var angular2_1 = __webpack_require__(6);
+	var ButtonRadio = (function () {
+	    function ButtonRadio(cd, el) {
+	        this.cd = cd;
+	        this.el = el;
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	    }
 	    ButtonRadio.prototype.onInit = function () {
 	        this.uncheckable = typeof this.uncheckable !== 'undefined';
@@ -13795,18 +13841,30 @@ webpackJsonp([1],[
 	        },
 	        set: function (value) {
 	            this.cd.viewModel = value;
+	            if (this.isActive) {
+	                this.el.nativeElement.classList.add('active');
+	            }
+	            else {
+	                this.el.nativeElement.classList.remove('active');
+	            }
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonRadio.prototype.writeValue = function (value) {
-	        this.value = value;
-	    };
 	    ButtonRadio.prototype.onClick = function () {
 	        if (this.uncheckable && this.btnRadio === this.value) {
 	            return this.cd.viewToModelUpdate(null);
 	        }
 	        this.cd.viewToModelUpdate(this.btnRadio);
+	    };
+	    ButtonRadio.prototype.writeValue = function (value) {
+	        this.value = value;
+	    };
+	    ButtonRadio.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    ButtonRadio.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
 	    };
 	    ButtonRadio = __decorate([
 	        angular2_1.Directive({
@@ -13818,15 +13876,15 @@ webpackJsonp([1],[
 	            }
 	        }),
 	        __param(0, angular2_1.Self()), 
-	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
+	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.ElementRef])
 	    ], ButtonRadio);
 	    return ButtonRadio;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.ButtonRadio = ButtonRadio;
 	//# sourceMappingURL=../../components/dist/buttons/button-radio.js.map
 
 /***/ },
-/* 296 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -13841,8 +13899,8 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var ng2_bootstrap_config_1 = __webpack_require__(28);
+	var angular2_1 = __webpack_require__(6);
+	var ng2_bootstrap_config_1 = __webpack_require__(31);
 	(function (Direction) {
 	    Direction[Direction["UNKNOWN"] = 0] = "UNKNOWN";
 	    Direction[Direction["NEXT"] = 1] = "NEXT";
@@ -14028,7 +14086,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/carousel/carousel.js.map
 
 /***/ },
-/* 297 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var moment = __webpack_require__(2);
@@ -14044,7 +14102,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/date-formatter.js.map
 
 /***/ },
-/* 298 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14062,10 +14120,10 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(51);
-	var datepicker_1 = __webpack_require__(225);
+	var angular2_1 = __webpack_require__(6);
+	var angular2_2 = __webpack_require__(6);
+	var position_1 = __webpack_require__(61);
+	var datepicker_1 = __webpack_require__(249);
 	var PopupOptions = (function () {
 	    function PopupOptions(options) {
 	        Object.assign(this, options);
@@ -14173,8 +14231,8 @@ webpackJsonp([1],[
 	        var options = new PopupOptions({
 	            placement: this.placement
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(PopupOptions).toValue(options)
+	        var binding = angular2_2.Injector.resolve([
+	            angular2_2.bind(PopupOptions).toValue(options)
 	        ]);
 	        this.popup = this.loader
 	            .loadNextToLocation(PopupContainer, this.element, binding)
@@ -14212,7 +14270,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/datepicker-popup.js.map
 
 /***/ },
-/* 299 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14227,9 +14285,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var ng2_bootstrap_config_1 = __webpack_require__(28);
-	var datepicker_inner_1 = __webpack_require__(49);
+	var angular2_1 = __webpack_require__(6);
+	var ng2_bootstrap_config_1 = __webpack_require__(31);
+	var datepicker_inner_1 = __webpack_require__(59);
 	var TEMPLATE_OPTIONS = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = {
 	        DAY_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-sm\"\n                [ng-class]=\"{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n          <span [ng-class]=\"{'text-muted': dtz.secondary || dtz.current}\">{{dtz.label}}</span>\n        </button>\n    "
@@ -14329,17 +14387,17 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/daypicker.js.map
 
 /***/ },
-/* 300 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
-	var datepicker_popup_1 = __webpack_require__(298);
-	var datepicker_1 = __webpack_require__(225);
+	var datepicker_popup_1 = __webpack_require__(327);
+	var datepicker_1 = __webpack_require__(249);
 	exports.datepicker = [datepicker_1.DatePicker, datepicker_popup_1.DatePickerPopup];
 	//# sourceMappingURL=../../components/dist/datepicker/index.js.map
 
 /***/ },
-/* 301 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14354,9 +14412,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var datepicker_inner_1 = __webpack_require__(49);
-	var ng2_bootstrap_config_1 = __webpack_require__(28);
+	var angular2_1 = __webpack_require__(6);
+	var datepicker_inner_1 = __webpack_require__(59);
+	var ng2_bootstrap_config_1 = __webpack_require__(31);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        MONTH_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ng-class]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\"><span [ng-class]=\"{'text-success': dtz.current}\">{{dtz.label}}</span></button>\n    "
@@ -14410,7 +14468,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/monthpicker.js.map
 
 /***/ },
-/* 302 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14425,9 +14483,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var ng2_bootstrap_config_1 = __webpack_require__(28);
-	var datepicker_inner_1 = __webpack_require__(49);
+	var angular2_1 = __webpack_require__(6);
+	var ng2_bootstrap_config_1 = __webpack_require__(31);
+	var datepicker_inner_1 = __webpack_require__(59);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        YEAR_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ng-class]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n          <span [ng-class]=\"{'text-success': dtz.current}\">{{dtz.label}}</span>\n        </button>\n    "
@@ -14481,49 +14539,49 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/datepicker/yearpicker.js.map
 
 /***/ },
-/* 303 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dropdown_1 = __webpack_require__(50);
-	var dropdown_menu_1 = __webpack_require__(226);
-	var dropdown_toggle_1 = __webpack_require__(228);
+	var dropdown_1 = __webpack_require__(60);
+	var dropdown_menu_1 = __webpack_require__(250);
+	var dropdown_toggle_1 = __webpack_require__(252);
 	exports.dropdown = [dropdown_1.Dropdown, dropdown_menu_1.DropdownMenu, dropdown_toggle_1.DropdownToggle];
 	//# sourceMappingURL=../../components/dist/dropdown/index.js.map
 
 /***/ },
-/* 304 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../tsd.d.ts"/>
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(292));
-	__export(__webpack_require__(293));
-	__export(__webpack_require__(295));
-	__export(__webpack_require__(294));
-	__export(__webpack_require__(300));
-	__export(__webpack_require__(303));
-	__export(__webpack_require__(50));
-	__export(__webpack_require__(226));
-	__export(__webpack_require__(227));
-	__export(__webpack_require__(228));
-	__export(__webpack_require__(296));
-	__export(__webpack_require__(223));
-	__export(__webpack_require__(305));
-	__export(__webpack_require__(306));
-	__export(__webpack_require__(307));
-	__export(__webpack_require__(308));
-	__export(__webpack_require__(309));
-	__export(__webpack_require__(310));
-	__export(__webpack_require__(311));
-	__export(__webpack_require__(51));
-	__export(__webpack_require__(224));
-	__export(__webpack_require__(28));
+	__export(__webpack_require__(321));
+	__export(__webpack_require__(322));
+	__export(__webpack_require__(324));
+	__export(__webpack_require__(323));
+	__export(__webpack_require__(329));
+	__export(__webpack_require__(332));
+	__export(__webpack_require__(60));
+	__export(__webpack_require__(250));
+	__export(__webpack_require__(251));
+	__export(__webpack_require__(252));
+	__export(__webpack_require__(325));
+	__export(__webpack_require__(247));
+	__export(__webpack_require__(334));
+	__export(__webpack_require__(335));
+	__export(__webpack_require__(336));
+	__export(__webpack_require__(337));
+	__export(__webpack_require__(338));
+	__export(__webpack_require__(339));
+	__export(__webpack_require__(340));
+	__export(__webpack_require__(61));
+	__export(__webpack_require__(248));
+	__export(__webpack_require__(31));
 	//# sourceMappingURL=../components/dist/index.js.map
 
 /***/ },
-/* 305 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14546,7 +14604,7 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var paginationConfig = {
 	    maxSize: undefined,
 	    itemsPerPage: 10,
@@ -14558,11 +14616,17 @@ webpackJsonp([1],[
 	    lastText: 'Last',
 	    rotate: true
 	};
-	var Pagination = (function (_super) {
-	    __extends(Pagination, _super);
+	var Pagination = (function () {
 	    function Pagination(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	        this.cd = cd;
+	        this.renderer = renderer;
+	        this.elementRef = elementRef;
 	        this.numPages = new angular2_1.EventEmitter();
+	        this.pageChanged = new angular2_1.EventEmitter();
+	        this.inited = false;
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	        this.config = this.config || paginationConfig;
 	    }
 	    Object.defineProperty(Pagination.prototype, "itemsPerPage", {
@@ -14594,9 +14658,23 @@ webpackJsonp([1],[
 	        set: function (v) {
 	            this._totalPages = v;
 	            this.numPages.next(v);
-	            if (this.page > v) {
+	            if (this.inited) {
 	                this.selectPage(v);
 	            }
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Pagination.prototype, "page", {
+	        get: function () {
+	            return this._page;
+	        },
+	        set: function (value) {
+	            this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
+	            this.pageChanged.next({
+	                page: this._page,
+	                itemsPerPage: this.itemsPerPage
+	            });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14607,24 +14685,27 @@ webpackJsonp([1],[
 	        this.rotate = typeof this.rotate !== 'undefined' ? this.rotate : paginationConfig.rotate;
 	        this.boundaryLinks = typeof this.boundaryLinks !== 'undefined' ? this.boundaryLinks : paginationConfig.boundaryLinks;
 	        this.directionLinks = typeof this.directionLinks !== 'undefined' ? this.directionLinks : paginationConfig.directionLinks;
-	        this.page = typeof this.page !== 'undefined' ? this.page : 1;
 	        this.itemsPerPage = typeof this.itemsPerPage !== 'undefined' ? this.itemsPerPage : paginationConfig.itemsPerPage;
 	        this.totalPages = this.calculateTotalPages();
 	        this.pages = this.getPages(this.page, this.totalPages);
+	        this.page = this.cd.value;
+	        this.inited = true;
 	    };
 	    Pagination.prototype.writeValue = function (value) {
-	        this.page = value || 1;
+	        this.page = value;
 	        this.pages = this.getPages(this.page, this.totalPages);
 	    };
 	    Pagination.prototype.selectPage = function (page, event) {
 	        if (event) {
 	            event.preventDefault();
 	        }
-	        if ((!this.disabled || !event) && this.page !== page && page > 0 && page <= this.totalPages) {
-	            var target = event.target;
-	            target.blur();
+	        if (!this.disabled) {
+	            if (event && event.target) {
+	                var target = event.target;
+	                target.blur();
+	            }
 	            this.writeValue(page);
-	            this.cd.viewToModelUpdate(page);
+	            this.cd.viewToModelUpdate(this.page);
 	        }
 	    };
 	    Pagination.prototype.getText = function (key) {
@@ -14682,6 +14763,12 @@ webpackJsonp([1],[
 	        var totalPages = this.itemsPerPage < 1 ? 1 : Math.ceil(this.totalItems / this.itemsPerPage);
 	        return Math.max(totalPages || 0, 1);
 	    };
+	    Pagination.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    Pagination.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
+	    };
 	    Pagination = __decorate([
 	        angular2_1.Component({
 	            selector: 'pagination[ng-model], [pagination][ng-model]',
@@ -14691,10 +14778,10 @@ webpackJsonp([1],[
 	                'boundaryLinks', 'directionLinks',
 	                'firstText', 'previousText', 'nextText', 'lastText'
 	            ],
-	            events: ['numPages']
+	            events: ['numPages', 'pageChanged']
 	        }),
 	        angular2_1.View({
-	            template: "\n  <ul class=\"pagination\" [ng-class]=\"classMap\">\n    <li class=\"pagination-first\"\n        [ng-class]=\"{disabled: noPrevious()||disabled, hidden: !boundaryLinks}\"\n        [hidden]=\"!boundaryLinks\">\n      <a href (click)=\"selectPage(1, $event)\">{{getText('first')}}</a>\n    </li>\n\n    <li class=\"pagination-prev\"\n        [ng-class]=\"{disabled: noPrevious()||disabled, hidden: !directionLinks}\"\n        [hidden]=\"!directionLinks\">\n      <a href (click)=\"selectPage(page - 1, $event)\">{{getText('previous')}}</a>\n      </li>\n\n    <li *ng-for=\"#page of pages\" [ng-class]=\"{active: page.active, disabled: disabled&&!page.active}\" class=\"pagination-page\"><a href (click)=\"selectPage(page.number, $event)\">{{page.text}}</a></li>\n\n    <li class=\"pagination-next\"\n        [ng-class]=\"{disabled: noNext()||disabled, hidden: !directionLinks}\"\n        [hidden]=\"!directionLinks\">\n      <a href (click)=\"selectPage(page + 1, $event)\">{{getText('next')}}</a></li>\n\n    <li class=\"pagination-last\"\n        [ng-class]=\"{disabled: noNext()||disabled, hidden: !boundaryLinks}\"\n        [hidden]=\"!boundaryLinks\">\n      <a href (click)=\"selectPage(totalPages, $event)\">{{getText('last')}}</a></li>\n  </ul>\n  ",
+	            template: "\n  <ul class=\"pagination\" [ng-class]=\"classMap\">\n    <li class=\"pagination-first\"\n        [ng-class]=\"{disabled: noPrevious()||disabled, hidden: !boundaryLinks}\"\n        [hidden]=\"!boundaryLinks\">\n      <a href (click)=\"selectPage(1, $event)\">{{getText('first')}}</a>\n    </li>\n\n    <li class=\"pagination-prev\"\n        [ng-class]=\"{disabled: noPrevious()||disabled, hidden: !directionLinks}\"\n        [hidden]=\"!directionLinks\">\n      <a href (click)=\"selectPage(page - 1, $event)\">{{getText('previous')}}</a>\n      </li>\n\n    <li *ng-for=\"#pg of pages\"\n    [ng-class]=\"{active: pg.active, disabled: disabled&&!pg.active}\"\n    class=\"pagination-page\">\n      <a href (click)=\"selectPage(pg.number, $event)\">{{pg.text}}</a>\n    </li>\n\n    <li class=\"pagination-next\"\n        [ng-class]=\"{disabled: noNext()||disabled, hidden: !directionLinks}\"\n        [hidden]=\"!directionLinks\">\n      <a href (click)=\"selectPage(page + 1, $event)\">{{getText('next')}}</a></li>\n\n    <li class=\"pagination-last\"\n        [ng-class]=\"{disabled: noNext()||disabled, hidden: !boundaryLinks}\"\n        [hidden]=\"!boundaryLinks\">\n      <a href (click)=\"selectPage(totalPages, $event)\">{{getText('last')}}</a></li>\n  </ul>\n  ",
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.NgClass],
 	            encapsulation: angular2_1.ViewEncapsulation.None
 	        }),
@@ -14702,7 +14789,7 @@ webpackJsonp([1],[
 	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
 	    ], Pagination);
 	    return Pagination;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.Pagination = Pagination;
 	var pagerConfig = {
 	    itemsPerPage: 10,
@@ -14740,7 +14827,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/pagination/pagination.js.map
 
 /***/ },
-/* 306 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -14758,7 +14845,7 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	var progressConfig = {
 	    animate: true,
 	    max: 100
@@ -14878,15 +14965,10 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/progressbar/progressbar.js.map
 
 /***/ },
-/* 307 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -14901,13 +14983,15 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
-	var Rating = (function (_super) {
-	    __extends(Rating, _super);
-	    function Rating(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	var angular2_1 = __webpack_require__(6);
+	var Rating = (function () {
+	    function Rating(cd) {
+	        this.cd = cd;
 	        this.onHover = new angular2_1.EventEmitter();
 	        this.onLeave = new angular2_1.EventEmitter();
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	    }
 	    Rating.prototype.onInit = function () {
 	        this.max = typeof this.max !== 'undefined' ? this.max : 5;
@@ -14965,6 +15049,12 @@ webpackJsonp([1],[
 	        var sign = event.which === 38 || event.which === 39 ? 1 : -1;
 	        this.rate(this.value + sign);
 	    };
+	    Rating.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    Rating.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
+	    };
 	    Rating = __decorate([
 	        angular2_1.Component({
 	            selector: 'rating[ng-model]',
@@ -14983,15 +15073,15 @@ webpackJsonp([1],[
 	            directives: [angular2_1.NgClass, angular2_1.NgFor]
 	        }),
 	        __param(0, angular2_1.Self()), 
-	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
+	        __metadata('design:paramtypes', [angular2_1.NgModel])
 	    ], Rating);
 	    return Rating;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.Rating = Rating;
 	//# sourceMappingURL=../../components/dist/rating/rating.js.map
 
 /***/ },
-/* 308 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -15006,8 +15096,8 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var common_1 = __webpack_require__(224);
+	var angular2_1 = __webpack_require__(6);
+	var common_1 = __webpack_require__(248);
 	var Tabset = (function () {
 	    function Tabset() {
 	        this.tabs = [];
@@ -15137,15 +15227,10 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/tabs/tabs.js.map
 
 /***/ },
-/* 309 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -15160,7 +15245,7 @@ webpackJsonp([1],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var angular2_1 = __webpack_require__(5);
+	var angular2_1 = __webpack_require__(6);
 	exports.timepickerConfig = {
 	    hourStep: 1,
 	    minuteStep: 1,
@@ -15185,12 +15270,14 @@ webpackJsonp([1],[
 	    newDate.setHours(dt.getHours(), dt.getMinutes());
 	    return newDate;
 	}
-	var Timepicker = (function (_super) {
-	    __extends(Timepicker, _super);
-	    function Timepicker(cd, renderer, elementRef) {
-	        _super.call(this, cd, renderer, elementRef);
+	var Timepicker = (function () {
+	    function Timepicker(cd) {
+	        this.cd = cd;
 	        this._selected = new Date();
 	        this.meridians = ['AM', 'PM'];
+	        this.onChange = function (_) { };
+	        this.onTouched = function () { };
+	        cd.valueAccessor = this;
 	    }
 	    Object.defineProperty(Timepicker.prototype, "selected", {
 	        get: function () {
@@ -15246,6 +15333,13 @@ webpackJsonp([1],[
 	        this.showSpinners = def(this.showSpinners, isDefined, exports.timepickerConfig.showSpinners);
 	    };
 	    Timepicker.prototype.writeValue = function (v) {
+	        if (v === this.selected) {
+	            return;
+	        }
+	        if (v && v instanceof Date) {
+	            this.selected = v;
+	            return;
+	        }
 	        this.selected = v ? new Date(v) : null;
 	    };
 	    Timepicker.prototype.refresh = function (type) {
@@ -15395,6 +15489,12 @@ webpackJsonp([1],[
 	            this.addMinutesToSelected(12 * 60 * sign);
 	        }
 	    };
+	    Timepicker.prototype.registerOnChange = function (fn) {
+	        this.onChange = fn;
+	    };
+	    Timepicker.prototype.registerOnTouched = function (fn) {
+	        this.onTouched = fn;
+	    };
 	    Timepicker = __decorate([
 	        angular2_1.Component({
 	            selector: 'timepicker[ng-model]',
@@ -15412,15 +15512,15 @@ webpackJsonp([1],[
 	            directives: [angular2_1.FORM_DIRECTIVES, angular2_1.NgClass]
 	        }),
 	        __param(0, angular2_1.Self()), 
-	        __metadata('design:paramtypes', [angular2_1.NgModel, angular2_1.Renderer, angular2_1.ElementRef])
+	        __metadata('design:paramtypes', [angular2_1.NgModel])
 	    ], Timepicker);
 	    return Timepicker;
-	})(angular2_1.DefaultValueAccessor);
+	})();
 	exports.Timepicker = Timepicker;
 	//# sourceMappingURL=../../components/dist/timepicker/timepicker.js.map
 
 /***/ },
-/* 310 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -15435,9 +15535,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(51);
+	var angular2_1 = __webpack_require__(6);
+	var angular2_2 = __webpack_require__(6);
+	var position_1 = __webpack_require__(61);
 	var TooltipOptions = (function () {
 	    function TooltipOptions(options) {
 	        Object.assign(this, options);
@@ -15493,8 +15593,8 @@ webpackJsonp([1],[
 	            content: this.content,
 	            placement: this.placement
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(TooltipOptions).toValue(options)
+	        var binding = angular2_2.Injector.resolve([
+	            angular2_2.bind(TooltipOptions).toValue(options)
 	        ]);
 	        this.tooltip = this.loader
 	            .loadNextToLocation(TooltipContainer, this.element, binding)
@@ -15539,7 +15639,7 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/tooltip/tooltip.js.map
 
 /***/ },
-/* 311 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -15554,11 +15654,13 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var shared_1 = __webpack_require__(12);
-	var di_1 = __webpack_require__(4);
-	var ng2_bootstrap_config_1 = __webpack_require__(28);
-	var position_1 = __webpack_require__(51);
+	var angular2_1 = __webpack_require__(6);
+	function setProperty(renderer, elementRef, propName, propValue) {
+	    renderer.setElementProperty(elementRef, propName, propValue);
+	}
+	var angular2_2 = __webpack_require__(6);
+	var ng2_bootstrap_config_1 = __webpack_require__(31);
+	var position_1 = __webpack_require__(61);
 	var TEMPLATE = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n  <div class=\"dropdown-menu\"\n      [ng-style]=\"{top: top, left: left, display: display}\"\n      style=\"display: block\">\n      <a href=\"#\"\n         *ng-for=\"#match of matches\"\n         (click)=\"selectMatch(match, $event)\"\n         [ng-class]=\"{active: isActive(match) }\"\n         (mouseenter)=\"selectActive(match)\"\n         class=\"dropdown-item\"\n         [inner-html]=\"hightlight(match, query)\"></a>\n  </div>\n  ",
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      [ng-style]=\"{top: top, left: left, display: display}\"\n      style=\"display: block\">\n    <li *ng-for=\"#match of matches\"\n        [ng-class]=\"{active: isActive(match) }\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [inner-html]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
@@ -15798,7 +15900,7 @@ webpackJsonp([1],[
 	    };
 	    Typeahead.prototype.changeModel = function (value) {
 	        this.cd.viewToModelUpdate(value);
-	        shared_1.setProperty(this.renderer, this.element, 'value', value);
+	        setProperty(this.renderer, this.element, 'value', value);
 	        this.hide();
 	    };
 	    Typeahead.prototype.show = function (matches) {
@@ -15807,8 +15909,8 @@ webpackJsonp([1],[
 	            placement: this.placement,
 	            animation: false
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(TypeaheadOptions).toValue(options)
+	        var binding = angular2_2.Injector.resolve([
+	            angular2_2.bind(TypeaheadOptions).toValue(options)
 	        ]);
 	        this.popup = this.loader
 	            .loadNextToLocation(TypeaheadContainer, this.element, binding)
@@ -15867,83 +15969,80 @@ webpackJsonp([1],[
 	//# sourceMappingURL=../../components/dist/typeahead/typeahead.js.map
 
 /***/ },
-/* 312 */
+/* 341 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selectivity-input example-input<span class=\"token punctuation\" >\"</span></span><span class=\"token style-attr language-css\" ><span class=\"token attr-name\" > <span class=\"token attr-name\" >style</span></span><span class=\"token punctuation\" >=\"</span><span class=\"token attr-value\" ><span class=\"token property\" >width</span><span class=\"token punctuation\" >:</span> 300px<span class=\"token punctuation\" >;</span> <span class=\"token property\" >margin-bottom</span><span class=\"token punctuation\" >:</span> 20px<span class=\"token punctuation\" >;</span></span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>h3</span><span class=\"token punctuation\" >></span></span>Select a city by country<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>h3</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>ng2-selectivity</span> <span class=\"token attr-name\" >[allow-clear]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[items]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>items<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(data)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>refreshValue($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(selected)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selected($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(removed)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>removed($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[placeholder]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span><span class=\"token punctuation\" >'</span>No city selected<span class=\"token punctuation\" >'</span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>ng2-selectivity</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>pre</span><span class=\"token punctuation\" >></span></span>{{value.text}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>pre</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n"
 
 /***/ },
-/* 313 */
+/* 342 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selectivity-input example-input<span class=\"token punctuation\" >\"</span></span><span class=\"token style-attr language-css\" ><span class=\"token attr-name\" > <span class=\"token attr-name\" >style</span></span><span class=\"token punctuation\" >=\"</span><span class=\"token attr-value\" ><span class=\"token property\" >width</span><span class=\"token punctuation\" >:</span> 300px<span class=\"token punctuation\" >;</span> <span class=\"token property\" >margin-bottom</span><span class=\"token punctuation\" >:</span> 20px<span class=\"token punctuation\" >;</span></span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>h3</span><span class=\"token punctuation\" >></span></span>Select a city by timezone<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>h3</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>ng2-selectivity</span> <span class=\"token attr-name\" >[allow-clear]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n                   <span class=\"token attr-name\" >[items]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>items<span class=\"token punctuation\" >\"</span></span>\n                   <span class=\"token attr-name\" >(data)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>refreshValue($event)<span class=\"token punctuation\" >\"</span></span>\n                   <span class=\"token attr-name\" >(selected)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selected($event)<span class=\"token punctuation\" >\"</span></span>\n                   <span class=\"token attr-name\" >(removed)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>removed($event)<span class=\"token punctuation\" >\"</span></span>\n                   <span class=\"token attr-name\" >[placeholder]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span><span class=\"token punctuation\" >'</span>No city selected<span class=\"token punctuation\" >'</span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>ng2-selectivity</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>pre</span><span class=\"token punctuation\" >></span></span>{{value.text}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>pre</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n"
 
 /***/ },
-/* 314 */
+/* 343 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selectivity-input example-input<span class=\"token punctuation\" >\"</span></span><span class=\"token style-attr language-css\" ><span class=\"token attr-name\" > <span class=\"token attr-name\" >style</span></span><span class=\"token punctuation\" >=\"</span><span class=\"token attr-value\" ><span class=\"token property\" >width</span><span class=\"token punctuation\" >:</span> 300px<span class=\"token punctuation\" >;</span> <span class=\"token property\" >margin-bottom</span><span class=\"token punctuation\" >:</span> 20px<span class=\"token punctuation\" >;</span></span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>h3</span><span class=\"token punctuation\" >></span></span>Select multiple cities<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>h3</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>ng2-selectivity</span> <span class=\"token attr-name\" >[data]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>value<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[multiple]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[items]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>items<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(data)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>refreshValue($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(selected)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selected($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(removed)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>removed($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[placeholder]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span><span class=\"token punctuation\" >'</span>No city selected<span class=\"token punctuation\" >'</span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>ng2-selectivity</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>pre</span><span class=\"token punctuation\" >></span></span>{{itemsToString(value)}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>pre</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n"
 
 /***/ },
-/* 315 */
+/* 344 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selectivity-input example-input<span class=\"token punctuation\" >\"</span></span><span class=\"token style-attr language-css\" ><span class=\"token attr-name\" > <span class=\"token attr-name\" >style</span></span><span class=\"token punctuation\" >=\"</span><span class=\"token attr-value\" ><span class=\"token property\" >width</span><span class=\"token punctuation\" >:</span> 300px<span class=\"token punctuation\" >;</span> <span class=\"token property\" >margin-bottom</span><span class=\"token punctuation\" >:</span> 20px<span class=\"token punctuation\" >;</span></span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>h3</span><span class=\"token punctuation\" >></span></span>Select a single city<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>h3</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>ng2-selectivity</span> <span class=\"token attr-name\" >[allow-clear]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[items]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>items<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(data)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>refreshValue($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(selected)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>selected($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >(removed)</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>removed($event)<span class=\"token punctuation\" >\"</span></span>\n                     <span class=\"token attr-name\" >[placeholder]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span><span class=\"token punctuation\" >'</span>No city selected<span class=\"token punctuation\" >'</span><span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>ng2-selectivity</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>pre</span><span class=\"token punctuation\" >></span></span>{{value.text}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>pre</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n"
 
 /***/ },
-/* 316 */
+/* 345 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token comment\" spellcheck=\"true\">/// &lt;reference path=\"../../../tsd.d.ts\" /></span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Component<span class=\"token punctuation\" >,</span> View<span class=\"token punctuation\" >,</span>\n  CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> NgClass\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/angular2'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>selectivity<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../components/index'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./children-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'children-demo'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n@<span class=\"token function\" >View</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>selectivity<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ChildrenDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Austria'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >54</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vienna'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Belgium'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Antwerp'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >9</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Brussels'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bulgaria'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >48</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Sofia'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Croatia'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >58</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Zagreb'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Czech Republic'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >42</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Prague'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Denmark'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >13</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Copenhagen'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'England'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >6</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Birmingham'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bradford'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >26</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Leeds'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'London'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >34</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Manchester'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >47</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Sheffield'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Finland'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Helsinki'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'France'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >35</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Marseille'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >40</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Paris'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Germany'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Berlin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >8</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bremen'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >12</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Cologne'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >14</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dortmund'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dresden'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >17</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Düsseldorf'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >18</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Essen'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >19</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Frankfurt'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >23</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hamburg'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >24</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hannover'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >27</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Leipzig'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >37</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Munich'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Stuttgart'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Greece'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Athens'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hungary'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >11</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Budapest'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Ireland'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >16</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dublin'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Italy'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >20</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Genoa'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >36</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Milan'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >38</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Naples'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >39</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Palermo'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >44</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rome'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >52</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Turin'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Latvia'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >43</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Riga'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Lithuania'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >55</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vilnius'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Netherlands'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Amsterdam'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >45</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rotterdam'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >51</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'The Hague'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Poland'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >29</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Łódź'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >31</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kraków'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >41</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Poznań'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >56</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Warsaw'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >57</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wrocław'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Portugal'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >28</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Lisbon'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Romania'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bucharest'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Scotland'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >21</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Glasgow'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Spain'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Barcelona'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >32</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Madrid'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >33</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Málaga'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >46</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Seville'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >53</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Valencia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >59</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Zaragoza'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Sweden'</span><span class=\"token punctuation\" >,</span>\n      children<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >22</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Gothenburg'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n        <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >49</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Stockholm'</span><span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >]</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >selected</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Selected value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >removed</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Removed value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >refreshValue</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>value <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
-/* 317 */
+/* 346 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token comment\" spellcheck=\"true\">/// &lt;reference path=\"../../../tsd.d.ts\" /></span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Component<span class=\"token punctuation\" >,</span> View<span class=\"token punctuation\" >,</span>\n  CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> NgClass\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/angular2'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>selectivity<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../components/index'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./menu-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'menu-demo'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n@<span class=\"token function\" >View</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>selectivity<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MenuDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      id<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'+00:00'</span><span class=\"token punctuation\" >,</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Western European Time Zone'</span><span class=\"token punctuation\" >,</span>\n      submenu<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n        items<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Barcelona'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >6</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Birmingham'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bradford'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >16</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dublin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >21</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Glasgow'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >26</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Leeds'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >28</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Lisbon'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'London'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >32</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Madrid'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >33</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Málaga'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >34</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Manchester'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >46</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Seville'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >47</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Sheffield'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >53</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Valencia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >59</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Zaragoza'</span><span class=\"token punctuation\" >}</span>\n        <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n        showSearchInput<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span>\n      <span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      id<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'+01:00'</span><span class=\"token punctuation\" >,</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Central European Time Zone'</span><span class=\"token punctuation\" >,</span>\n      submenu<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n        items<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Amsterdam'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Antwerp'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Berlin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >8</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bremen'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >9</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Brussels'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >11</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Budapest'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >12</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Cologne'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >13</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Copenhagen'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >14</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dortmund'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dresden'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >17</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Düsseldorf'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >18</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Essen'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >19</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Frankfurt'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >20</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Genoa'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >22</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Gothenburg'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >23</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hamburg'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >24</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hannover'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >27</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Leipzig'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >29</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Łódź'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >31</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kraków'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >35</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Marseille'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >36</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Milan'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >37</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Munich'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >38</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Naples'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >39</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Palermo'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >40</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Paris'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >41</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Poznań'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >42</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Prague'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >44</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rome'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >45</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rotterdam'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >49</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Stockholm'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Stuttgart'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >51</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'The Hague'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >52</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Turin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >54</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vienna'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >56</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Warsaw'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >57</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wrocław'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >58</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Zagreb'</span><span class=\"token punctuation\" >}</span>\n        <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n        showSearchInput<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span>\n      <span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      id<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'+02:00'</span><span class=\"token punctuation\" >,</span>\n      text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Eastern European Time Zone'</span><span class=\"token punctuation\" >,</span>\n      submenu<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n        items<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Athens'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Bucharest'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Helsinki'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >43</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Riga'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >48</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Sofia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n          <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >55</span><span class=\"token punctuation\" >,</span> text<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vilnius'</span><span class=\"token punctuation\" >}</span>\n        <span class=\"token punctuation\" >]</span>\n      <span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >selected</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Selected value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >removed</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Removed value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >refreshValue</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>value <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
-/* 318 */
+/* 347 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token comment\" spellcheck=\"true\">/// &lt;reference path=\"../../../tsd.d.ts\" /></span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Component<span class=\"token punctuation\" >,</span> View<span class=\"token punctuation\" >,</span>\n  CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> NgClass\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/angular2'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>selectivity<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../components/index'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./multiple-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'multiple-demo'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n@<span class=\"token function\" >View</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>selectivity<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MultipleDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Athens'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Amsterdam'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Antwerp'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Athens'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Barcelona'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Berlin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Birmingham'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bradford'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bremen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Brussels'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bucharest'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Budapest'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Cologne'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Copenhagen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dortmund'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dresden'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dublin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Düsseldorf'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Essen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Frankfurt'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Genoa'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Glasgow'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Gothenburg'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hamburg'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hannover'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Helsinki'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Leeds'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Leipzig'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Lisbon'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Łódź'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'London'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kraków'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Madrid'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Málaga'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Manchester'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Marseille'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Milan'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Munich'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Naples'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Palermo'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Paris'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Poznań'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Prague'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Riga'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rome'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rotterdam'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Seville'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Sheffield'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Sofia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Stockholm'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Stuttgart'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'The Hague'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Turin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Valencia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Vienna'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Vilnius'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Warsaw'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wrocław'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Zagreb'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Zaragoza'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >selected</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Selected value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >removed</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Removed value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >refreshValue</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>value <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >itemsToString</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> value\n      <span class=\"token punctuation\" >.</span><span class=\"token function\" >map</span><span class=\"token punctuation\" >(</span>item <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >return</span> item<span class=\"token punctuation\" >.</span>text<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >join</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >','</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
-/* 319 */
+/* 348 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"token comment\" spellcheck=\"true\">/// &lt;reference path=\"../../../tsd.d.ts\" /></span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Component<span class=\"token punctuation\" >,</span> View<span class=\"token punctuation\" >,</span>\n  CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> NgClass\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/angular2'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>selectivity<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../components/index'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./single-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'single-demo'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n@<span class=\"token function\" >View</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>selectivity<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >SingleDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Amsterdam'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Antwerp'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Athens'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Barcelona'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Berlin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Birmingham'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bradford'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bremen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Brussels'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Bucharest'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Budapest'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Cologne'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Copenhagen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dortmund'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dresden'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Dublin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Düsseldorf'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Essen'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Frankfurt'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Genoa'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Glasgow'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Gothenburg'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hamburg'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hannover'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Helsinki'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Leeds'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Leipzig'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Lisbon'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Łódź'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'London'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kraków'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Madrid'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Málaga'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Manchester'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Marseille'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Milan'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Munich'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Naples'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Palermo'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Paris'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Poznań'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Prague'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Riga'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rome'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rotterdam'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Seville'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Sheffield'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Sofia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Stockholm'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Stuttgart'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'The Hague'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Turin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Valencia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Vienna'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Vilnius'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Warsaw'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wrocław'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Zagreb'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Zaragoza'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >selected</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Selected value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >removed</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Removed value is: '</span><span class=\"token punctuation\" >,</span> value<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >refreshValue</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>value <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
-/* 320 */
+/* 349 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"selectivity-input example-input\" style=\"width: 300px; margin-bottom: 20px;\">\n    <h3>Select a city by country</h3>\n    <ng2-selectivity [allow-clear]=\"true\"\n                     [items]=\"items\"\n                     (data)=\"refreshValue($event)\"\n                     (selected)=\"selected($event)\"\n                     (removed)=\"removed($event)\"\n                     [placeholder]=\"'No city selected'\"></ng2-selectivity>\n    <p><pre>{{value.text}}</pre></p>\n</div>\n"
 
 /***/ },
-/* 321 */
+/* 350 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"selectivity-input example-input\" style=\"width: 300px; margin-bottom: 20px;\">\n  <h3>Select a city by timezone</h3>\n  <ng2-selectivity [allow-clear]=\"true\"\n                   [items]=\"items\"\n                   (data)=\"refreshValue($event)\"\n                   (selected)=\"selected($event)\"\n                   (removed)=\"removed($event)\"\n                   [placeholder]=\"'No city selected'\"></ng2-selectivity>\n  <p><pre>{{value.text}}</pre></p>\n</div>\n"
 
 /***/ },
-/* 322 */
+/* 351 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"selectivity-input example-input\" style=\"width: 300px; margin-bottom: 20px;\">\n    <h3>Select multiple cities</h3>\n    <ng2-selectivity [data]=\"value\"\n                     [multiple]=\"true\"\n                     [items]=\"items\"\n                     (data)=\"refreshValue($event)\"\n                     (selected)=\"selected($event)\"\n                     (removed)=\"removed($event)\"\n                     [placeholder]=\"'No city selected'\"></ng2-selectivity>\n    <p><pre>{{itemsToString(value)}}</pre></p>\n</div>\n"
 
 /***/ },
-/* 323 */
+/* 352 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"selectivity-input example-input\" style=\"width: 300px; margin-bottom: 20px;\">\n    <h3>Select a single city</h3>\n    <ng2-selectivity [allow-clear]=\"true\"\n                     [items]=\"items\"\n                     (data)=\"refreshValue($event)\"\n                     (selected)=\"selected($event)\"\n                     (removed)=\"removed($event)\"\n                     [placeholder]=\"'No city selected'\"></ng2-selectivity>\n    <p><pre>{{value.text}}</pre></p>\n</div>\n"
 
 /***/ },
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */
+/* 353 */,
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -15958,35 +16057,35 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var ng2_bootstrap_1 = __webpack_require__(304);
-	var single_demo_1 = __webpack_require__(332);
-	var multiple_demo_1 = __webpack_require__(331);
-	var children_demo_1 = __webpack_require__(329);
-	var menu_demo_1 = __webpack_require__(330);
+	var angular2_1 = __webpack_require__(6);
+	var ng2_bootstrap_1 = __webpack_require__(333);
+	var single_demo_1 = __webpack_require__(358);
+	var multiple_demo_1 = __webpack_require__(357);
+	var children_demo_1 = __webpack_require__(355);
+	var menu_demo_1 = __webpack_require__(356);
 	var name = 'Selectivity';
 	var src = 'https://github.com/valor-software/ng2-selectivity/blob/master/components/selectivity/selectivity.ts';
-	var doc = __webpack_require__(289);
+	var doc = __webpack_require__(318);
 	var tabDesc = [
 	    {
 	        heading: 'Single',
-	        ts: __webpack_require__(319),
-	        html: __webpack_require__(315)
+	        ts: __webpack_require__(348),
+	        html: __webpack_require__(344)
 	    },
 	    {
 	        heading: 'Multiple',
-	        ts: __webpack_require__(318),
-	        html: __webpack_require__(314)
+	        ts: __webpack_require__(347),
+	        html: __webpack_require__(343)
 	    },
 	    {
 	        heading: 'Children',
-	        ts: __webpack_require__(316),
-	        html: __webpack_require__(312)
+	        ts: __webpack_require__(345),
+	        html: __webpack_require__(341)
 	    },
 	    {
 	        heading: 'Menu',
-	        ts: __webpack_require__(317),
-	        html: __webpack_require__(313)
+	        ts: __webpack_require__(346),
+	        html: __webpack_require__(342)
 	    }
 	];
 	var tabsContent = "";
@@ -16008,17 +16107,17 @@ webpackJsonp([1],[
 	        }),
 	        angular2_1.View({
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <div class=\"row\">\n      <tabset>\n\n        " + tabsContent + "\n\n      </tabset>\n    </div>\n\n    <div class=\"row\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
-	            directives: [single_demo_1.SingleDemo, multiple_demo_1.MultipleDemo, children_demo_1.ChildrenDemo, menu_demo_1.MenuDemo, ng2_bootstrap_1.tabs, angular2_1.CORE_DIRECTIVES, angular2_1.NgNonBindable]
+	            directives: [single_demo_1.SingleDemo, multiple_demo_1.MultipleDemo, children_demo_1.ChildrenDemo, menu_demo_1.MenuDemo, ng2_bootstrap_1.tabs, angular2_1.CORE_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], SelectivitySection);
 	    return SelectivitySection;
 	})();
 	exports.SelectivitySection = SelectivitySection;
-	//# sourceMappingURL=selectivity-section.js.map
+
 
 /***/ },
-/* 329 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../tsd.d.ts" />
@@ -16033,9 +16132,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var index_1 = __webpack_require__(29);
-	var template = __webpack_require__(320);
+	var angular2_1 = __webpack_require__(6);
+	var index_1 = __webpack_require__(32);
+	var template = __webpack_require__(349);
 	var ChildrenDemo = (function () {
 	    function ChildrenDemo() {
 	        this.value = {};
@@ -16238,10 +16337,10 @@ webpackJsonp([1],[
 	    return ChildrenDemo;
 	})();
 	exports.ChildrenDemo = ChildrenDemo;
-	//# sourceMappingURL=children-demo.js.map
+
 
 /***/ },
-/* 330 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../tsd.d.ts" />
@@ -16256,9 +16355,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var index_1 = __webpack_require__(29);
-	var template = __webpack_require__(321);
+	var angular2_1 = __webpack_require__(6);
+	var index_1 = __webpack_require__(32);
+	var template = __webpack_require__(350);
 	var MenuDemo = (function () {
 	    function MenuDemo() {
 	        this.value = {};
@@ -16372,10 +16471,10 @@ webpackJsonp([1],[
 	    return MenuDemo;
 	})();
 	exports.MenuDemo = MenuDemo;
-	//# sourceMappingURL=menu-demo.js.map
+
 
 /***/ },
-/* 331 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../tsd.d.ts" />
@@ -16390,9 +16489,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var index_1 = __webpack_require__(29);
-	var template = __webpack_require__(322);
+	var angular2_1 = __webpack_require__(6);
+	var index_1 = __webpack_require__(32);
+	var template = __webpack_require__(351);
 	var MultipleDemo = (function () {
 	    function MultipleDemo() {
 	        this.value = ['Athens'];
@@ -16435,10 +16534,10 @@ webpackJsonp([1],[
 	    return MultipleDemo;
 	})();
 	exports.MultipleDemo = MultipleDemo;
-	//# sourceMappingURL=multiple-demo.js.map
+
 
 /***/ },
-/* 332 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../tsd.d.ts" />
@@ -16453,9 +16552,9 @@ webpackJsonp([1],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var index_1 = __webpack_require__(29);
-	var template = __webpack_require__(323);
+	var angular2_1 = __webpack_require__(6);
+	var index_1 = __webpack_require__(32);
+	var template = __webpack_require__(352);
 	var SingleDemo = (function () {
 	    function SingleDemo() {
 	        this.value = {};
@@ -16491,7 +16590,7 @@ webpackJsonp([1],[
 	    return SingleDemo;
 	})();
 	exports.SingleDemo = SingleDemo;
-	//# sourceMappingURL=single-demo.js.map
+
 
 /***/ }
 ]);

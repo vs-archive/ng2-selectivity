@@ -3,19 +3,19 @@ webpackJsonp([2],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(29);
+	module.exports = __webpack_require__(32);
 
 
 /***/ },
 
-/***/ 22:
+/***/ 21:
 /***/ function(module, exports) {
 
 	module.exports = ".selectivity-backdrop {\n    background: transparent;\n    position: fixed;\n    z-index: 1045;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n}\n\n.selectivity-clearfix {\n    clear: both;\n}\n\n.selectivity-input {\n    display: inline-block;\n    width: 250px;\n}\n\nselect {\n    display: none;\n}\n\n.selectivity-placeholder {\n    color: #999;\n}\n\n.selectivity-dropdown {\n    background: #fff;\n    border-radius: 4px;\n    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15), 0 10px 16px 0 rgba(0, 0, 0, 0.2);\n    position: absolute;\n    z-index: 1046;\n}\n\n.selectivity-search-input-container {\n    border-bottom: 1px solid #eee;\n}\n\n.selectivity-search-input {\n    background: transparent;\n    border: 0;\n    outline: 0;\n    width: 100%;\n}\n\n.selectivity-results-container {\n    max-height: 28em;\n    overflow: auto;\n    position: relative;\n}\n\n.selectivity-load-more,\n.selectivity-result-item {\n    cursor: pointer;\n    padding: 7px;\n}\n\n.selectivity-result-children .selectivity-result-item {\n    padding-left: 17px;\n}\n\n.selectivity-load-more.highlight,\n.selectivity-result-item.highlight {\n    background: #4484c7;\n    color: #fff;\n}\n\n.selectivity-result-item:first-child {\n    border-radius: 4px 4px 0 0;\n}\n\n.selectivity-dropdown.has-search-input .selectivity-result-item:first-child {\n    border-radius: 0;\n}\n\n.selectivity-result-label {\n    font-weight: bold;\n}\n\n.selectivity-load-more,\n.selectivity-result-item:last-child,\n.selectivity-result-children:last-child .selectivity-result-item:last-child {\n    border-radius: 0 0 4px 4px;\n}\n\n.selectivity-result-children .selectivity-result-item:last-child {\n    border-radius: 0;\n}\n\n.selectivity-error,\n.selectivity-loading,\n.selectivity-search-input-container,\n.selectivity-result-label {\n    padding: 7px;\n}\n\n.selectivity-multiple-input-container {\n    background: #eee;\n    border-radius: 2px;\n    cursor: text;\n    max-height: 10em;\n    min-height: calc(2em + 4px);\n    overflow: auto;\n    padding: 5px;\n}\n\n.selectivity-multiple-input-container .selectivity-placeholder {\n    height: calc(2em + 4px);\n    line-height: calc(2em + 4px);\n}\n\n.selectivity-multiple-input,\ninput[type='text'].selectivity-multiple-input {\n    background-color: transparent;\n    border: none;\n    float: left;\n    height: calc(2em + 4px);\n    max-width: 100%;\n    outline: 0;\n    padding: 0;\n}\n\n.selectivity-multiple-input:focus,\ninput[type='text'].selectivity-multiple-input:focus {\n    background-color: transparent;\n    box-shadow: none;\n    outline: none;\n}\n\n.selectivity-multiple-input::-ms-clear {\n    display: none;\n}\n\n.selectivity-multiple-input.selectivity-width-detector {\n    position: absolute;\n    top: -10000px;\n    left: 0;\n    white-space: pre;\n}\n\n.selectivity-multiple-selected-item {\n    background: #4484c7;\n    border-radius: 3px;\n    color: #fff;\n    cursor: default;\n    float: left;\n    line-height: 2em;\n    margin: 2px;\n    padding-right: 5px;\n    position: relative;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    -webkit-user-select: none;\n    user-select: none;\n    white-space: nowrap;\n}\n\n.selectivity-multiple-selected-item.highlighted {\n    background-color: #ccc;\n}\n\n.selectivity-multiple-selected-item-remove {\n    color: #fff;\n    cursor: pointer;\n    padding: 5px;\n}\n\n.selectivity-single-select {\n    background: #eee;\n    border-radius: 2px;\n    cursor: pointer;\n    min-height: 2em;\n    padding: 5px;\n    position: relative;\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    box-sizing: content-box;\n}\n\n.selectivity-single-select-input {\n    opacity: 0;\n}\n\n.selectivity-single-result-container {\n    position: absolute;\n    top: 0.8em;\n    right: 15px;\n    left: 5px;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n}\n\n.selectivity-single-selected-item {\n    color: #000;\n}\n\n.selectivity-single-selected-item-remove {\n    color: #000;\n    float: right;\n    padding: 0 5px;\n}\n\n.selectivity-caret {\n    position: absolute;\n    right: 5px;\n    top: 0.7em;\n}\n\n@media only screen and (max-device-width: 480px) {\n    .selectivity-single-select {\n        background: #eee;\n        border-radius: 2px;\n    }\n\n    .selectivity-single-result-container {\n        right: 5px;\n    }\n\n    .selectivity-caret {\n        display: none;\n    }\n}\n\n.selectivity-submenu-icon {\n    position: absolute;\n    right: 4px;\n}\n"
 
 /***/ },
 
-/***/ 23:
+/***/ 22:
 /***/ function(module, exports) {
 
 	var SelectivityOptions = (function () {
@@ -25,23 +25,23 @@ webpackJsonp([2],{
 	    return SelectivityOptions;
 	})();
 	exports.SelectivityOptions = SelectivityOptions;
-	//# sourceMappingURL=selectivity-options.js.map
+
 
 /***/ },
 
-/***/ 29:
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../tsd.d.ts"/>
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(89));
-	//# sourceMappingURL=index.js.map
+	__export(__webpack_require__(102));
+
 
 /***/ },
 
-/***/ 34:
+/***/ 39:
 /***/ function(module, exports) {
 
 	/// <reference path="../tsd.d.ts" />
@@ -173,14 +173,14 @@ webpackJsonp([2],{
 	})();
 	exports.PositionService = PositionService;
 	exports.positionService = new PositionService();
-	//# sourceMappingURL=position.js.map
+
 
 /***/ },
 
-/***/ 35:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
-	var selectivity_submenu_1 = __webpack_require__(88);
+	var selectivity_submenu_1 = __webpack_require__(101);
 	var SelectivityItem = (function () {
 	    function SelectivityItem(source) {
 	        var _this = this;
@@ -216,11 +216,11 @@ webpackJsonp([2],{
 	    return SelectivityItem;
 	})();
 	exports.SelectivityItem = SelectivityItem;
-	//# sourceMappingURL=selectivity-item.js.map
+
 
 /***/ },
 
-/***/ 36:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -234,10 +234,10 @@ webpackJsonp([2],{
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var position_1 = __webpack_require__(34);
-	var selectivity_options_1 = __webpack_require__(23);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var position_1 = __webpack_require__(39);
+	var selectivity_options_1 = __webpack_require__(22);
+	var cssSelectivity = __webpack_require__(21);
 	var SelectivityOptionsContainer = (function () {
 	    function SelectivityOptionsContainer(element, options) {
 	        this.element = element;
@@ -284,6 +284,8 @@ webpackJsonp([2],{
 	        }
 	    };
 	    SelectivityOptionsContainer.prototype.inputEvent = function (e, isUpMode) {
+	        /*let resultsEl:any = this.element.nativeElement.children[1].children[3];
+	         let resultsPosition = positionService.position(resultsEl);*/
 	        if (isUpMode === void 0) { isUpMode = false; }
 	        if (!isUpMode && (e.keyCode === 27 || e.keyCode === 9)) {
 	            this.options.container.hide();
@@ -307,12 +309,12 @@ webpackJsonp([2],{
 	            return;
 	        }
 	        if (!isUpMode && e.keyCode === 38) {
-	            this.behavior.prev();
+	            var reverse = this.behavior.prev();
 	            e.preventDefault();
 	            return;
 	        }
 	        if (!isUpMode && e.keyCode === 40) {
-	            this.behavior.next();
+	            var reverse = this.behavior.next();
 	            e.preventDefault();
 	            return;
 	        }
@@ -403,11 +405,15 @@ webpackJsonp([2],{
 	        };
 	        GenericBehavior.prototype.prev = function () {
 	            var index = this.actor.items.indexOf(this.actor.active);
-	            this.actor.active = this.actor.items[index - 1 < 0 ? this.actor.items.length - 1 : index - 1];
+	            var reverse = index - 1 < 0;
+	            this.actor.active = this.actor.items[reverse ? this.actor.items.length - 1 : index - 1];
+	            return reverse;
 	        };
 	        GenericBehavior.prototype.next = function () {
 	            var index = this.actor.items.indexOf(this.actor.active);
-	            this.actor.active = this.actor.items[index + 1 > this.actor.items.length - 1 ? 0 : index + 1];
+	            var reverse = index + 1 > this.actor.items.length - 1;
+	            this.actor.active = this.actor.items[reverse ? 0 : index + 1];
+	            return reverse;
 	        };
 	        GenericBehavior.prototype.filter = function (query) {
 	            var _this = this;
@@ -436,6 +442,7 @@ webpackJsonp([2],{
 	                    .children[this.actor.items[this.actor.items.length - 1].children.length - 1];
 	        };
 	        ChildrenBehavior.prototype.prev = function () {
+	            var reverse = false;
 	            var indexParent = getIndex(this.actor.items, this.actor.active.parent);
 	            var index = getIndex(this.actor.items[indexParent].children, this.actor.active);
 	            this.actor.active = this.actor.items[indexParent].children[index - 1];
@@ -448,9 +455,12 @@ webpackJsonp([2],{
 	            }
 	            if (!this.actor.active) {
 	                this.last();
+	                reverse = true;
 	            }
+	            return reverse;
 	        };
 	        ChildrenBehavior.prototype.next = function () {
+	            var reverse = false;
 	            var indexParent = getIndex(this.actor.items, this.actor.active.parent);
 	            var index = getIndex(this.actor.items[indexParent].children, this.actor.active);
 	            this.actor.active = this.actor.items[indexParent].children[index + 1];
@@ -461,7 +471,9 @@ webpackJsonp([2],{
 	            }
 	            if (!this.actor.active) {
 	                this.first();
+	                reverse = true;
 	            }
+	            return reverse;
 	        };
 	        ChildrenBehavior.prototype.filter = function (query) {
 	            var items = [];
@@ -484,11 +496,11 @@ webpackJsonp([2],{
 	    })();
 	    SelectivityOptionsContainer.ChildrenBehavior = ChildrenBehavior;
 	})(SelectivityOptionsContainer = exports.SelectivityOptionsContainer || (exports.SelectivityOptionsContainer = {}));
-	//# sourceMappingURL=selectivity-options-container.js.map
+
 
 /***/ },
 
-/***/ 87:
+/***/ 100:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -502,13 +514,12 @@ webpackJsonp([2],{
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(34);
-	var selectivity_item_1 = __webpack_require__(35);
-	var selectivity_options_1 = __webpack_require__(23);
-	var selectivity_options_container_1 = __webpack_require__(36);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var position_1 = __webpack_require__(39);
+	var selectivity_item_1 = __webpack_require__(40);
+	var selectivity_options_1 = __webpack_require__(22);
+	var selectivity_options_container_1 = __webpack_require__(41);
+	var cssSelectivity = __webpack_require__(21);
 	var SelectivityMenuContainer = (function () {
 	    function SelectivityMenuContainer(element, options, loader) {
 	        this.element = element;
@@ -559,8 +570,8 @@ webpackJsonp([2],{
 	            selectivity: this.options.selectivity,
 	            container: this
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
+	        var binding = angular2_1.Injector.resolve([
+	            angular2_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
 	        ]);
 	        var expectedPopup = selectivity_options_container_1.SelectivityOptionsContainer;
 	        this._popup = this.loader
@@ -603,11 +614,11 @@ webpackJsonp([2],{
 	    return SelectivityMenuContainer;
 	})();
 	exports.SelectivityMenuContainer = SelectivityMenuContainer;
-	//# sourceMappingURL=selectivity-menu-container.js.map
+
 
 /***/ },
 
-/***/ 88:
+/***/ 101:
 /***/ function(module, exports) {
 
 	var SelectivitySubMenu = (function () {
@@ -625,11 +636,11 @@ webpackJsonp([2],{
 	    return SelectivitySubMenu;
 	})();
 	exports.SelectivitySubMenu = SelectivitySubMenu;
-	//# sourceMappingURL=selectivity-submenu.js.map
+
 
 /***/ },
 
-/***/ 89:
+/***/ 102:
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../tsd.d.ts" />
@@ -644,13 +655,12 @@ webpackJsonp([2],{
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var angular2_1 = __webpack_require__(5);
-	var di_1 = __webpack_require__(4);
-	var selectivity_item_1 = __webpack_require__(35);
-	var selectivity_options_1 = __webpack_require__(23);
-	var selectivity_menu_container_1 = __webpack_require__(87);
-	var selectivity_options_container_1 = __webpack_require__(36);
-	var cssSelectivity = __webpack_require__(22);
+	var angular2_1 = __webpack_require__(6);
+	var selectivity_item_1 = __webpack_require__(40);
+	var selectivity_options_1 = __webpack_require__(22);
+	var selectivity_menu_container_1 = __webpack_require__(100);
+	var selectivity_options_container_1 = __webpack_require__(41);
+	var cssSelectivity = __webpack_require__(21);
 	var Selectivity = (function () {
 	    function Selectivity(element, loader) {
 	        this.element = element;
@@ -772,8 +782,8 @@ webpackJsonp([2],{
 	            selectivity: this,
 	            container: this
 	        });
-	        var binding = di_1.Injector.resolve([
-	            di_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
+	        var binding = angular2_1.Injector.resolve([
+	            angular2_1.bind(selectivity_options_1.SelectivityOptions).toValue(options)
 	        ]);
 	        var expectedPopup = this.items[0].submenu ?
 	            selectivity_menu_container_1.SelectivityMenuContainer :
@@ -830,7 +840,7 @@ webpackJsonp([2],{
 	})();
 	exports.Selectivity = Selectivity;
 	exports.selectivity = [Selectivity];
-	//# sourceMappingURL=selectivity.js.map
+
 
 /***/ }
 
