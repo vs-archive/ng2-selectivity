@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {
   Component, View, OnInit, OnDestroy,
   Directive, ViewEncapsulation, Self,
@@ -16,8 +14,6 @@ import {SelectivityOptions} from './selectivity-options';
 import {SelectivityMenuContainer} from './selectivity-menu-container';
 import {SelectivityOptionsContainer} from './selectivity-options-container';
 
-let cssSelectivity = require('./selectivity.css');
-
 // todo: local font awesome is expected
 @Component({
   selector: 'ng2-selectivity',
@@ -32,6 +28,9 @@ let cssSelectivity = require('./selectivity.css');
 })
 @View({
   template: `
+<style>
+  @import url(/build/selectivity.css);
+</style>
 <div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select" (keydown)="inputEvent($event)">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
@@ -52,7 +51,6 @@ let cssSelectivity = require('./selectivity.css');
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
 </div>
   `,
-  styles: [cssSelectivity],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class Selectivity implements ISelectivity, OnInit, OnDestroy {

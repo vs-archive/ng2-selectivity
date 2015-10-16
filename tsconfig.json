@@ -14,19 +14,10 @@
     "noEmitOnError": false,
     "noImplicitAny": false
   },
-  "filesGlob": [
-    "!./node_modules/**/*.ts"
+  "exclude": [
+    "node_modules"
   ],
   "files": [
-    "./tsd.d.ts",
-    "./components/selectivity/selectivity.ts",
-    "./components/selectivity/selectivity-interfaces.ts",
-    "./components/selectivity/selectivity-item.ts",
-    "./components/selectivity/selectivity-submenu.ts",
-    "./components/selectivity/selectivity-options.ts",
-    "./components/selectivity/selectivity-menu-container.ts",
-    "./components/selectivity/selectivity-options-container.ts",
-    "./components/index.ts",
-    "./components/position.ts"
+    "./components/index.ts"
   ]
 }

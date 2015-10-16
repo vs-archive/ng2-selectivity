@@ -12,13 +12,14 @@ import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
 import {SelectivityItem} from './selectivity-item';
 import {SelectivityOptions} from './selectivity-options';
 
-let cssSelectivity = require('./selectivity.css');
-
 @Component({
   selector: 'selectivity-options-container'
 })
 @View({
   template: `
+<style>
+  @import url(/build/selectivity.css);
+</style>
 <div *ng-if="options.selectivity && options.container"
      class="selectivity-dropdown"
      [ng-class]="{'has-search-input': options.selectivity.multiple === false}"
@@ -56,7 +57,6 @@ let cssSelectivity = require('./selectivity.css');
   </div>
 </div>
   `,
-  styles: [cssSelectivity],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle],
   encapsulation: ViewEncapsulation.None
 })

@@ -13,14 +13,15 @@ import {SelectivityItem} from './selectivity-item';
 import {SelectivityOptions} from './selectivity-options';
 import {SelectivityOptionsContainer} from './selectivity-options-container';
 
-let cssSelectivity = require('./selectivity.css');
-
 @Component({
   selector: 'selectivity-menu-container',
   events: ['data']
 })
 @View({
   template: `
+<style>
+  @import url(/build/selectivity.css);
+</style>
 <div class="selectivity-dropdown"
      [ng-style]="{top: top, left: left, width: width, display: display}">
   <div class="selectivity-results-container">
@@ -31,7 +32,6 @@ let cssSelectivity = require('./selectivity.css');
   </div>
 </div>
   `,
-  styles: [cssSelectivity],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle],
   encapsulation: ViewEncapsulation.None
 })

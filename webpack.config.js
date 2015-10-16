@@ -4,6 +4,7 @@ var webpack = require('webpack');
 
 var Clean = require('clean-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 // marked renderer hack
 marked.Renderer.prototype.code = function (code, lang) {
@@ -107,6 +108,7 @@ var config = {
         loader: 'ts',
         query: {
           ignoreDiagnostics: [
+            6053,
             // TS2305 -> Module ... has no exported member
             2305,
             // TS2307 ->  Cannot find external module
@@ -140,6 +142,9 @@ var config = {
       minChunks: Infinity,
       filename: 'angular2.js'
     }),
+    new TransferWebpackPlugin([
+      {from: 'components/selectivity/css'}
+    ]),
     new webpack.optimize.DedupePlugin({
       __isProduction: isProduction
     }),
