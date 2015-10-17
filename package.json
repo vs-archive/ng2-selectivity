@@ -4,7 +4,7 @@
   "description": "angular2 selectivity directive",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
-    "prepublish": "gulp clean && tsc",
+    "prepublish": "gulp clean && tsc && mkdir -p dist/css && cp components/css/ng2-selectivity.css dist/css",
     "prestart": "npm install",
     "server": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run server",
@@ -61,7 +61,6 @@
     "prismjs-loader": "0.0.2",
     "raw-loader": "0.5.1",
     "require-dir": "0.3.0",
-    "transfer-webpack-plugin": "0.1.4",
     "typescript": "1.6.2",
     "webpack": "1.12.2",
     "webpack-dev-server": "1.12.0"

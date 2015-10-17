@@ -19,9 +19,6 @@ import {SelectivityOptionsContainer} from './selectivity-options-container';
 })
 @View({
   template: `
-<style>
-  @import url(/build/selectivity.css);
-</style>
 <div class="selectivity-dropdown"
      [ng-style]="{top: top, left: left, width: width, display: display}">
   <div class="selectivity-results-container">

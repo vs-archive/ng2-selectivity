@@ -28,9 +28,6 @@ import {SelectivityOptionsContainer} from './selectivity-options-container';
 })
 @View({
   template: `
-<style>
-  @import url(/build/selectivity.css);
-</style>
 <div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select" (keydown)="inputEvent($event)">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">

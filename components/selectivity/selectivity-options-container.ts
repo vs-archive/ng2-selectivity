@@ -17,9 +17,6 @@ import {SelectivityOptions} from './selectivity-options';
 })
 @View({
   template: `
-<style>
-  @import url(/build/selectivity.css);
-</style>
 <div *ng-if="options.selectivity && options.container"
      class="selectivity-dropdown"
      [ng-class]="{'has-search-input': options.selectivity.multiple === false}"
