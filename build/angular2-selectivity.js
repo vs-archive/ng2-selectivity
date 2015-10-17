@@ -3,19 +3,12 @@ webpackJsonp([2],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(32);
+	module.exports = __webpack_require__(31);
 
 
 /***/ },
 
 /***/ 21:
-/***/ function(module, exports) {
-
-	module.exports = ".selectivity-backdrop {\n    background: transparent;\n    position: fixed;\n    z-index: 1045;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n}\n\n.selectivity-clearfix {\n    clear: both;\n}\n\n.selectivity-input {\n    display: inline-block;\n    width: 250px;\n}\n\nselect {\n    display: none;\n}\n\n.selectivity-placeholder {\n    color: #999;\n}\n\n.selectivity-dropdown {\n    background: #fff;\n    border-radius: 4px;\n    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15), 0 10px 16px 0 rgba(0, 0, 0, 0.2);\n    position: absolute;\n    z-index: 1046;\n}\n\n.selectivity-search-input-container {\n    border-bottom: 1px solid #eee;\n}\n\n.selectivity-search-input {\n    background: transparent;\n    border: 0;\n    outline: 0;\n    width: 100%;\n}\n\n.selectivity-results-container {\n    max-height: 28em;\n    overflow: auto;\n    position: relative;\n}\n\n.selectivity-load-more,\n.selectivity-result-item {\n    cursor: pointer;\n    padding: 7px;\n}\n\n.selectivity-result-children .selectivity-result-item {\n    padding-left: 17px;\n}\n\n.selectivity-load-more.highlight,\n.selectivity-result-item.highlight {\n    background: #4484c7;\n    color: #fff;\n}\n\n.selectivity-result-item:first-child {\n    border-radius: 4px 4px 0 0;\n}\n\n.selectivity-dropdown.has-search-input .selectivity-result-item:first-child {\n    border-radius: 0;\n}\n\n.selectivity-result-label {\n    font-weight: bold;\n}\n\n.selectivity-load-more,\n.selectivity-result-item:last-child,\n.selectivity-result-children:last-child .selectivity-result-item:last-child {\n    border-radius: 0 0 4px 4px;\n}\n\n.selectivity-result-children .selectivity-result-item:last-child {\n    border-radius: 0;\n}\n\n.selectivity-error,\n.selectivity-loading,\n.selectivity-search-input-container,\n.selectivity-result-label {\n    padding: 7px;\n}\n\n.selectivity-multiple-input-container {\n    background: #eee;\n    border-radius: 2px;\n    cursor: text;\n    max-height: 10em;\n    min-height: calc(2em + 4px);\n    overflow: auto;\n    padding: 5px;\n}\n\n.selectivity-multiple-input-container .selectivity-placeholder {\n    height: calc(2em + 4px);\n    line-height: calc(2em + 4px);\n}\n\n.selectivity-multiple-input,\ninput[type='text'].selectivity-multiple-input {\n    background-color: transparent;\n    border: none;\n    float: left;\n    height: calc(2em + 4px);\n    max-width: 100%;\n    outline: 0;\n    padding: 0;\n}\n\n.selectivity-multiple-input:focus,\ninput[type='text'].selectivity-multiple-input:focus {\n    background-color: transparent;\n    box-shadow: none;\n    outline: none;\n}\n\n.selectivity-multiple-input::-ms-clear {\n    display: none;\n}\n\n.selectivity-multiple-input.selectivity-width-detector {\n    position: absolute;\n    top: -10000px;\n    left: 0;\n    white-space: pre;\n}\n\n.selectivity-multiple-selected-item {\n    background: #4484c7;\n    border-radius: 3px;\n    color: #fff;\n    cursor: default;\n    float: left;\n    line-height: 2em;\n    margin: 2px;\n    padding-right: 5px;\n    position: relative;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    -webkit-user-select: none;\n    user-select: none;\n    white-space: nowrap;\n}\n\n.selectivity-multiple-selected-item.highlighted {\n    background-color: #ccc;\n}\n\n.selectivity-multiple-selected-item-remove {\n    color: #fff;\n    cursor: pointer;\n    padding: 5px;\n}\n\n.selectivity-single-select {\n    background: #eee;\n    border-radius: 2px;\n    cursor: pointer;\n    min-height: 2em;\n    padding: 5px;\n    position: relative;\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box;\n    box-sizing: content-box;\n}\n\n.selectivity-single-select-input {\n    opacity: 0;\n}\n\n.selectivity-single-result-container {\n    position: absolute;\n    top: 0.8em;\n    right: 15px;\n    left: 5px;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n}\n\n.selectivity-single-selected-item {\n    color: #000;\n}\n\n.selectivity-single-selected-item-remove {\n    color: #000;\n    float: right;\n    padding: 0 5px;\n}\n\n.selectivity-caret {\n    position: absolute;\n    right: 5px;\n    top: 0.7em;\n}\n\n@media only screen and (max-device-width: 480px) {\n    .selectivity-single-select {\n        background: #eee;\n        border-radius: 2px;\n    }\n\n    .selectivity-single-result-container {\n        right: 5px;\n    }\n\n    .selectivity-caret {\n        display: none;\n    }\n}\n\n.selectivity-submenu-icon {\n    position: absolute;\n    right: 4px;\n}\n"
-
-/***/ },
-
-/***/ 22:
 /***/ function(module, exports) {
 
 	var SelectivityOptions = (function () {
@@ -29,22 +22,20 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 32:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
-	///<reference path="../tsd.d.ts"/>
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(102));
+	__export(__webpack_require__(101));
 
 
 /***/ },
 
-/***/ 39:
+/***/ 38:
 /***/ function(module, exports) {
 
-	/// <reference path="../tsd.d.ts" />
 	var PositionService = (function () {
 	    function PositionService() {
 	    }
@@ -177,10 +168,10 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 40:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
-	var selectivity_submenu_1 = __webpack_require__(101);
+	var selectivity_submenu_1 = __webpack_require__(100);
 	var SelectivityItem = (function () {
 	    function SelectivityItem(source) {
 	        var _this = this;
@@ -220,7 +211,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 41:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -235,9 +226,8 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var angular2_1 = __webpack_require__(6);
-	var position_1 = __webpack_require__(39);
-	var selectivity_options_1 = __webpack_require__(22);
-	var cssSelectivity = __webpack_require__(21);
+	var position_1 = __webpack_require__(38);
+	var selectivity_options_1 = __webpack_require__(21);
 	var SelectivityOptionsContainer = (function () {
 	    function SelectivityOptionsContainer(element, options) {
 	        this.element = element;
@@ -374,7 +364,6 @@ webpackJsonp([2],{
 	        }),
 	        angular2_1.View({
 	            template: "\n<div *ng-if=\"options.selectivity && options.container\"\n     class=\"selectivity-dropdown\"\n     [ng-class]=\"{'has-search-input': options.selectivity.multiple === false}\"\n     [ng-style]=\"{top: top, left: left, width: width, display: display}\">\n  <div *ng-if=\"options.container.hasSearchInput()\"\n       class=\"selectivity-search-input-container\">\n    <input (keydown)=\"inputEvent($event)\"\n           (keyup)=\"inputEvent($event, true)\"\n           type=\"text\"\n           class=\"selectivity-search-input\">\n  </div>\n  <div *ng-if=\"!options.container.getItemObjects()[0].hasChildren()\" class=\"selectivity-results-container\">\n    <div *ng-if=\"items.length <= 0\"\n         class=\"selectivity-error\">No results for <b>{{inputValue}}</b></div>\n    <div *ng-for=\"#i of items\"\n         [ng-class]=\"{'highlight': isActive(i)}\"\n         (mouseenter)=\"selectActive(i)\"\n         (click)=\"selectMatch(i, $event)\"\n         class=\"selectivity-result-item\">{{i.text}}</div>\n  </div>\n\n  <div *ng-if=\"options.container.getItemObjects()[0].hasChildren()\" class=\"selectivity-results-container\">\n      <div *ng-if=\"items.length <= 0\"\n         class=\"selectivity-error\">No results for <b>{{inputValue}}</b></div>\n      <div *ng-for=\"#i of items\">\n      <div class=\"selectivity-result-label\">{{i.text}}</div>\n          <div class=\"selectivity-result-children\">\n              <div *ng-for=\"#ii of i.children\"\n                   (mouseenter)=\"selectActive(ii)\"\n                   (click)=\"selectMatch(ii, $event)\"\n                   [ng-class]=\"{'highlight': isActive(ii)}\"\n                   class=\"selectivity-result-item\">{{ii.text}}</div>\n          </div>\n      </div>\n  </div>\n</div>\n  ",
-	            styles: [cssSelectivity],
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.FORM_DIRECTIVES, angular2_1.NgClass, angular2_1.NgStyle],
 	            encapsulation: angular2_1.ViewEncapsulation.None
 	        }), 
@@ -500,7 +489,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 100:
+/***/ 99:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -515,11 +504,10 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var angular2_1 = __webpack_require__(6);
-	var position_1 = __webpack_require__(39);
-	var selectivity_item_1 = __webpack_require__(40);
-	var selectivity_options_1 = __webpack_require__(22);
-	var selectivity_options_container_1 = __webpack_require__(41);
-	var cssSelectivity = __webpack_require__(21);
+	var position_1 = __webpack_require__(38);
+	var selectivity_item_1 = __webpack_require__(39);
+	var selectivity_options_1 = __webpack_require__(21);
+	var selectivity_options_container_1 = __webpack_require__(40);
 	var SelectivityMenuContainer = (function () {
 	    function SelectivityMenuContainer(element, options, loader) {
 	        this.element = element;
@@ -605,7 +593,6 @@ webpackJsonp([2],{
 	        }),
 	        angular2_1.View({
 	            template: "\n<div class=\"selectivity-dropdown\"\n     [ng-style]=\"{top: top, left: left, width: width, display: display}\">\n  <div class=\"selectivity-results-container\">\n    <div *ng-for=\"#i of items\"\n         (mouseenter)=\"selectActive(i, $event)\"\n         [ng-class]=\"{highlight: isActive(i)}\"\n         class=\"selectivity-result-item\">{{i.text}}<i class=\"selectivity-submenu-icon fa fa-chevron-right\"></i></div>\n  </div>\n</div>\n  ",
-	            styles: [cssSelectivity],
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.FORM_DIRECTIVES, angular2_1.NgClass, angular2_1.NgStyle],
 	            encapsulation: angular2_1.ViewEncapsulation.None
 	        }), 
@@ -618,7 +605,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 101:
+/***/ 100:
 /***/ function(module, exports) {
 
 	var SelectivitySubMenu = (function () {
@@ -640,10 +627,9 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 102:
+/***/ 101:
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../tsd.d.ts" />
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
 	    switch (arguments.length) {
@@ -656,11 +642,10 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var angular2_1 = __webpack_require__(6);
-	var selectivity_item_1 = __webpack_require__(40);
-	var selectivity_options_1 = __webpack_require__(22);
-	var selectivity_menu_container_1 = __webpack_require__(100);
-	var selectivity_options_container_1 = __webpack_require__(41);
-	var cssSelectivity = __webpack_require__(21);
+	var selectivity_item_1 = __webpack_require__(39);
+	var selectivity_options_1 = __webpack_require__(21);
+	var selectivity_menu_container_1 = __webpack_require__(99);
+	var selectivity_options_container_1 = __webpack_require__(40);
 	var Selectivity = (function () {
 	    function Selectivity(element, loader) {
 	        this.element = element;
@@ -831,7 +816,6 @@ webpackJsonp([2],{
 	        }),
 	        angular2_1.View({
 	            template: "\n<div *ng-if=\"!multiple\" (click)=\"onClick($event)\" class=\"selectivity-single-select\" (keydown)=\"inputEvent($event)\">\n  <input type=\"text\" class=\"selectivity-single-select-input\">\n  <div class=\"selectivity-single-result-container\">\n    <div *ng-if=\"active.length <= 0\" class=\"selectivity-placeholder\">{{placeholder}}</div>\n    <span *ng-if=\"active.length > 0\" class=\"selectivity-single-selected-item\">\n      <a class=\"selectivity-single-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{active[0].text}}\n    </span>\n  </div><i class=\"fa fa-sort-desc selectivity-caret\"></i>\n</div>\n\n<div *ng-if=\"multiple\" (click)=\"onClick($event)\" class=\"selectivity-multiple-input-container\">\n  <span *ng-for=\"#a of active\" class=\"selectivity-multiple-selected-item\">\n    <a class=\"selectivity-multiple-selected-item-remove\"><i class=\"fa fa-remove\"></i></a>{{a.text}}</span>\n  <input (keydown)=\"inputEvent($event)\"\n         (keyup)=\"inputEvent($event, true)\"\n         placeholder=\"{{active.length <= 0 ? placeholder : ''}}\"\n         type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" class=\"selectivity-multiple-input\">\n  <span class=\"selectivity-multiple-input selectivity-width-detector\"></span><div class=\"selectivity-clearfix\"></div>\n</div>\n  ",
-	            styles: [cssSelectivity],
 	            directives: [angular2_1.CORE_DIRECTIVES, angular2_1.FORM_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [angular2_1.ElementRef, angular2_1.DynamicComponentLoader])
