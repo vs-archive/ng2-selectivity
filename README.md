@@ -10,7 +10,9 @@ Native Selectivity Angular2 component
 
   Alternatively, you can [download it in a ZIP file](https://github.com/valor-software/ng2-selectivity/archive/master.zip).
 
-2. More information regardidocng using of ***ng2-selectivity*** is located in
+2. Include `ng2-selectivity.css` in your project
+
+3. More information regardidocng using of ***ng2-selectivity*** is located in
   [demo](http://valor-software.github.io/ng2-selectivity/) and [demo sources](https://github.com/valor-software/ng2-selectivity/tree/master/demo).
 
 ## API
