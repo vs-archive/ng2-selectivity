@@ -1,8 +1,9 @@
 import {
   Injectable,
   ElementRef
-} from 'angular2/angular2';
+} from 'angular2/core';
 
+@Injectable()
 export class PositionService {
   private get window():any {
     return window;
@@ -52,7 +53,7 @@ export class PositionService {
    * Provides read-only equivalent of jQuery's position function:
    * http://api.jquery.com/position/
    */
-  public position(nativeEl:any):{width: number, height: number, top: number, left: number} {
+  public position(nativeEl):{width: number, height: number, top: number, left: number} {
     let elBCR = this.offset(nativeEl);
     let offsetParentBCR = {top: 0, left: 0};
     let offsetParentEl = this.parentOffsetEl(nativeEl);

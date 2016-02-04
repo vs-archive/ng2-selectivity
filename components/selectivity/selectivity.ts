@@ -1,11 +1,10 @@
 import {
-  Component, View, OnInit, OnDestroy,
+  Component, View, OnInit, OnDestroy, Input, Output,
   Directive, ViewEncapsulation, Self,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle,
-  bind, forwardRef, ResolvedBinding, Injector
-} from 'angular2/angular2';
+  provide, forwardRef, ResolvedBinding, Injector
+} from 'angular2/core';
 
 import {positionService} from '../position';
 import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
@@ -20,26 +19,24 @@ import {SelectivityOptionsContainer} from './selectivity-options-container';
   properties: [
     'allowClear',
     'placeholder',
-    'initData:data',
     'items',
     'multiple',
-    'showSearchInputInDropdown'],
-  events: ['selected', 'removed', 'data']
+    'showSearchInputInDropdown']
 })
 @View({
   template: `
-<div *ng-if="!multiple" (click)="onClick($event)" class="selectivity-single-select" (keydown)="inputEvent($event)">
+<div *ngIf="!multiple" (click)="onClick($event)" class="selectivity-single-select" (keydown)="inputEvent($event)">
   <input type="text" class="selectivity-single-select-input">
   <div class="selectivity-single-result-container">
-    <div *ng-if="active.length <= 0" class="selectivity-placeholder">{{placeholder}}</div>
-    <span *ng-if="active.length > 0" class="selectivity-single-selected-item">
+    <div *ngIf="active.length <= 0" class="selectivity-placeholder">{{placeholder}}</div>
+    <span *ngIf="active.length > 0" class="selectivity-single-selected-item">
       <a class="selectivity-single-selected-item-remove"><i class="fa fa-remove"></i></a>{{active[0].text}}
     </span>
   </div><i class="fa fa-sort-desc selectivity-caret"></i>
 </div>
 
-<div *ng-if="multiple" (click)="onClick($event)" class="selectivity-multiple-input-container">
-  <span *ng-for="#a of active" class="selectivity-multiple-selected-item">
+<div *ngIf="multiple" (click)="onClick($event)" class="selectivity-multiple-input-container">
+  <span *ngFor="#a of active" class="selectivity-multiple-selected-item">
     <a class="selectivity-multiple-selected-item-remove"><i class="fa fa-remove"></i></a>{{a.text}}</span>
   <input (keydown)="inputEvent($event)"
          (keyup)="inputEvent($event, true)"
@@ -48,16 +45,18 @@ import {SelectivityOptionsContainer} from './selectivity-options-container';
   <span class="selectivity-multiple-input selectivity-width-detector"></span><div class="selectivity-clearfix"></div>
 </div>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
+  styles: [require('./ng2-selectivity.css')],
+  directives: [],
+  encapsulation: ViewEncapsulation.None
 })
 export class Selectivity implements ISelectivity, OnInit, OnDestroy {
-  public data:EventEmitter = new EventEmitter();
-  public multiple:boolean = false;
-  private selected:EventEmitter = new EventEmitter();
-  private removed:EventEmitter = new EventEmitter();
+  @Input() data:Array<any> = [];
+  @Input() multiple:boolean = false;
+  @Output() dataChange = new EventEmitter();
+  @Output() selected = new EventEmitter();
+  @Output() removed = new EventEmitter();
   private allowClear:boolean = false;
   private placeholder:string = '';
-  private initData:Array<any> = [];
   private _items:Array<any> = [];
   private _itemObjects:Array<SelectivityItem> = [];
   private _popup:Promise<ComponentRef>;
@@ -95,17 +94,17 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
     this._active = value;
   }
 
-  onInit() {
+  ngOnInit() {
     this.offSideClickHandler = this.getOffSideClickHandler(this);
     document.addEventListener('click', this.offSideClickHandler);
 
-    if (this.initData) {
-      this.active = this.initData.map(d => new SelectivityItem(d));
-      this.data.next(this.active);
+    if (this.data) {
+      this.active = this.data.map(d => new SelectivityItem(d));
+      this.dataChange.emit(this.active);
     }
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     document.removeEventListener('click', this.offSideClickHandler);
     this.offSideClickHandler = null;
   }
@@ -134,13 +133,13 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
     if (this.multiple === true && this.active) {
       let index = this.active.indexOf(item);
       this.active.splice(index, 1);
-      this.data.next(this.active);
+      this.dataChange.emit(this.active);
       this.doEvent('removed', item);
     }
 
     if (this.multiple === false) {
       this.active = [];
-      this.data.next(this.active);
+      this.dataChange.emit(this.active);
       this.doEvent('removed', item);
     }
   }
@@ -165,7 +164,7 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
 
   public doEvent(type:string, value:any) {
     if (this[type] && value) {
-      this[type].next(value);
+      this[type].emit(value);
     }
   }
 
@@ -177,7 +176,7 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
     });
 
     let binding = Injector.resolve([
-      bind(SelectivityOptions).toValue(options)
+      provide(SelectivityOptions, {useValue: options})
     ]);
 
     let expectedPopup:any = this.items[0].submenu ?
@@ -187,11 +186,16 @@ export class Selectivity implements ISelectivity, OnInit, OnDestroy {
     this._popup = this.loader
       .loadNextToLocation(expectedPopup, this.element, binding)
       .then((componentRef:ComponentRef) => {
-      componentRef.instance.position(this.element);
-      this.optContainer = componentRef.instance;
-      this.element.nativeElement.focus();
-      return componentRef;
-    });
+        this.optContainer = componentRef.instance;
+
+        // HACK: we cannot position right now because children elements are not yet created
+        setTimeout(() => {
+          componentRef.instance.position(this.element);
+          this.element.nativeElement.focus();
+        }, 0);
+
+        return componentRef;
+      });
   }
 
   public hide() {
