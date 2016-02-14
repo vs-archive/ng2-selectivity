@@ -18,7 +18,9 @@
     "node_modules"
   ],
   "files": [
-    "./components/index.ts",
-    "./es6-object.d.ts"
+    "./components/index.ts"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts"
   ]
 }
