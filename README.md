@@ -1,4 +1,4 @@
-# ng2-selectivity
+# UNMAINTAINED ng2-selectivity
 
 Native Selectivity Angular2 component
 
