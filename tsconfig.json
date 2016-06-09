@@ -1,5 +1,5 @@
 {
-  "version": "1.6.2",
+  "version": "1.7.5",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -19,5 +19,8 @@
   ],
   "files": [
     "./components/index.ts"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts"
   ]
 }

@@ -1,11 +1,14 @@
 import {
-  Component, View, OnInit, OnDestroy,
+  Component, View, OnInit, OnDestroy, Output,
   Directive, ViewEncapsulation, Self,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle,
-  bind, forwardRef, ResolvedBinding, Injector
-} from 'angular2/angular2';
+  provide, forwardRef, ResolvedBinding, Injector
+} from 'angular2/core';
+
+import {
+  NgClass, NgStyle, NgFor
+} from 'angular2/common';
 
 import {positionService} from '../position';
 import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
@@ -14,25 +17,25 @@ import {SelectivityOptions} from './selectivity-options';
 import {SelectivityOptionsContainer} from './selectivity-options-container';
 
 @Component({
-  selector: 'selectivity-menu-container',
-  events: ['data']
+  selector: 'selectivity-menu-container'
 })
 @View({
   template: `
 <div class="selectivity-dropdown"
-     [ng-style]="{top: top, left: left, width: width, display: display}">
+     [ngStyle]="{top: top, left: left, width: width, display: display}">
   <div class="selectivity-results-container">
-    <div *ng-for="#i of items"
+    <div *ngFor="#i of items"
          (mouseenter)="selectActive(i, $event)"
-         [ng-class]="{highlight: isActive(i)}"
+         [ngClass]="{highlight: isActive(i)}"
          class="selectivity-result-item">{{i.text}}<i class="selectivity-submenu-icon fa fa-chevron-right"></i></div>
   </div>
 </div>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle],
+  directives: [NgClass, NgStyle, NgFor],
   encapsulation: ViewEncapsulation.None
 })
 export class SelectivityMenuContainer implements ISelectivity {
+  @Output() dataChange = new EventEmitter();
   private items:Array<SelectivityItem> = [];
   private itemObjects:Array<SelectivityItem> = [];
   private active:SelectivityItem;
@@ -42,7 +45,6 @@ export class SelectivityMenuContainer implements ISelectivity {
   private display:string;
   private placement:string;
   private _popup:Promise<ComponentRef>;
-  private data:EventEmitter = new EventEmitter();
   private hostEl:ElementRef;
 
   constructor(public element:ElementRef,
@@ -100,17 +102,17 @@ export class SelectivityMenuContainer implements ISelectivity {
     });
 
     let binding = Injector.resolve([
-      bind(SelectivityOptions).toValue(options)
+      provide(SelectivityOptions, {useValue: options})
     ]);
 
     let expectedPopup:any = SelectivityOptionsContainer;
     this._popup = this.loader
       .loadNextToLocation(expectedPopup, this.element, binding)
       .then((componentRef:ComponentRef) => {
-      componentRef.instance.position(this.hostEl, position);
-      this.element.nativeElement.focus();
-      return componentRef;
-    });
+        componentRef.instance.position(this.hostEl, position);
+        this.element.nativeElement.focus();
+        return componentRef;
+      });
   }
 
   public hide() {

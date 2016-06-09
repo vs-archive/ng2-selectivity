@@ -1,10 +1,10 @@
 {
   "name": "ng2-selectivity",
-  "version": "0.42.0",
+  "version": "0.0.0",
   "description": "angular2 selectivity directive",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
-    "prepublish": "gulp clean && tsc && mkdir -p dist/css && cp components/css/ng2-selectivity.css dist/css",
+    "prepublish": "gulp clean && ntsc && mkdir -p dist/css && cp components/css/ng2-selectivity.css dist/css",
     "prestart": "npm install",
     "server": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run server",
@@ -18,9 +18,7 @@
   ],
   "keywords": [
     "angular2",
-    "bootstrap",
-    "angularjs",
-    "twitter-bootstrap"
+    "angularjs"
   ],
   "author": "Vyacheslav Chub <vyacheslav.chub@valor-software.com>",
   "license": "MIT",
@@ -32,12 +30,11 @@
     "url": "https://github.com/valor-software/ng2-selectivity/issues"
   },
   "homepage": "https://github.com/valor-software/ng2-selectivity#readme",
-  "dependencies": {
-    "angular2": "2.0.0-alpha.42",
-    "ng2-bootstrap": "0.42.0",
-    "reflect-metadata": "0.1.2",
-    "ts-loader": "0.5.6",
-    "zone.js": "0.5.8"
+  "peerDependencies": {
+    "angular2": "2.0.0-beta.2",
+    "es6-shim": "^0.33.3",
+    "rxjs": "5.0.0-beta.0",
+    "zone.js": "0.5.10"
   },
   "devDependencies": {
     "bootstrap": "3.3.5",
@@ -56,12 +53,15 @@
     "markdown-loader": "0.1.7",
     "marked": "0.3.5",
     "moment": "2.10.6",
+    "ntypescript": "1.201602032217.1",
     "pre-commit": "1.1.1",
     "prismjs": "valorkin/prism",
     "prismjs-loader": "0.0.2",
     "raw-loader": "0.5.1",
+    "reflect-metadata": "0.1.2",
     "require-dir": "0.3.0",
-    "typescript": "1.6.2",
+    "ts-loader": "0.5.6",
+    "typescript": "1.7.5",
     "webpack": "1.12.2",
     "webpack-dev-server": "1.12.0"
   }

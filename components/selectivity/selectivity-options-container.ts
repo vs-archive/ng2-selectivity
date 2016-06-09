@@ -3,9 +3,12 @@ import {
   Directive, ViewEncapsulation, Self,
   EventEmitter, ElementRef, ComponentRef,
   DynamicComponentLoader,
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle,
   bind, forwardRef, ResolvedBinding, Injector
-} from 'angular2/angular2';
+} from 'angular2/core';
+
+import {
+  NgClass, NgStyle
+} from 'angular2/common';
 
 import {positionService} from '../position';
 import {ISelectivity, IOptionsBehavior} from './selectivity-interfaces';
@@ -17,44 +20,44 @@ import {SelectivityOptions} from './selectivity-options';
 })
 @View({
   template: `
-<div *ng-if="options.selectivity && options.container"
+<div *ngIf="options.selectivity && options.container"
      class="selectivity-dropdown"
-     [ng-class]="{'has-search-input': options.selectivity.multiple === false}"
-     [ng-style]="{top: top, left: left, width: width, display: display}">
-  <div *ng-if="options.container.hasSearchInput()"
+     [ngClass]="{'has-search-input': options.selectivity.multiple === false}"
+     [ngStyle]="{top: top, left: left, width: width, display: display}">
+  <div *ngIf="options.container.hasSearchInput()"
        class="selectivity-search-input-container">
     <input (keydown)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
            type="text"
            class="selectivity-search-input">
   </div>
-  <div *ng-if="!options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
-    <div *ng-if="items.length <= 0"
+  <div *ngIf="!options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
+    <div *ngIf="items.length <= 0"
          class="selectivity-error">No results for <b>{{inputValue}}</b></div>
-    <div *ng-for="#i of items"
-         [ng-class]="{'highlight': isActive(i)}"
+    <div *ngFor="#i of items"
+         [ngClass]="{'highlight': isActive(i)}"
          (mouseenter)="selectActive(i)"
          (click)="selectMatch(i, $event)"
          class="selectivity-result-item">{{i.text}}</div>
   </div>
 
-  <div *ng-if="options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
-      <div *ng-if="items.length <= 0"
+  <div *ngIf="options.container.getItemObjects()[0].hasChildren()" class="selectivity-results-container">
+      <div *ngIf="items.length <= 0"
          class="selectivity-error">No results for <b>{{inputValue}}</b></div>
-      <div *ng-for="#i of items">
+      <div *ngFor="#i of items">
       <div class="selectivity-result-label">{{i.text}}</div>
           <div class="selectivity-result-children">
-              <div *ng-for="#ii of i.children"
+              <div *ngFor="#ii of i.children"
                    (mouseenter)="selectActive(ii)"
                    (click)="selectMatch(ii, $event)"
-                   [ng-class]="{'highlight': isActive(ii)}"
+                   [ngClass]="{'highlight': isActive(ii)}"
                    class="selectivity-result-item">{{ii.text}}</div>
           </div>
       </div>
   </div>
 </div>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle],
+  directives: [NgClass, NgStyle],
   encapsulation: ViewEncapsulation.None
 })
 export class SelectivityOptionsContainer {
@@ -231,16 +234,17 @@ export class SelectivityOptionsContainer {
       }
 
       this.options.selectivity.active.push(value);
-      this.options.selectivity.data.next(this.options.selectivity.active);
+      this.options.selectivity.dataChange.emit(this.options.selectivity.active);
       this.options.selectivity.doEvent('selected', value);
     }
 
     if (this.options.selectivity.multiple === false) {
       this.options.selectivity.active[0] = value;
-      this.options.selectivity.data.next(this.options.selectivity.active[0]);
+      this.options.selectivity.dataChange.emit(this.options.selectivity.active[0]);
       this.options.selectivity.doEvent('selected', value);
       // turn back focus to input from options
-      this.options.selectivity.element.nativeElement.children[1].children[0].focus();
+      // TODO this crashed because of 'children' undefined:
+      // this.options.selectivity.element.nativeElement.children[1].children[0].focus();
     }
 
     // clear user input after option selection from list
